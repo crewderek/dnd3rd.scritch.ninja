@@ -1,0 +1,87 @@
+openapi: 3.0.0
+info:
+  version: '0.1'
+  title: 'Dnd 3.5 edition API on Scritch Ninja'
+  description: ''
+security:
+  - BasicAuth: []
+paths:
+  /character/{characterId}:
+    get:
+      summary: Returns a character and their top level stats
+      description: Returns items such as name, level, experience and not listed items such as skills, feats, attacks, armor, inventory, etc...
+      responses:
+        '200':
+          description: OK
+      parameters:
+        - name: characterId
+          in: path
+          required: true
+          description: The unique ID associated with the character to get
+          schema:
+            type: string
+  /character:
+    post:
+      summary: Creates a character with their top level stats
+      description: Creates the character including name, level, experience and not listed items such as skills, feats, attacks, armor, inventory, etc...
+      responses:
+        '201':
+          description: Created
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Character' 
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/CREWDEREK/Dnd3rdScritchNinja/0.1
+components:
+  schemas:
+    Character:
+      properties:
+        id:
+          type: string
+        characterName:
+          type: string
+        characterLevel:
+          type: number
+        characterExperience:
+          type: number
+        race:
+          type: string
+        alignment:
+          type: string
+        deity:
+          type: string
+        size:
+          type: string
+        age:
+          type: number
+        gender:
+          type: string
+        height:
+          type: string
+        weight:
+          type: string
+        characterDescription:
+          type: string
+        info:
+          type: object
+          $ref: '#/components/schemas/Class'
+    Class:
+      properties:
+        classes:
+          type: array
+          items:
+            type: object
+            properties:
+              className:
+                type: string
+              level:
+                type: number
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
