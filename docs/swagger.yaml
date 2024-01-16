@@ -6,7 +6,7 @@ info:
 security:
   - BasicAuth: []
 paths:
-  /character/{characterId}:
+  /character/{cognitoUserId}/{characterId}:
     get:
       summary: Returns a character and their top level stats
       description: Returns items such as name, level, experience and not listed items such as skills, feats, attacks, armor, inventory, etc...
@@ -14,6 +14,7 @@ paths:
         '200':
           description: Character retrieved.
       parameters:
+        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
   /character:
     post:
@@ -28,7 +29,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Character'
-  /character/abilities/{characterId}:
+  /character/abilities/{cognitoUserId}/{characterId}:
     get:
       summary: Gets the abilities associated with a character
       description: Gets all of the abilities and scores associated with a set characterId
@@ -36,6 +37,7 @@ paths:
           '200':
             description: Abilities retrieved.
       parameters:
+        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
   /character/abilities:
     post:
@@ -50,7 +52,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Ability'
-  /character/skills/{characterId}:
+  /character/skills/{cognitoUserId}/{characterId}:
     get:
       summary: Gets the skills associated with a character
       description: Gets all of the skills and scores associated with a set characterId
@@ -58,6 +60,7 @@ paths:
         '200':
           description: Skills retrieved.
       parameters:
+        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
   /character/skills:
     post:
@@ -72,7 +75,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Skill'
-  /character/saving-throws/{characterId}:
+  /character/saving-throws/{cognitoUserId}/{characterId}:
     get:
       summary: Gets the saving throws associated with a character
       description: Gets all of the saving throws and scores associated with a set characterId
@@ -80,6 +83,7 @@ paths:
         '200':
           description: Saving throws retrieved.
       parameters:
+        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
   /character/saving-throws:
     post:
@@ -94,7 +98,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Skill'
-  /character/weapons/{characterId}:
+  /character/weapons/{cognitoUserId}/{characterId}:
     get:
       summary: Gets the weapons associated with a character
       description: Gets all of the weapons and scores associated with a set characterId
@@ -102,6 +106,7 @@ paths:
         '200':
           description: Weapons retrieved.
       parameters:
+        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
   /character/weapons:
     post:
@@ -116,7 +121,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Weapon'
-  /character/armor/{characterId}:
+  /character/armor/{cognitoUserId}/{characterId}:
     get:
       summary: Gets the weapons associated with a character
       description: Gets all of the weapons and scores associated with a set characterId
@@ -124,6 +129,7 @@ paths:
         '200':
           description: Weapons retrieved.
       parameters:
+        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
   /character/armor:
     post:
@@ -138,7 +144,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Armor'
-  /character/feats/{characterId}:
+  /character/feats/{cognitoUserId}/{characterId}:
     get:
       summary: Gets the abilities associated with a character
       description: Gets all of the abilities and scores associated with a set characterId
@@ -146,6 +152,7 @@ paths:
         '200':
           description: Abilities retrieved.
       parameters:
+        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
   /character/feats:
     post:
@@ -166,13 +173,20 @@ servers:
     url: https://virtserver.swaggerhub.com/CREWDEREK/Dnd3rdScritchNinja/0.1
 components:
   parameters:
+    cognitoUserIdParam:
+      name: cognitoUserId
+      in: path
+      required: true
+      description: The unique ID associated with the users Cognito account
+      schema:
+        type: string
     characterIdParam:
       name: characterId
       in: path
       required: true
       description: The unique ID associated with the character to get
       schema:
-        type: string
+        type: number
   schemas:
     Currency:
       properties:
@@ -232,7 +246,7 @@ components:
       properties:
         isEquipped:
           type: boolean
-        equipmentSlot:
+        equipmentSlots:
           type: array
           items:
             type: string
@@ -342,7 +356,9 @@ components:
           type: string
     Character:
       properties:
-        id:
+        cognitoUserId:
+          type: string
+        characterId:
           type: number
         characterName:
           type: string
