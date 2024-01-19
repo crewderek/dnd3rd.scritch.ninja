@@ -4,55 +4,77 @@ info:
   title: 'Dnd 3.5 edition API on Scritch Ninja'
   description: ''
 security:
-  - BasicAuth: []
+  - bearerAuth: []
 paths:
-  /character/{cognitoUserId}/{characterId}:
+  /character:
     get:
       summary: Returns a character and their top level stats
       description: Returns items such as name, level, experience and not listed items such as skills, feats, attacks, armor, inventory, etc...
       responses:
         '200':
           description: Character retrieved.
+        '400':
+          description: An internal validation error has occurred.
+        '404':
+          description: The character could not be found.
+        '500':
+          description: Internal server error with getting the character.
       parameters:
-        - $ref: "#/components/parameters/cognitoUserIdParam"
+#        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
-  /character:
     post:
       summary: Creates a character with their top level stats
       description: Creates the character including name, level, experience and not listed items such as skills, feats, attacks, armor, inventory, etc...
       responses:
         '201':
           description: Character created.
+        '400':
+          description: An internal validation error has occurred.
+        '409':
+          description: The character already exists and could not be created.
+        '500':
+          description: Internal server error with creating the character.
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Character'
-  /character/abilities/{cognitoUserId}/{characterId}:
+  /character/abilities:
     get:
       summary: Gets the abilities associated with a character
       description: Gets all of the abilities and scores associated with a set characterId
       responses:
-          '200':
-            description: Abilities retrieved.
+        '200':
+          description: Ability retrieved.
+        '400':
+          description: An internal validation error has occurred.
+        '404':
+          description: The ability could not be found.
+        '500':
+          description: Internal server error with getting the ability.
       parameters:
-        - $ref: "#/components/parameters/cognitoUserIdParam"
+#        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
-  /character/abilities:
     post:
       summary: Create abilities associated with a character
       description: Creates the abilities associated with a character
       responses:
         '201':
           description: Ability created.
+        '400':
+          description: An internal validation error has occurred.
+        '409':
+          description: The ability already exist and could not be created.
+        '500':
+          description: Internal server error with creating the ability.
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Ability'
-  /character/skills/{cognitoUserId}/{characterId}:
+  /character/skills:
     get:
       summary: Gets the skills associated with a character
       description: Gets all of the skills and scores associated with a set characterId
@@ -60,9 +82,8 @@ paths:
         '200':
           description: Skills retrieved.
       parameters:
-        - $ref: "#/components/parameters/cognitoUserIdParam"
+#        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
-  /character/skills:
     post:
       summary: Create skills associated with a character
       description: Creates the skills associated with a character
@@ -75,7 +96,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Skill'
-  /character/saving-throws/{cognitoUserId}/{characterId}:
+  /character/saving-throws:
     get:
       summary: Gets the saving throws associated with a character
       description: Gets all of the saving throws and scores associated with a set characterId
@@ -83,9 +104,8 @@ paths:
         '200':
           description: Saving throws retrieved.
       parameters:
-        - $ref: "#/components/parameters/cognitoUserIdParam"
+#        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
-  /character/saving-throws:
     post:
       summary: Create saving throws associated with a character
       description: Creates the saving throws associated with a character
@@ -98,7 +118,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Skill'
-  /character/weapons/{cognitoUserId}/{characterId}:
+  /character/weapons:
     get:
       summary: Gets the weapons associated with a character
       description: Gets all of the weapons and scores associated with a set characterId
@@ -106,9 +126,8 @@ paths:
         '200':
           description: Weapons retrieved.
       parameters:
-        - $ref: "#/components/parameters/cognitoUserIdParam"
+#        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
-  /character/weapons:
     post:
       summary: Create weapons associated with a character
       description: Creates the weapons associated with a character
@@ -121,7 +140,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Weapon'
-  /character/armor/{cognitoUserId}/{characterId}:
+  /character/armor:
     get:
       summary: Gets the weapons associated with a character
       description: Gets all of the weapons and scores associated with a set characterId
@@ -129,9 +148,8 @@ paths:
         '200':
           description: Weapons retrieved.
       parameters:
-        - $ref: "#/components/parameters/cognitoUserIdParam"
+#        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
-  /character/armor:
     post:
       summary: Create weapons associated with a character
       description: Creates the weapons associated with a character
@@ -144,7 +162,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Armor'
-  /character/feats/{cognitoUserId}/{characterId}:
+  /character/feats:
     get:
       summary: Gets the abilities associated with a character
       description: Gets all of the abilities and scores associated with a set characterId
@@ -152,9 +170,8 @@ paths:
         '200':
           description: Abilities retrieved.
       parameters:
-        - $ref: "#/components/parameters/cognitoUserIdParam"
+#        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
-  /character/feats:
     post:
       summary: Create abilities associated with a character
       description: Creates the abilities associated with a character
@@ -408,6 +425,7 @@ components:
           level:
             type: number
   securitySchemes:
-    BasicAuth:
+    bearerAuth:            # arbitrary name for the security scheme
       type: http
-      scheme: basic
+      scheme: bearer
+      bearerFormat: JWT
