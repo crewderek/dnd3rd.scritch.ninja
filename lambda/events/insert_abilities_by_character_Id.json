@@ -1,0 +1,25 @@
+{
+  "requestContext": {
+    "authorizer": {
+      "claims": {
+        "sub": "d8773017-193a-412b-b729-0181e0935079"
+      }
+    }
+  },
+  "path": "/character/abilities",
+  "httpMethod": "POST",
+  "body": [
+    {
+      "characterId": "2a5eb164-b5b1-11ee-b57b-063eaae6b5e9",
+      "name": "ability name",
+      "score": 10,
+      "type": "base"
+    },
+        {
+      "characterId": "2a5eb164-b5b1-11ee-b57b-063eaae6b5e9",
+      "name": "ability name 2",
+      "score": 12,
+      "type": "base"
+    }
+  ]
+}

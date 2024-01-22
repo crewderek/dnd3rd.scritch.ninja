@@ -1,0 +1,94 @@
+{
+    "paths": [
+        {
+            "method": "GET",
+            "path": "/user/characters",
+            "regex": "^\/user\/characters$",
+            "function": "get_characters_for_user"
+        },
+        {
+            "method": "GET",
+            "path": "/character",
+            "regex": "^\\/character$",
+            "function": "get_character"
+        },
+        {
+            "method": "POST",
+            "path": "/character",
+            "regex": "^\\/character$",
+            "function": "create_character"
+        },
+        {
+            "method": "GET",
+            "path": "/character/abilities",
+            "regex": "^\/character\/abilities$",
+            "function": "get_abilities"
+        },
+        {
+            "method": "POST",
+            "path": "/character/abilities",
+            "regex": "^\/character\/abilities$",
+            "function": "create_ability"
+        },
+        {
+            "method": "GET",
+            "path": "/character/skills/{cognitoUserId}",
+            "regex": "",
+            "function": ""
+        },
+        {
+            "method": "POST",
+            "path": "/character/skills",
+            "regex": "",
+            "function": ""
+        },
+        {
+            "method": "GET",
+            "path": "/character/saving-throws/{cognitoUserId}",
+            "regex": "",
+            "function": ""
+        },
+        {
+            "method": "POST",
+            "path": "/character/saving-throws",
+            "regex": "",
+            "function": ""
+        },
+        {
+            "method": "GET",
+            "path": "/character/weapons/{cognitoUserId}",
+            "regex": "",
+            "function": ""
+        },
+        {
+            "method": "POST",
+            "path": "/character/weapons",
+            "regex": "",
+            "function": ""
+        },
+        {
+            "method": "GET",
+            "path": "/character/armor/{cognitoUserId}",
+            "regex": "",
+            "function": ""
+        },
+        {
+            "method": "POST",
+            "path": "/character/armor",
+            "regex": "",
+            "function": ""
+        },
+        {
+            "method": "GET",
+            "path": "/character/feats/{cognitoUserId}",
+            "regex": "",
+            "function": ""
+        },
+        {
+            "method": "POST",
+            "path": "/character/feats",
+            "regex": "",
+            "function": ""
+        }
+    ]
+}
