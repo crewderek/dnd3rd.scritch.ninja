@@ -16,7 +16,7 @@ export class CharacterSheetComponent implements OnInit {
   character: Character;
   alignmentOptions = Object.values(Alignment);
   apiUrl = 'https://api.openai.com/v1/chat/completions';
-  bearerToken = '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';
+  bearerToken = '';
 
   constructor(private apiService: ApiHttpService, private http: HttpClient) {
     this.character = new Character();
