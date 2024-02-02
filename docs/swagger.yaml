@@ -6,6 +6,21 @@ info:
 security:
   - bearerAuth: []
 paths:
+  /user/characters:
+    get:
+      summary: Returns the characters for a user
+      description:
+      responses:
+        '200':
+          description: Characters retrieved.
+        '403':
+          description: The logged in user could not be found.
+        '404':
+          description: No characters could not be found.
+        '500':
+          description: Internal server error with getting the character.
+#      parameters:
+#        - $ref: "#/components/parameters/characterIdParam"
   /character:
     get:
       summary: Returns a character and their top level stats
