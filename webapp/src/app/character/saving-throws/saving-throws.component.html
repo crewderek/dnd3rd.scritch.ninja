@@ -1,0 +1,8 @@
+<h2>Saving Throws</h2>
+<div class="character-saving-throws">
+  <div class="saving-throw" *ngFor="let savingThrow of savingThrows">
+    <label class="saving-throw-name">{{savingThrow.name}}</label><br>
+    <label class="saving-throw-ability-based-off-of">({{savingThrow.abilityBasedOffOf()}})</label><br>
+    <input class="saving-throw-score" [value]="savingThrow.score">
+  </div>
+</div>

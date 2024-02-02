@@ -1,0 +1,184 @@
+{
+  "races": [
+    {
+      "name": "Human",
+      "description": "Versatile and adaptable, humans are found in all corners of the world.",
+      "abilities": {
+        "strength": 0,
+        "dexterity": 0,
+        "constitution": 0,
+        "intelligence": 0,
+        "wisdom": 0,
+        "charisma": 0
+      }
+    },
+    {
+      "name": "Elf",
+      "description": "Graceful and long-lived, elves are known for their affinity with magic.",
+      "abilities": {
+        "strength": 0,
+        "dexterity": 2,
+        "constitution": -2,
+        "intelligence": 0,
+        "wisdom": 0,
+        "charisma": 0
+      }
+    },
+    {
+      "name": "Dwarf",
+      "description": "Hardy and skilled in craftsmanship, dwarves thrive in mountainous regions.",
+      "abilities": {
+        "strength": 0,
+        "dexterity": 0,
+        "constitution": 2,
+        "intelligence": 0,
+        "wisdom": 0,
+        "charisma": -2
+      }
+    },
+    {
+      "name": "Halfling",
+      "description": "Small and agile, halflings are known for their luck and stealth.",
+      "abilities": {
+        "strength": -2,
+        "dexterity": 2,
+        "constitution": 0,
+        "intelligence": 0,
+        "wisdom": 0,
+        "charisma": 0
+      }
+    },
+    {
+      "name": "Gnome",
+      "description": "Curious and inventive, gnomes have a natural affinity for illusions and technology.",
+      "abilities": {
+        "strength": -2,
+        "dexterity": 0,
+        "constitution": 2,
+        "intelligence": 0,
+        "wisdom": 0,
+        "charisma": 0
+      }
+    },
+    {
+      "name": "Half-Orc",
+      "description": "Born of human and orc parentage, half-orcs combine strength and resilience.",
+      "abilities": {
+        "strength": 2,
+        "dexterity": 0,
+        "constitution": 0,
+        "intelligence": -2,
+        "wisdom": 0,
+        "charisma": -2
+      }
+    },
+    {
+      "name": "Half-Elf",
+      "description": "Descendants of humans and elves, half-elves blend the traits of both races.",
+      "abilities": {
+        "strength": 0,
+        "dexterity": 0,
+        "constitution": 0,
+        "intelligence": 0,
+        "wisdom": 0,
+        "charisma": 2
+      }
+    },
+    {
+      "name": "Dragonborn",
+      "description": "Humanoid dragons, dragonborns have breath weapons and dragon-like features.",
+      "abilities": {
+        "strength": 2,
+        "dexterity": 0,
+        "constitution": 0,
+        "intelligence": 0,
+        "wisdom": 0,
+        "charisma": -2
+      }
+    },
+    {
+      "name": "Tiefling",
+      "description": "Descendants of fiends, tieflings have infernal traits and a mysterious allure.",
+      "abilities": {
+        "strength": 0,
+        "dexterity": 0,
+        "constitution": 0,
+        "intelligence": 2,
+        "wisdom": 0,
+        "charisma": -2
+      }
+    },
+    {
+      "name": "Aasimar",
+      "description": "Celestial-touched beings, aasimars radiate divine light and possess celestial heritage.",
+      "abilities": {
+        "strength": 0,
+        "dexterity": 0,
+        "constitution": 0,
+        "intelligence": 0,
+        "wisdom": 2,
+        "charisma": -2
+      }
+    },
+    {
+      "name": "Goliath",
+      "description": "Powerful and mountain-dwelling, goliaths are known for their strength and resilience.",
+      "abilities": {
+        "strength": 4,
+        "dexterity": 0,
+        "constitution": 2,
+        "intelligence": -2,
+        "wisdom": 0,
+        "charisma": -2
+      }
+    },
+    {
+      "name": "Kobold",
+      "description": "Small, reptilian creatures, kobolds are skilled in traps and tactics.",
+      "abilities": {
+        "strength": -4,
+        "dexterity": 2,
+        "constitution": -2,
+        "intelligence": 0,
+        "wisdom": 0,
+        "charisma": -2
+      }
+    },
+    {
+      "name": "Goblin",
+      "description": "Small and cunning, goblins excel in stealth and ambush tactics.",
+      "abilities": {
+        "strength": -2,
+        "dexterity": 2,
+        "constitution": -2,
+        "intelligence": 0,
+        "wisdom": 0,
+        "charisma": -2
+      }
+    },
+    {
+      "name": "Aarakocra",
+      "description": "Avian humanoids with wings, aarakocra are masters of aerial maneuvers.",
+      "abilities": {
+        "strength": 0,
+        "dexterity": 2,
+        "constitution": 0,
+        "intelligence": 0,
+        "wisdom": 0,
+        "charisma": 0
+      }
+    },
+    {
+      "name": "Triton",
+      "description": "Amphibious and regal, tritons hail from the depths and command the power of the sea.",
+      "abilities": {
+        "strength": 1,
+        "dexterity": 0,
+        "constitution": 1,
+        "intelligence": 0,
+        "wisdom": 0,
+        "charisma": 0
+      }
+    }
+  ]
+}

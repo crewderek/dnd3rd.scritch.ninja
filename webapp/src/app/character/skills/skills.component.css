@@ -1,0 +1,63 @@
+.character-skills{
+  width: 450px;
+  max-width: 95%;
+  height:auto;
+  border: 1px solid black;
+  margin:10px;
+  padding:10px;
+  border-radius: 10px;
+}
+.armor h2{
+  width: 95%;
+}
+.skill{
+  width:100%;
+  padding:4px;
+  text-align: center;
+  border: 1px solid grey;
+}
+.skill-name-container{
+  width:200px;
+  font-size: 14px;
+  text-align: left;
+}
+.skill-stat{
+  min-width:40px;
+  height:20px;
+  margin:0px;
+  padding:0px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.skill-header{
+  padding:5px;
+  border:1px solid black;
+  text-align: center;
+}
+.skill-is-class-skill{
+  width:50px;
+}
+.skill-ability-based-off-of{
+  width:65px;
+  text-align:left;
+}
+input.skill-ranks{
+  margin:0px;
+  padding:0px;
+  width:50px;
+  font-size: 14px;
+  margin-left:5px;
+  border:none;
+  text-align:center;
+}
+.character-max-skill-ranks{
+  display:flex;
+}
+.character-max-skill-ranks input{
+  border:none;
+  width:15px;
+  font-size:14px;
+}
+input{
+  background-color: rgba(0,0,0, 0.2);
+}

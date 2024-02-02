@@ -1,0 +1,48 @@
+{
+  "skinTones": [
+    {
+      "name": "Fair",
+      "description": "Light complexion with a tendency to sunburn easily."
+    },
+    {
+      "name": "Light",
+      "description": "Slightly darker than fair, with a moderate ability to tan."
+    },
+    {
+      "name": "Medium",
+      "description": "Moderate skin tone, tans easily, and rarely burns."
+    },
+    {
+      "name": "Olive",
+      "description": "A warm, tan complexion often associated with Mediterranean or Hispanic backgrounds."
+    },
+    {
+      "name": "Tan",
+      "description": "Golden-brown complexion with a noticeable ability to tan."
+    },
+    {
+      "name": "Dark",
+      "description": "Deeper brown to dark brown complexion, often associated with African, Indian, or Middle Eastern backgrounds."
+    },
+    {
+      "name": "Ebony",
+      "description": "Very dark brown to black complexion, often associated with African backgrounds."
+    },
+    {
+      "name": "Pale",
+      "description": "Extremely light complexion with minimal pigmentation."
+    },
+    {
+      "name": "Porcelain",
+      "description": "Very light, almost translucent complexion."
+    },
+    {
+      "name": "Alabaster",
+      "description": "Very pale and smooth complexion, often described as translucent and delicate."
+    },
+    {
+      "name": "Golden",
+      "description": "Warm, golden undertones in the complexion, often associated with a sun-kissed look."
+    }
+  ]
+}

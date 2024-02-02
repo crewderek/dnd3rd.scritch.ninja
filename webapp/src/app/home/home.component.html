@@ -1,0 +1,11 @@
+<div class="home-container">
+  <div class="character-list">
+    <div *ngFor="let character of characters" class="character-container">
+      <a href="/character-sheet?characterId={{character.id}}">
+        <label>{{character.id}}</label><br>
+        <label>{{character.name}}</label><br>
+        <label>{{character.level}}</label>
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+/* header.component.css */
+header {
+  position:relative;
+  background-color: #333; /* Change the background color as needed */
+  margin:0px;
+  padding:0px;
+  width:100%;
+}
+nav{
+  position:relative;
+  background: #021636;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+nav a, nav button{
+  width: fit-content;
+  height:60px;
+  text-decoration: none;
+  color: white; /* Change text color as needed */
+  font-weight: bold;
+  font-size: 24px; /* Adjust font size as needed */
+  transition: 0.3s; /* Transition for the pop-out effect */
+  border-left: transparent 0px solid;
+}
+nav button{
+  margin:0px;
+  padding:0px;
+  height: 60px;
+}
+
+/*nav a:hover {*/
+/*  border-bottom: red 10px solid;*/
+/*  padding-bottom: 0px;*/
+/*  transition: 0.3s;*/
+/*}*/
+nav a img, nav button img{
+  height: 100%;
+}
+.login-menu{
+  position: absolute;
+  z-index: 101;
+  width: 100%;
+  background: black;
+}
+.login-menu a{
+  display:block;
+  width: 100%;
+  padding: 20px 0px;
+  margin:0px;
+  font-size:26px;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+}

@@ -1,0 +1,14 @@
+<h2>Armor</h2>
+<div class="character-armors">
+  <div class="armor" *ngFor="let armor of armors">
+    <h2>{{armor.gearInfo.name}}</h2>
+    <label class="armor-stat armor-type">{{armor.type}}</label>
+    <label class="armor-stat armor-ac-bonus">{{armor.acBonus}}</label>
+    <label class="armor-stat armor-max-dex-modifier">{{armor.maxDexModifier}}</label>
+    <label class="armor-stat armor-check-penalty">{{armor.checkPenalty}}</label>
+    <label class="armor-stat armor-spell-failure">{{armor.spellFailure}}</label>
+    <label class="armor-stat armor-max-speed">{{armor.maxSpeed}}</label>
+    <label class="armor-stat armor-weight">{{armor.gearInfo.weight}}</label>
+    <label class="armor-stat armor-notes">{{armor.notes}}</label>
+  </div>
+</div>

@@ -1,0 +1,112 @@
+#character-main-image{
+  position: relative;
+  width: 100%;
+  height: 250px;
+  display:flex;
+  justify-content: center;
+  overflow-x: hidden;
+  background:black;
+}
+#character-main-image img{
+  display:block;
+  height:100%;
+  margin:0px;
+  padding:0px;
+}
+.character-main-image-stat{
+  position:absolute;
+  color: white;
+  font-size:16px;
+  border-radius: 100px;
+}
+.character-main-image-stat label, label.character-main-image-stat{
+  width:fit-content;
+  padding:8px;
+  margin:2px 0px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 1px solid darkgoldenrod;
+}
+.character-main-image-stat-left{
+  display: flex;
+  flex-direction: column;
+  top:10px;
+  left:5px;
+}
+.character-main-image-stat-left label{
+  border-radius: 0px 15px 0px 0px;
+
+}
+.character-main-image-name{
+  padding:4px;
+  font-size: 18px;
+  bottom:35px;
+  border-radius: 100px;
+}
+.character-main-image-classes{
+  padding:4px;
+  font-size: 12px;
+  color: darkgrey;
+  bottom:2px;
+  border-radius: 100px;
+}
+.main-character-descriptor{
+  width: 90%;
+  padding:10px 5%;
+  background:rgba(32, 32, 32, 1.0);
+  text-align: center;
+  color: darkgrey;
+  border:1px solid black;
+}
+.main-character-descriptor button{
+  width: 90%;
+  height:100%;
+  padding:10px 0px;
+  background:none;
+  border:none;
+  color: inherit;
+  font-size: inherit;
+}
+.main-character-stats-row{
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: center;
+}
+.main-character-stat{
+  /*display:inline-block;*/
+  /*float:left;*/
+  padding:10px 2% 20px 2%;
+  height:50px;
+  width:20.89%;
+  background:rgba(32, 32, 32, 1.0);
+  text-align: center;
+  color: darkgrey;
+  border:1px solid black;
+}
+.stat-score{
+  width:100%;
+  font-size:26px;
+}
+.stat-info{
+  font-size: 10px;
+}
+.main-character-description-inner{
+  margin-top:10px;
+  padding-top:10px;
+  background:rgba(40, 40, 40, 1.0);
+  border-top: 1px solid black;
+}
+.dropdown-stat{
+  width:100%;
+  list-style-type: none;
+  text-align: left;
+}
+.dropdown-stat table{
+  width: 90%;
+  padding:0px 10px;
+  text-align: left;
+}
+.dropdown-stat input, .dropdown-stat textarea, .dropdown-stat select{
+  width:100%;
+  margin-bottom: 5px;
+}

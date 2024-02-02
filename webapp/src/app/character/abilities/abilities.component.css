@@ -1,0 +1,28 @@
+.abilities{
+  /*width: 900px;*/
+  max-width: 95%;
+  height:auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border: 1px solid black;
+  margin:10px;
+  padding:10px;
+  border-radius: 10px;
+}
+.abilities .ability{
+  width:100px;
+  padding:4px;
+  text-align: center;
+  border: 1px solid grey;
+}
+.ability .ability-full-name{
+  font-size: 12px;
+}
+.abilities .ability input{
+  width: 60px;
+  text-align: center;
+  font-size: 30px;
+  border:none;
+  background-color: rgba(0,0,0, 0.2);
+}

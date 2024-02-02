@@ -1,0 +1,196 @@
+<section>
+  <h2>D&D Character Sheet</h2>
+  <div id="character-sheet">
+    <div class="character-sheet-seperator">
+      <h2>Base Info</h2>
+      <div id="character-base-info">
+        <div class="character-descriptor character-name">
+          <input type="text" [value]="character.name"/>
+          <br>
+          <label>Name</label>
+        </div>
+
+        <div class="character-descriptor character-class">
+          <input type="text" [value]="character.class"/>
+          <br>
+          <label>Class</label>
+        </div>
+
+        <div class="character-descriptor character-level">
+          <input class="character-small-input" type="text" [value]="character.level"/>
+          <br>
+          <label>Level</label>
+        </div>
+
+        <div class="character-descriptor character-experience-points">
+          <input class="character-small-input" type="text" [value]="character.experiencePoints"/>
+          <br>
+          <label>XP</label>
+        </div>
+
+        <div class="character-descriptor character-race">
+          <input class="character-medium-input" type="text" [value]="character.race"/>
+          <br>
+          <label>Race</label>
+        </div>
+
+        <div class="character-descriptor character-alignment">
+          <select>
+            <option *ngFor="let option of alignmentOptions" [value]="option">{{ option }}</option>
+          </select>
+          <br>
+          <label>Alignment</label>
+        </div>
+
+        <div class="character-descriptor character-deity">
+          <input class="character-medium-input" type="text" [value]="character.deity"/>
+          <br>
+          <label>Deity</label>
+        </div>
+
+        <div class="character-descriptor character-size">
+          <input class="character-medium-input" class="character-small-input" type="text" [value]="character.size"/>
+          <br>
+          <label>Size</label>
+        </div>
+
+        <div class="character-descriptor character-age">
+          <input class="character-small-input" type="text" [value]="character.age"/>
+          <br>
+          <label>Age</label>
+        </div>
+
+        <div class="character-descriptor character-gender">
+          <input class="character-medium-input" type="text" [value]="character.gender"/>
+          <br>
+          <label>Gender</label>
+        </div>
+
+        <div class="character-descriptor character-height">
+          <input class="character-small-input" type="text" [value]="character.height"/>
+          <br>
+          <label>Height</label>
+        </div>
+
+        <div class="character-descriptor character-weight">
+          <input class="character-small-input" type="text" [value]="character.weight"/>
+          <br>
+          <label>Weight</label>
+        </div>
+
+        <div class="character-descriptor character-eyes">
+          <input class="character-medium-input" type="text" [value]="character.eyes"/>
+          <br>
+          <label>Eyes</label>
+        </div>
+
+        <div class="character-hair character-descriptor">
+          <input class="character-medium-input" type="text" [value]="character.hair"/>
+          <br>
+          <label>Hair</label>
+        </div>
+
+        <div class="character-skin character-descriptor">
+          <input class="character-medium-input" type="text" [value]="character.skin"/>
+          <br>
+          <label>Skin</label>
+        </div>
+      </div>
+
+      <div class="character-sheet-seperator-background"></div>
+    </div>
+
+    <div class="character-sheet-seperator">
+      <h2>Combat Info</h2>
+      <div id="character-combat-info">
+        <div class="character-languages character-descriptor">
+          <label>Languages</label>
+          <div class="character-language" *ngFor="let language of character.languages">
+            <input type="text" [value]="language"/>
+          </div>
+        </div>
+
+        <div class="character-descriptor character-max-hp">
+          <input class="character-small-input" type="text" [value]="character.maxHp"/>
+          <br>
+          <label>Max HP</label>
+        </div>
+
+        <div class="character-descriptor character-current-hp">
+          <input class="character-medium-input" type="text" [value]="character.getCurrentHp()"/>
+          <br>
+          <label>Current HP</label>
+        </div>
+
+        <div class="character-descriptor character-initiative">
+          <input class="character-small-input" type="text" [value]="character.initiative"/>
+          <br>
+          <label>Initiative</label>
+        </div>
+
+        <div class="character-descriptor character-ac">
+          <input class="character-small-input" type="text" [value]="character.ac"/>
+          <br>
+          <label>AC</label>
+        </div>
+
+        <div class="character-descriptor character-touch-ac">
+          <input class="character-small-input" type="text" [value]="character.touchAc"/>
+          <br>
+          <label>Touch</label>
+        </div>
+
+        <div class="character-descriptor character-flat-footed">
+          <input class="character-medium-input" type="text" [value]="character.flatFootedAc"/>
+          <br>
+          <label>Flat-Footed</label>
+        </div>
+
+        <div class="character-descriptor character-base-attack-bonuses">
+          <div class="character-base-attack-bonus" *ngFor="let bab of character.baseAttackBonus">
+            <input class="character-small-input" type="text" [value]="bab"/>
+          </div>
+          <label>BAB's</label>
+        </div>
+
+        <div class="character-descriptor character-grapple">
+          <input class="character-small-input" type="text" [value]="character.grapple"/>
+          <br>
+          <label>Grapple</label>
+        </div>
+
+        <div class="character-descriptor character-spell-resistance">
+          <input class="character-medium-input" type="text" [value]="character.spellResistance"/>
+          <br>
+          <label>Spell Resistance</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="character-sheet-seperator">
+      <app-abilities [character]="character"></app-abilities>
+    </div>
+
+    <div class="character-sheet-seperator">
+      <app-saving-throws [character]="character"></app-saving-throws>
+    </div>
+
+    <div class="character-sheet-seperator character-sheet-seperator-23">
+      <app-weapons [character]="character"></app-weapons>
+    </div>
+
+    <div class="character-sheet-seperator character-sheet-seperator-23">
+      <app-armor [character]="character"></app-armor>
+    </div>
+    <div class="character-sheet-seperator character-sheet-seperator-40">
+      <app-inventory [character]="character"></app-inventory>
+    </div>
+    <div class="character-sheet-seperator character-sheet-seperator-23">
+      <app-skills [character]="character"></app-skills>
+    </div>
+
+    <!--    <app-spells [character]="character"></app-spells>-->
+    <!--    <app-feats [character]="character"></app-feats>-->
+    <!--    <app-special-abilities [character]="character"></app-special-abilities>-->
+  </div>
+</section>

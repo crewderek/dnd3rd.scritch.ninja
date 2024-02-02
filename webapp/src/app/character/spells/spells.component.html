@@ -1,0 +1,23 @@
+<h2>Spells</h2>
+<div class="Spells" *ngFor="let spell of spells">
+  <div class="spell">
+    <label>{{spell.name}}</label>
+    <div class="spell-levels" *ngFor="let spellLevel of spell.level">
+      <div class="spell-level">
+        <label>{{spellLevel.class}}/{{spellLevel.level}}</label>
+      </div>
+    </div>
+    <div class="components" *ngFor="let component of spell.components">
+      <div class="component">
+       <label>{{component}}</label>
+      </div>
+    </div>
+    <label>{{spell.castingTime}}</label>
+    <label>{{spell.range}}</label>
+    <label>{{spell.area}}</label>
+    <label>{{spell.duration}}</label>
+    <label>{{spell.savingThrow}}</label>
+    <label>{{spell.hasSpellResistance}}</label>
+    <p>{{spell.description}}</p>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+.character-armors{
+  max-width: 95%;
+  height:auto;
+  border: 1px solid black;
+  margin:10px;
+  padding:10px;
+  border-radius: 10px;
+}
+.armor h2{
+  width: 95%;
+}
+.armor{
+  padding:4px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: center;
+  border: 1px solid grey;
+}
+.armor-stat{
+  padding:4px;
+  margin:4px;
+  border:1px solid grey;
+}

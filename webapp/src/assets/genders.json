@@ -1,0 +1,52 @@
+{
+  "genders": [
+    {
+      "name": "Male",
+      "description": "Identifies as a man or boy."
+    },
+    {
+      "name": "Female",
+      "description": "Identifies as a woman or girl."
+    },
+    {
+      "name": "Apache Attack Helicopter",
+      "description": "A humorous or satirical term sometimes used online as a commentary on the complexity of gender identity."
+    },
+    {
+      "name": "Non-Binary",
+      "description": "Identifies outside the traditional gender binary."
+    },
+    {
+      "name": "Genderqueer",
+      "description": "A gender identity that rejects conventional categories."
+    },
+    {
+      "name": "Agender",
+      "description": "Lacks a gender identity or considers it irrelevant."
+    },
+    {
+      "name": "Bigender",
+      "description": "Identifies as two genders, either simultaneously or switching between them."
+    },
+    {
+      "name": "Demiboy",
+      "description": "Partially, but not wholly, identifies as a man or boy."
+    },
+    {
+      "name": "Demigirl",
+      "description": "Partially, but not wholly, identifies as a woman or girl."
+    },
+    {
+      "name": "Genderfluid",
+      "description": "Gender identity that may change over time or in different situations."
+    },
+    {
+      "name": "Androgynous",
+      "description": "Identifies as having a gender that is a mix of both male and female."
+    },
+    {
+      "name": "Two-Spirit",
+      "description": "An indigenous term representing a person embodying both masculine and feminine qualities."
+    }
+  ]
+}

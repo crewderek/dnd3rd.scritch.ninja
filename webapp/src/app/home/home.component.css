@@ -1,0 +1,25 @@
+.home-container {
+  width: 100%;
+
+}
+.character-list{
+  /*width:100%;*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /*text-align: center;*/
+}
+.character-container{
+  padding:10px;
+  margin:5px;
+  width:fit-content;
+  background: rgba(32, 32, 32, 0.7);
+  border: 1px solid darkgoldenrod;
+  border-radius: 10px;
+  text-align: left;
+}
+a {
+  text-decoration: none;
+  color: darkgrey;
+  font-weight:bold;
+}

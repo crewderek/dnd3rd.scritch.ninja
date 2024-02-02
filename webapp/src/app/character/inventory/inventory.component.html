@@ -1,0 +1,30 @@
+<h2>Inventory</h2>
+<table class="character-inventory">
+  <tr class="character-currency-header">
+    <th>Copper</th>
+    <th>Silver</th>
+    <th>Gold</th>
+    <th>Platinum</th>
+  </tr>
+
+  <tr class="character-currency">
+   <td><input type="text" [value]="character.currencyInfo.copper"/></td>
+    <td><input type="text" [value]="character.currencyInfo.silver"/></td>
+    <td><input type="text" [value]="character.currencyInfo.gold"/></td>
+    <td><input type="text" [value]="character.currencyInfo.platinum"/></td>
+  </tr>
+
+  <tr class="inventory-item">
+    <th class="inventory-item-stat inventory-item-name">NAME</th>
+    <th class="inventory-item-stat inventory-item-carried">CARRIED</th>
+    <th class="inventory-item-stat inventory-item-cost">COST</th>
+    <th class="inventory-item-stat inventory-item-weight">WEIGHT</th>
+  </tr>
+
+  <tr class="inventory-item" *ngFor="let item of inventory">
+    <td class="inventory-item-stat inventory-item-name">{{item.name}}</td>
+    <td class="inventory-item-stat inventory-item-carried">{{item.isCurrentlyCarried}}</td>
+    <td class="inventory-item-stat inventory-item-cost">{{item.cost/100}}gp</td>
+    <td class="inventory-item-stat inventory-item-weight">{{item.weight}} lbs</td>
+  </tr>
+</table>

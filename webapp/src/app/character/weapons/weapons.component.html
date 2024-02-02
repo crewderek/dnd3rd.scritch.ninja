@@ -1,0 +1,14 @@
+<h2>Attacks</h2>
+<div class="character-attacks">
+  <div class="attack" *ngFor="let weapon of weapons">
+    <h2 class="attack-name">{{weapon.gearInfo.name}}</h2>
+    <label class="attack-stat attack-attack-bonus">{{weapon.attackBonus}}</label>
+    <div class="attack-stat attack-damages">
+      <div class="damage" *ngFor="let damage of weapon.damages" [innerHTML]=damage.toString()></div>
+    </div>
+    <label class="attack-stat attack-critical">{{weapon.criticalLowerRange}}-20x{{weapon.criticalMultiplier}}</label>
+    <label class="attack-stat attack-range">{{weapon.range}}</label>
+    <label class="attack-stat attack-type">{{weapon.type}}</label>
+<!--    <label class="attack-stat attack-notes">{{weapon.notes}}</label>-->
+  </div>
+</div>

@@ -1,0 +1,33 @@
+.character-attacks{
+  /*width: 400px;*/
+  min-width:290px;
+  max-width: 95%;
+  height:auto;
+  justify-content: space-between;
+  border: 1px solid black;
+  margin:10px;
+  padding:10px;
+  border-radius: 10px;
+}
+h2{
+  width: 100px;
+}
+.attack h2{
+  width: 95%;
+}
+.attack{
+  width:280px;
+  padding:4px;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  border: 1px solid grey;
+}
+.attack-damages{
+  width:fit-content;
+}
+.attack-stat{
+  padding:4px;
+  margin:4px;
+  border:1px solid grey;
+}

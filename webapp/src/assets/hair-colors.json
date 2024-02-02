@@ -1,0 +1,48 @@
+{
+  "hairColors": [
+    {
+      "name": "Black",
+      "description": "A very dark, often deep black color."
+    },
+    {
+      "name": "Brown",
+      "description": "A range of colors from light brown to dark chocolate brown."
+    },
+    {
+      "name": "Blonde",
+      "description": "A range of colors from light blonde to golden or platinum blonde."
+    },
+    {
+      "name": "Red",
+      "description": "A spectrum of red shades, from strawberry blonde to deep auburn."
+    },
+    {
+      "name": "Chestnut",
+      "description": "A warm, medium-brown color with reddish undertones."
+    },
+    {
+      "name": "Auburn",
+      "description": "A reddish-brown color, often associated with a rich, earthy tone."
+    },
+    {
+      "name": "Gray",
+      "description": "A color resulting from the loss of pigmentation, ranging from light gray to silver."
+    },
+    {
+      "name": "White",
+      "description": "A complete absence of pigmentation, resulting in a pure white color."
+    },
+    {
+      "name": "Blue",
+      "description": "Unconventional and fantasy color, often seen in creative and fantasy settings."
+    },
+    {
+      "name": "Purple",
+      "description": "Another fantasy color, ranging from light lavender to deep violet."
+    },
+    {
+      "name": "Green",
+      "description": "A vibrant and unconventional color, often seen in creative and fantasy settings."
+    }
+  ]
+}

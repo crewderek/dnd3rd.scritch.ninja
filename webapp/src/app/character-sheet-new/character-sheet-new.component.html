@@ -1,0 +1,194 @@
+<div id="character-sheet">
+  <div id="character-main-image">
+    <img src="/assets/img/missing-dnd-character.png"/>
+
+    <div class="character-main-image-stat character-main-image-stat-left">
+      <label class="character-main-image-hp">HP: {{character.getCurrentHp()}}/{{character.maxHp}}</label>
+      <label class="character-main-image-character-level">Char Lvl: {{character.level}}</label>
+      <label class="character-main-image-xp">XP: {{character.experiencePoints}}</label>
+      <label class="character-main-image-speed">Speed: {{character.speed}}ft</label>
+    </div>
+    <label class="character-main-image-stat character-main-image-name">NAME GOES HERE</label>
+    <label class="character-main-image-stat character-main-image-classes">CLASSES GO HERE</label>
+  </div>
+
+  <div class="main-character-stats">
+<!--    <div class="main-character-stats-row">-->
+<!--      <div class="main-character-stat">-->
+<!--        <label class="stat-score">{{character.level}}</label><br>-->
+<!--        <label class="stat-info">Level</label>-->
+<!--      </div>-->
+
+<!--      <div class="main-character-stat">-->
+<!--        <label class="stat-score">{{character.experiencePoints}}</label><br>-->
+<!--        <label class="stat-info">XP</label>-->
+<!--      </div>-->
+
+<!--      <div class="main-character-stat">-->
+<!--        <label class="stat-score">{{character.getCurrentHp()}}/{{character.maxHp}}</label><br>-->
+<!--        <label class="stat-info">HP</label>-->
+<!--      </div>-->
+
+<!--      <div class="main-character-stat">-->
+<!--        <label class="stat-score">30ft</label><br>-->
+<!--        <label class="stat-info">Speed</label>-->
+<!--      </div>-->
+<!--    </div>-->
+
+    <div class="main-character-stats-row">
+      <div class="main-character-stat">
+        <label class="stat-score">15</label><br>
+        <label class="stat-info">AC</label>
+      </div>
+
+      <div class="main-character-stat">
+        <label class="stat-score">11</label><br>
+        <label class="stat-info">Touch</label>
+      </div>
+
+      <div class="main-character-stat">
+        <label class="stat-score">10</label><br>
+        <label class="stat-info">Flat-Footed</label>
+      </div>
+
+      <div class="main-character-stat">
+        <label class="stat-score">1</label><br>
+        <label class="stat-info">Initiative</label>
+      </div>
+    </div>
+
+    <div class="main-character-stats-row">
+      <div class="main-character-stat">
+        <label class="stat-score">+3</label><br>
+        <label class="stat-info">Base Attack Bonus</label>
+      </div>
+
+      <div class="main-character-stat">
+        <label class="stat-score">+5</label><br>
+        <label class="stat-info">Grapple</label>
+      </div>
+
+      <div class="main-character-stat">
+        <label class="stat-score">3</label><br>
+        <label class="stat-info">Spell Resistance</label>
+      </div>
+
+      <div class="main-character-stat">
+        <label class="stat-score">-2</label><br>
+        <label class="stat-info">Damage Reduction</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-character-descriptor main-character-description">
+    <button (click)="showDescription=!showDescription">Description &#8628;</button>
+
+    <div *ngIf="showDescription" class="main-character-description-inner hidden dropdown-stat">
+      <table>
+        <tr>
+          <td>Race:</td>
+          <td><input [value]="character.race" type="text"/></td>
+        </tr>
+        <tr>
+          <td>Alignment:</td>
+          <td><select>
+            <option *ngFor="let option of alignmentOptions" [value]="option">{{ option }}</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td>Deity:</td>
+          <td><input [value]="character.deity" type="text"/></td>
+        </tr>
+        <tr>
+          <td>Size:</td>
+          <td><input [value]="character.size" type="text"/></td>
+        </tr>
+        <tr>
+          <td>Age:</td>
+          <td><input [value]="character.age" type="text"/></td>
+        </tr>
+        <tr>
+          <td>Gender:</td>
+          <td><input [value]="character.gender" type="text"/></td>
+        </tr>
+        <tr>
+          <td>Height:</td>
+          <td><input [value]="character.height" type="text"/></td>
+        </tr>
+        <tr>
+          <td>Weight:</td>
+          <td><input [value]="character.weight" type="text"/></td>
+        </tr>
+        <tr>
+          <td>Eyes:</td>
+          <td><input [value]="character.eyes" type="text"/></td>
+        </tr>
+        <tr>
+          <td>Hair:</td>
+          <td><input [value]="character.hair" type="text"/></td>
+        </tr>
+        <tr>
+          <td>Skin:</td>
+          <td><input [value]="character.skin" type="text"/></td>
+        </tr>
+        <tr>
+          <td>Other:</td>
+          <td><textarea></textarea></td>
+        </tr>
+        <tr>
+          <td>Backstory:</td>
+          <td><textarea></textarea></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="main-character-descriptor main-character-description">
+    <button (click)="showAttacks=!showAttacks">Attacks &#8628;</button>
+    <div *ngIf="showAttacks" class="main-character-description-inner  hidden dropdown-stat">
+      <app-weapons [character]="character"></app-weapons>
+    </div>
+  </div>
+
+  <div class="main-character-descriptor main-character-description">
+    <button (click)="showArmor=!showArmor">Armor &#8628;</button>
+    <div *ngIf="showArmor" class="main-character-description-inner  hidden dropdown-stat">
+      <app-armor [character]="character"></app-armor>
+    </div>
+  </div>
+
+  <div class="main-character-descriptor main-character-description">
+    <button (click)="showSpells=!showSpells">Spells &#8628;</button>
+    <div *ngIf="showSpells" class="main-character-description-inner  hidden dropdown-stat">
+      <app-spells [character]="character"></app-spells>
+    </div>
+  </div>
+
+  <div class="main-character-descriptor main-character-description">
+    <button (click)="showSkills=!showSkills">Skills &#8628;</button>
+    <div *ngIf="showSkills" class="main-character-description-inner  hidden dropdown-stat">
+      <app-skills [character]="character"></app-skills>
+    </div>
+  </div>
+
+  <div class="main-character-descriptor main-character-description">
+    <button (click)="showInventory=!showInventory">Inventory &#8628;</button>
+    <div *ngIf="showInventory" class="main-character-description-inner  hidden dropdown-stat">
+      <app-inventory [character]="character"></app-inventory>
+    </div>
+  </div>
+
+  <div class="main-character-descriptor main-character-description">
+    <button (click)="showFeats=!showFeats">Feats &#8628;</button>
+    <div *ngIf="showFeats" class="main-character-description-inner  hidden dropdown-stat">
+      <app-feats [character]="character"></app-feats>
+    </div>
+  </div>
+
+  <div class="main-character-descriptor main-character-description">
+    <button (click)="showSpecialAbilities=!showSpecialAbilities">Special Abilities &#8628;</button>
+    <div *ngIf="showSpecialAbilities" class="main-character-description-inner  hidden dropdown-stat">
+      <app-special-abilities [character]="character"></app-special-abilities>
+    </div>
+  </div>
+</div>

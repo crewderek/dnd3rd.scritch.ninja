@@ -1,0 +1,209 @@
+{
+  "skills": [
+    {
+      "name": "Appraise",
+      "isTrained": false,
+      "abilityType": "Intelligence"
+    },
+    {
+      "name": "Balance",
+      "isTrained": false,
+      "abilityType": "Dexterity"
+    },
+    {
+      "name": "Bluff",
+      "isTrained": false,
+      "abilityType": "Charisma"
+    },
+    {
+      "name": "Climb",
+      "isTrained": false,
+      "abilityType": "Strength"
+    },
+    {
+      "name": "Concentration",
+      "isTrained": false,
+      "abilityType": "Constitution"
+    },
+    {
+      "name": "Craft",
+      "isTrained": false,
+      "abilityType": "Intelligence"
+    },
+    {
+      "name": "Decipher Script",
+      "isTrained": true,
+      "abilityType": "Intelligence"
+    },
+    {
+      "name": "Diplomacy",
+      "isTrained": false,
+      "abilityType": "Charisma"
+    },
+    {
+      "name": "Disable Device",
+      "isTrained": true,
+      "abilityType": "Intelligence"
+    },
+    {
+      "name": "Disguise",
+      "isTrained": false,
+      "abilityType": "Charisma"
+    },
+    {
+      "name": "Escape Artist",
+      "isTrained": false,
+      "abilityType": "Dexterity"
+    },
+    {
+      "name": "Forgery",
+      "isTrained": false,
+      "abilityType": "Intelligence"
+    },
+    {
+      "name": "Gather Information",
+      "isTrained": false,
+      "abilityType": "Charisma"
+    },
+    {
+      "name": "Handle Animal",
+      "isTrained": true,
+      "abilityType": "Charisma"
+    },
+    {
+      "name": "Heal",
+      "isTrained": false,
+      "abilityType": "Wisdom"
+    },
+    {
+      "name": "Hide",
+      "isTrained": false,
+      "abilityType": "Dexterity"
+    },
+    {
+      "name": "Intimidate",
+      "isTrained": false,
+      "abilityType": "Charisma"
+    },
+    {
+      "name": "Jump",
+      "isTrained": false,
+      "abilityType": "Strength"
+    },
+    {
+      "name": "Knowledge",
+      "subskills": [
+        "Arcana",
+        "Architecture and Engineering",
+        "Dungeoneering",
+        "Geography",
+        "History",
+        "Local",
+        "Nature",
+        "Nobility and Royalty",
+        "Religion",
+        "The Planes"
+      ],
+      "isTrained": true,
+      "abilityType": "Intelligence"
+    },
+    {
+      "name": "Listen",
+      "isTrained": false,
+      "abilityType": "Wisdom"
+    },
+    {
+      "name": "Move Silently",
+      "isTrained": false,
+      "abilityType": "Dexterity"
+    },
+    {
+      "name": "Open Lock",
+      "isTrained": true,
+      "abilityType": "Dexterity"
+    },
+    {
+      "name": "Perform",
+      "subskills": [
+        "Act",
+        "Comedy",
+        "Dance",
+        "Keyboard Instruments",
+        "Oratory",
+        "Percussion Instruments",
+        "String Instruments",
+        "Wind Instruments",
+        "Sing"
+      ],
+      "isTrained": false,
+      "abilityType": "Charisma"
+    },
+    {
+      "name": "Profession",
+      "subskills": [
+        "Herbalist",
+        "Sailor",
+        "Scribe",
+        "Tax Collector",
+        "Woodcutter"
+      ],
+      "isTrained": true,
+      "abilityType": "Wisdom"
+    },
+    {
+      "name": "Ride",
+      "isTrained": false,
+      "abilityType": "Dexterity"
+    },
+    {
+      "name": "Search",
+      "isTrained": false,
+      "abilityType": "Intelligence"
+    },
+    {
+      "name": "Sense Motive",
+      "isTrained": false,
+      "abilityType": "Wisdom"
+    },
+    {
+      "name": "Sleight of Hand",
+      "isTrained": true,
+      "abilityType": "Dexterity"
+    },
+    {
+      "name": "Spellcraft",
+      "isTrained": true,
+      "abilityType": "Intelligence"
+    },
+    {
+      "name": "Spot",
+      "isTrained": false,
+      "abilityType": "Wisdom"
+    },
+    {
+      "name": "Survival",
+      "isTrained": false,
+      "abilityType": "Wisdom"
+    },
+    {
+      "name": "Swim",
+      "isTrained": false,
+      "abilityType": "Strength"
+    },
+    {
+      "name": "Tumble",
+      "isTrained": false,
+      "abilityType": "Dexterity"
+    },
+    {
+      "name": "Use Magic Device",
+      "isTrained": true,
+      "abilityType": "Charisma"
+    },
+    {
+      "name": "Use Rope",
+      "isTrained": false,
+      "abilityType": "Dexterity"
+    }
+  ]
+}

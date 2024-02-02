@@ -1,0 +1,34 @@
+<h2>Skills</h2>
+<div class="character-skills character-sheet-seperator">
+  <div class="character-max-skill-ranks">
+    <label>Max Skill Ranks: </label>
+    <input type="text" [value]="character.maxRanks"/>
+    <label>/??</label>
+  </div>
+
+  <table>
+    <tr class="skill">
+      <th class="skill-header skill-stat skill-is-class-skill">CLASS</th>
+      <th class="skill-header skill-stat skill-name-container">
+        <label class="skill-name">SKILL NAME (TRAINED)</label>
+      </th>
+      <th class="skill-header skill-stat skill-ability-based-off-of">ABILITY</th>
+      <th class="skill-header skill-stat skill-ranks">RANKS</th>
+      <!--    <label class="skill-name">{{skill.type}}</label>-->
+    </tr>
+
+    <tr class="skill" *ngFor="let skill of skills">
+      <td class="skill-stat skill-is-class-skill">{{skill.isClassSkill}}</td>
+      <td class="skill-stat skill-name-container">
+        <label class="skill-name">{{skill.name.toUpperCase()}}</label>
+        <label class="skill-is-trained"> {{skill.isTrained}}</label>
+        <br>
+        <label class="skill-stat skill-sub-skill-name">{{skill.subSkillName}}</label>
+      </td>
+      <td
+        class="skill-stat skill-ability-based-off-of">{{skill.abilityBasedOffOf.substring(0, 3).toUpperCase()}}</td>
+      <td><input class="skill-stat skill-ranks" [value]="skill.ranks"/></td>
+      <!--    <label class="skill-name">{{skill.type}}</label>-->
+    </tr>
+  </table>
+</div>

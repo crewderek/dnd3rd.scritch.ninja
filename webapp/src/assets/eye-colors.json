@@ -1,0 +1,44 @@
+{
+  "eyeColors": [
+    {
+      "name": "Brown",
+      "description": "The most common eye color, ranging from light to dark shades."
+    },
+    {
+      "name": "Blue",
+      "description": "A color associated with clarity and calmness, ranging from light blue to deep navy."
+    },
+    {
+      "name": "Green",
+      "description": "A color often associated with nature, ranging from light to dark shades."
+    },
+    {
+      "name": "Hazel",
+      "description": "A multi-colored combination of brown, green, and sometimes blue."
+    },
+    {
+      "name": "Gray",
+      "description": "A neutral color ranging from light silver to dark gray."
+    },
+    {
+      "name": "Amber",
+      "description": "A warm, golden-brown color often seen as a variant of brown eyes."
+    },
+    {
+      "name": "Violet",
+      "description": "A rare and striking purple or violet eye color."
+    },
+    {
+      "name": "Red",
+      "description": "An uncommon and intense red eye color, sometimes associated with fantasy or supernatural elements."
+    },
+    {
+      "name": "Black",
+      "description": "A very dark brown or black eye color, often appearing almost black."
+    },
+    {
+      "name": "Silver",
+      "description": "A metallic silver or gray eye color, giving a unique and otherworldly appearance."
+    }
+  ]
+}

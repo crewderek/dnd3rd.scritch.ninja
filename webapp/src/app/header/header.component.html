@@ -1,0 +1,11 @@
+<header>
+  <nav>
+    <a routerLink="/"><img src="assets/img/header-logo.png"></a>
+    <button class="login-menu-button" (click)="userLoginOnClick()"><img src="assets/img/user-hamburger-menu-logo.png"></button>
+  </nav>
+
+  <div *ngIf="loginMenuIsVisibile" class="login-menu">
+    <a href="{{loginUrl}}">Login</a>
+    <a href="{{signUpUrl}}">Sign Up</a>
+  </div>
+</header>
