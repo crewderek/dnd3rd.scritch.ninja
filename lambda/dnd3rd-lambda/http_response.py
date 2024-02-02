@@ -20,7 +20,7 @@ class http_response:
                 "Access-Control-Allow-Origin" : "*", # Required for CORS support to work
                 "Access-Control-Allow-Credentials" : 'true' # Required for cookies, authorization headers with HTTPS
             },
-            'body': json_dump
+            'body': json.dumps(json_dump)
         }
         
     def replace_decimals(self, obj):

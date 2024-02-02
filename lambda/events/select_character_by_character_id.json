@@ -12,36 +12,5 @@
     "characterId": "2a5eb164-b5b1-11ee-b57b-063eaae6b5e9"
   },
   "body": {
-    "characterName": "string",
-    "characterLevel": 0,
-    "characterExperience": 0,
-    "race": "string",
-    "alignment": "string",
-    "deity": "string",
-    "size": "string",
-    "age": 0,
-    "gender": "string",
-    "height": "string",
-    "weight": "string",
-    "characterDescription": "string",
-    "maxSkillRanks": 0,
-    "languages": [
-      "string"
-    ],
-    "classInfo": [
-      {
-        "className": "string",
-        "level": 0
-      }
-    ],
-    "currencyInfo": {
-      "copper": 0,
-      "silver": 0,
-      "gold": 0,
-      "platinum": 0
-    },
-    "baseAttackBonuses": [
-      0
-    ]
   }
 }
