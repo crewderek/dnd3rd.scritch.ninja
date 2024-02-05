@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CharacterSheetComponent } from './character-sheet/character-sheet.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -21,11 +19,12 @@ import { CharacterSheetNewComponent } from './character-sheet-new/character-shee
 import {JwtInterceptor} from "./authorization/jwt-interceptor.interceptor";
 import { LoginComponent } from './login/login.component';
 import {JWTTokenService} from "./authorization/jwttoken.service";
+import { LogoutComponent } from './logout/logout.component';
+import { ScrollToDirective } from './scroll-to.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CharacterSheetComponent,
     HomeComponent,
     HeaderComponent,
     AbilitiesComponent,
@@ -38,7 +37,9 @@ import {JWTTokenService} from "./authorization/jwttoken.service";
     SkillsComponent,
     SavingThrowsComponent,
     CharacterSheetNewComponent,
-    LoginComponent
+    LoginComponent,
+    LogoutComponent,
+    ScrollToDirective
   ],
   imports: [
     BrowserModule,
@@ -55,4 +56,6 @@ import {JWTTokenService} from "./authorization/jwttoken.service";
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+
+
+export class AppModule {}

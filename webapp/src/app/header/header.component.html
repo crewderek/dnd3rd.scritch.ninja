@@ -4,8 +4,15 @@
     <button class="login-menu-button" (click)="userLoginOnClick()"><img src="assets/img/user-hamburger-menu-logo.png"></button>
   </nav>
 
-  <div *ngIf="loginMenuIsVisibile" class="login-menu">
+  <div *ngIf="loginMenuIsVisibile && !loginService.isUserLoggedIn();else userMenu" class="login-menu">
     <a href="{{loginUrl}}">Login</a>
     <a href="{{signUpUrl}}">Sign Up</a>
   </div>
+
 </header>
+
+<ng-template #userMenu>
+  <div *ngIf="loginMenuIsVisibile" class="login-menu">
+    <a href="{{logoutUrl}}">Logout</a>
+  </div>
+</ng-template>

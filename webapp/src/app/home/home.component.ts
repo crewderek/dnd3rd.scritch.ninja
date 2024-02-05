@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { CharacterSheetComponent } from "../character-sheet/character-sheet.component";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Character} from "../shared/models/character.model";
 import {Observable} from "rxjs";
+import {LocalStorageService} from "../authorization/local-storage.service";
+import {JWTTokenService} from "../authorization/jwttoken.service";
+import {LoginService} from "../authorization/login.service";
+import {environment} from '../../environments/environment'
 
 @Component({
   selector: 'app-home',
@@ -13,10 +16,14 @@ export class HomeComponent {
   characters: Character[];
   responseData: any;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private localStorage: LocalStorageService, private token: JWTTokenService, private loginService: LoginService) {
   }
 
   ngOnInit(){
+    //  Make sure we are logged in
+    if(!this.loginService.isUserLoggedIn())
+      return;
+
     this.getData().subscribe(
       (response) => {
         this.characters = response;
@@ -28,6 +35,6 @@ export class HomeComponent {
   }
 
   getData(): Observable<any> {
-    return this.http.get<any>('https://325zkzieal.execute-api.us-west-2.amazonaws.com/api/user/characters');
+    return this.http.get<any>(`${environment.apiEnvUrl()}${environment.userCharactersPath}`);
   }
 }

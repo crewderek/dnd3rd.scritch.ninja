@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { environment } from '../../environments/environment';
+import {LoginService} from "../authorization/login.service";
 
 
 @Component({
@@ -11,11 +12,12 @@ export class HeaderComponent {
   loginMenuIsVisibile: boolean = false;
   loginUrl: string;
   signUpUrl: string;
+  logoutUrl: string;
 
-  constructor() {
+  constructor(public loginService: LoginService) {
     this.loginUrl = environment.loginUrl();
     this.signUpUrl = environment.signUpUrl();
-    console.log(this.loginUrl);
+    this.logoutUrl = environment.logoutUrl();
   }
 
   userLoginOnClick(): void{

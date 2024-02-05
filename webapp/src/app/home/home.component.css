@@ -9,6 +9,18 @@
   align-items: center;
   /*text-align: center;*/
 }
+.character-list-buttons{
+  width:100%;
+  display:flex;
+  justify-content: center;
+}
+.character-list-button{
+  padding:10px;
+  margin:10px;
+  background:black;
+  border-radius: 10px;
+  border: solid 1px red;
+}
 .character-container{
   padding:10px;
   margin:5px;
