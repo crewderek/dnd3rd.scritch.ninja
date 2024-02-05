@@ -119,6 +119,11 @@ def create_character(event, mysql_handler):
     items = event['body']
     return character.create_character(items, cognito_user_id)
 
+def update_character(event, mysql_handler):
+    global cognito_user_id
+    character = CharacterClient(mysql_handler)
+    items = event['body']
+    return character.update_character(items['characterId'], items['columnName'], items['columnValue'], cognito_user_id)
 
 # Return the abilities
 def get_abilities(event, mysql_handler):

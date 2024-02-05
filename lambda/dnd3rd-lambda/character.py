@@ -70,3 +70,26 @@ class CharacterClient:
             response = http_response(500, general_exception_message)
 
         return response.response
+
+    def update_character(self, characterId, columnName, columnValue, cognitoUserid):
+        general_exception_message = 'An unexpected error occurred when updating the character.'
+        stored_procedure = 'sp_dynamicCharacterUpdate'
+        response = None
+
+        try:
+            response = self.handler.call_stored_procedure(stored_procedure, [columnName, columnValue, characterId, cognitoUserid])
+            print(response)
+            response.response['statusCode'] = 201
+        except MySQLUserNotFound as munf:
+            exception_message = 'User not found.'
+            logging.info(munf)
+            response = http_response(403, exception_message)
+        except MySQLFailedOnInsert as mfoi:
+            exception_message = 'Failed to updated character.'
+            logging.exception(mfoi)
+            response = http_response(400, exception_message)
+        except Exception as e:
+            logging.exception(e)
+            response = http_response(500, general_exception_message)
+
+        return response.response

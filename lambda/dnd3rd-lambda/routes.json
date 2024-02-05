@@ -19,6 +19,12 @@
             "function": "create_character"
         },
         {
+            "method": "PATCH",
+            "path": "/character",
+            "regex": "^\\/character$",
+            "function": "update_character"
+        },
+        {
             "method": "GET",
             "path": "/character/abilities",
             "regex": "^\/character\/abilities$",
