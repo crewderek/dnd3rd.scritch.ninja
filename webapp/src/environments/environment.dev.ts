@@ -1,10 +1,20 @@
-export const environment = {
-  production: true,
-  authorizationBaseUrl: 'https://dnd3rd-scritch-ninja.auth.us-west-2.amazoncognito.com',
-  authorizationQueryParams: '?client_id=7mgajsldg681cftcuu54bmkka1&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=http%3A%2F%2Flocalhost%3A4200%2Flogin',
+import {CommonEnvironment} from "./environment.common";
 
+export const environment = {
+  ...CommonEnvironment,
+  production: true,
+  apiEnv: '/dev',
+  authorizationQueryParams: `?client_id=${CommonEnvironment.clientId}&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=http%3A%2F%2Flocalhost%3A4200%2Flogin`,
+  logoutQueryParams: `?client_id=${CommonEnvironment.clientId}&logout_uri=http://localhost:4200/logout`,
+
+  apiEnvUrl(){
+    return `${CommonEnvironment.apiBaseURL}${this.apiEnv}`;
+  },
   loginUrl() {
     return `${this.authorizationBaseUrl}/login${this.authorizationQueryParams}`
+  },
+  logoutUrl() {
+    return `${this.authorizationBaseUrl}/logout${this.logoutQueryParams}`;
   },
   signUpUrl() {
     return `${this.authorizationBaseUrl}/signup${this.authorizationQueryParams}`

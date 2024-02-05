@@ -4,37 +4,35 @@
 
     <div class="character-main-image-stat character-main-image-stat-left">
       <label class="character-main-image-hp">HP: {{character.getCurrentHp()}}/{{character.maxHp}}</label>
-      <label class="character-main-image-character-level">Char Lvl: {{character.level}}</label>
+      <label class="character-main-image-character-level">
+        <span (click)="onClickLevel(true)" *ngIf="!displayVariables.levelIsToggled" >Char Lvl: {{character.level}}</span>
+        <div *ngIf="displayVariables.levelIsToggled">
+          <input #inputCharacterLevel type='number' [value]="character.level" />
+          <button (click)="onClickLevel(false, inputCharacterLevel.value)">Submit</button>
+        </div>
+      </label>
       <label class="character-main-image-xp">XP: {{character.experiencePoints}}</label>
-      <label class="character-main-image-speed">Speed: {{character.speed}}ft</label>
+      <label class="character-main-image-speed">
+        <span (click)="onClickSpeed(true)" *ngIf="!displayVariables.speedIsToggled" >Speed: {{ character.speed }}ft</span>
+        <div *ngIf="displayVariables.speedIsToggled">
+          <input #inputCharacterSpeed type='number' [value]="character.speed" />
+          <button (click)="onClickSpeed(false, inputCharacterSpeed.value)">Submit</button>
+        </div>
+      </label>
     </div>
-    <label class="character-main-image-stat character-main-image-name">NAME GOES HERE</label>
-    <label class="character-main-image-stat character-main-image-classes">CLASSES GO HERE</label>
+
+    <label class="character-main-image-stat character-main-image-name">
+      <span (click)="onClickName(true)" *ngIf="!displayVariables.nameIsToggled" >{{ character.name == '' ? 'Character Name' : character.name}}</span>
+      <div *ngIf="displayVariables.nameIsToggled">
+        <input #inputCharacterName type='text' [value]="character.name" />
+        <button (click)="onClickName(false, inputCharacterName.value)">Submit</button>
+      </div>
+    </label>
+
+    <label class="character-main-image-stat character-main-image-classes">{{ character.class == '' ? 'Character Classes' : character.class}}</label>
   </div>
 
   <div class="main-character-stats">
-<!--    <div class="main-character-stats-row">-->
-<!--      <div class="main-character-stat">-->
-<!--        <label class="stat-score">{{character.level}}</label><br>-->
-<!--        <label class="stat-info">Level</label>-->
-<!--      </div>-->
-
-<!--      <div class="main-character-stat">-->
-<!--        <label class="stat-score">{{character.experiencePoints}}</label><br>-->
-<!--        <label class="stat-info">XP</label>-->
-<!--      </div>-->
-
-<!--      <div class="main-character-stat">-->
-<!--        <label class="stat-score">{{character.getCurrentHp()}}/{{character.maxHp}}</label><br>-->
-<!--        <label class="stat-info">HP</label>-->
-<!--      </div>-->
-
-<!--      <div class="main-character-stat">-->
-<!--        <label class="stat-score">30ft</label><br>-->
-<!--        <label class="stat-info">Speed</label>-->
-<!--      </div>-->
-<!--    </div>-->
-
     <div class="main-character-stats-row">
       <div class="main-character-stat">
         <label class="stat-score">15</label><br>
@@ -83,7 +81,7 @@
   <div class="main-character-descriptor main-character-description">
     <button (click)="showDescription=!showDescription">Description &#8628;</button>
 
-    <div *ngIf="showDescription" class="main-character-description-inner hidden dropdown-stat">
+    <div *ngIf="showDescription;" class="main-character-description-inner hidden dropdown-stat" appScrollTo>
       <table>
         <tr>
           <td>Race:</td>
@@ -145,49 +143,49 @@
 
   <div class="main-character-descriptor main-character-description">
     <button (click)="showAttacks=!showAttacks">Attacks &#8628;</button>
-    <div *ngIf="showAttacks" class="main-character-description-inner  hidden dropdown-stat">
+    <div *ngIf="showAttacks" class="main-character-description-inner  hidden dropdown-stat" appScrollTo>
       <app-weapons [character]="character"></app-weapons>
     </div>
   </div>
 
   <div class="main-character-descriptor main-character-description">
     <button (click)="showArmor=!showArmor">Armor &#8628;</button>
-    <div *ngIf="showArmor" class="main-character-description-inner  hidden dropdown-stat">
+    <div *ngIf="showArmor" class="main-character-description-inner  hidden dropdown-stat" appScrollTo>
       <app-armor [character]="character"></app-armor>
     </div>
   </div>
 
   <div class="main-character-descriptor main-character-description">
     <button (click)="showSpells=!showSpells">Spells &#8628;</button>
-    <div *ngIf="showSpells" class="main-character-description-inner  hidden dropdown-stat">
+    <div *ngIf="showSpells" class="main-character-description-inner  hidden dropdown-stat" appScrollTo>
       <app-spells [character]="character"></app-spells>
     </div>
   </div>
 
   <div class="main-character-descriptor main-character-description">
     <button (click)="showSkills=!showSkills">Skills &#8628;</button>
-    <div *ngIf="showSkills" class="main-character-description-inner  hidden dropdown-stat">
+    <div *ngIf="showSkills" class="main-character-description-inner  hidden dropdown-stat" appScrollTo>
       <app-skills [character]="character"></app-skills>
     </div>
   </div>
 
   <div class="main-character-descriptor main-character-description">
     <button (click)="showInventory=!showInventory">Inventory &#8628;</button>
-    <div *ngIf="showInventory" class="main-character-description-inner  hidden dropdown-stat">
+    <div *ngIf="showInventory" class="main-character-description-inner  hidden dropdown-stat" appScrollTo>
       <app-inventory [character]="character"></app-inventory>
     </div>
   </div>
 
   <div class="main-character-descriptor main-character-description">
     <button (click)="showFeats=!showFeats">Feats &#8628;</button>
-    <div *ngIf="showFeats" class="main-character-description-inner  hidden dropdown-stat">
+    <div *ngIf="showFeats" class="main-character-description-inner  hidden dropdown-stat" appScrollTo>
       <app-feats [character]="character"></app-feats>
     </div>
   </div>
 
   <div class="main-character-descriptor main-character-description">
     <button (click)="showSpecialAbilities=!showSpecialAbilities">Special Abilities &#8628;</button>
-    <div *ngIf="showSpecialAbilities" class="main-character-description-inner  hidden dropdown-stat">
+    <div *ngIf="showSpecialAbilities" class="main-character-description-inner  hidden dropdown-stat" appScrollTo>
       <app-special-abilities [character]="character"></app-special-abilities>
     </div>
   </div>

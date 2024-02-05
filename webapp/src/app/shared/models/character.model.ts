@@ -101,15 +101,24 @@ export class Character {
 
       this.skills.push(
         new Skill(skill.name, skill.isTrained, AbilityName[skill.abilityType as keyof typeof AbilityName]));
-
-      // If the skill has subskills, iterate over them
-      // if (skill.subskills) {
-      //   for (let j = 0; j < skill.subskills.length; j++) {
-      //     const subskill = skill.subskills[j];
-      //     console.log(`  Subskill: ${subskill}`);
-      //   }
-      // }
     }
+  }
+
+  public parseCharacterData(characterData: any){
+    this.id = characterData.id;
+    this.userId = characterData.userId;
+    this.name = characterData.name;
+    this.level = characterData.level;
+    this.experiencePoints = characterData.experiencePoints;
+    this.gender = characterData.gender;
+    this.maxRanks = characterData.maxSkillRanks;
+    this.age = characterData.age;
+
+    let currency = JSON.parse(characterData.currency);
+    this.currencyInfo.copper = currency.copper;
+    this.currencyInfo.silver = currency.silver;
+    this.currencyInfo.gold = currency.gold;
+    this.currencyInfo.platinum = currency.platinum;
   }
 }
 
