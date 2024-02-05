@@ -19,8 +19,6 @@ paths:
           description: No characters could not be found.
         '500':
           description: Internal server error with getting the character.
-#      parameters:
-#        - $ref: "#/components/parameters/characterIdParam"
   /character:
     get:
       summary: Returns a character and their top level stats
@@ -57,6 +55,24 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Character'
+    patch:
+      summary: Updates a single character stat
+      description: Updates a single character stat at a time.
+      responses:
+        '201':
+          description: Stat updated.
+        '400':
+          description: TODO.
+        '409':
+          description: TODO.
+        '500':
+          description: TODO.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCharacter'
   /character/abilities:
     get:
       summary: Gets the abilities associated with a character
@@ -441,6 +457,20 @@ components:
             type: string
           level:
             type: number
+    UpdateCharacter:
+      type: object
+      properties:
+        characterId:
+          type: string
+          required: true
+        columnName:
+          type: string
+          required: true
+        columnValue:
+          oneOf:
+            - type: string
+            - type: integer
+          required: true
   securitySchemes:
     bearerAuth:            # arbitrary name for the security scheme
       type: http
