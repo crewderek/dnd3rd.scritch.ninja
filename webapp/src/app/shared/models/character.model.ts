@@ -8,6 +8,7 @@ import {Feat} from "./feat.model";
 import {SpecialAbility, SpecialAbilityTypes} from "./specialAbility.model";
 import {Spell, SpellInfo, SpellsKnown} from "./spell.model";
 import {Gear} from "./gear.model";
+// @ts-ignore
 import * as defaultSkills from '../../../assets/default-skills.json'
 
 export interface CurrencyInfo{
@@ -19,8 +20,8 @@ export interface CurrencyInfo{
 
 export class Character {
   // Info
-  id: string;
-  userId: string;
+  id: string = '';
+  userId: string = '';
 
   //  Descriptors
   name: string = '';
@@ -37,7 +38,7 @@ export class Character {
   eyes: string = '';
   hair: string = '';
   skin: string = '';
-  speed: number;
+  speed: number = 30;
   gender: string = '';
   languages: string[] = ['Common'];
   currencyInfo: CurrencyInfo = {copper:0, silver:0, gold:0, platinum:0};
@@ -45,19 +46,20 @@ export class Character {
   //Combat
   maxHp: number = 12;
   damageTaken: Damage[] = [];
-  initiative: number;
-  ac: number;
-  touchAc: number;
-  flatFootedAc: number;
+  initiative: number = 0;
+  ac: number = 10;
+  touchAc: number = 10;
+  flatFootedAc: number = 10;
+  damageReduction: number = 0;
   baseAttackBonus: number[] = [1];
-  spellResistance: number;
-  grapple: number;
+  spellResistance: number = 0;
+  grapple: number = 0;
   weapons: Weapon[] = [new Weapon(1, [new Damage()], 5, "Piercing", false, new Gear("Short sword"), 19), new Weapon(1, [new Damage()], 5, "Piercing", false, new Gear("Short sword"), 19)];
   armors: Armor[] = [new Armor('Light', 1, 30, 8, .05, new Gear('Padded Armor', 10, 500, true)), new Armor('Light', 1, 30, 8, .05, new Gear('Padded Armor', 10, 500, true))];
   inventory: Gear[] = [new Gear('Lantern of Reavealing', 2, 300000, true), new Gear('Lantern of Reavealing', 2, 300000, true)];
 
   //Skills
-  maxRanks: number;
+  maxRanks: number = 1;
   skills: Skill[] = [];
 
   abilities: Ability[] = [new Ability(AbilityName.Strength),
@@ -105,20 +107,73 @@ export class Character {
   }
 
   public parseCharacterData(characterData: any){
+    //  System information
     this.id = characterData.id;
     this.userId = characterData.userId;
+
+    //  Description info
     this.name = characterData.name;
+    this.gender = characterData.gender;
+    this.age = characterData.age;
+    this.race = characterData.race;
+    const alignment = characterData.alignment.replace(' ', '');
+    this.alignment = Alignment[alignment as keyof typeof Alignment];
+    this.size = characterData.size;
+    this.height = characterData.height;
+    this.weight = characterData.weight;
+    this.eyes = characterData.eyes;
+    this.hair = characterData.hair;
+    this.deity = characterData.deity;
+
+    console.log(this.alignment.toString());
+    //  Misc
     this.level = characterData.level;
     this.experiencePoints = characterData.experiencePoints;
-    this.gender = characterData.gender;
     this.maxRanks = characterData.maxSkillRanks;
-    this.age = characterData.age;
+    this.speed = characterData.speed;
+    this.maxHp = characterData.maxHp;
+    this.ac = characterData.ac;
+    this.touchAc = characterData.touchAc;
+    this.flatFootedAc = characterData.flatFootedAc;
+    this.initiative = characterData.initiative;
+    this.grapple = characterData.grapple;
+    this.spellResistance = characterData.spellResistance;
+    this.damageReduction = characterData.damageReduction;
 
     let currency = JSON.parse(characterData.currency);
     this.currencyInfo.copper = currency.copper;
     this.currencyInfo.silver = currency.silver;
     this.currencyInfo.gold = currency.gold;
     this.currencyInfo.platinum = currency.platinum;
+  }
+
+  //  These are binders for variables to be set via functions
+  public setName(value: string){
+    this.name = value;
+  }
+  public setSpeed(value: number){
+    this.speed = value;
+  }
+  public setLevel(value: number){
+    this.level = value;
+  }
+  public setXp(value: number){
+    this.experiencePoints = value;
+  }
+  public setMaxHp(value: number){
+    this.maxHp = value;
+  }
+  public setAc(value: number){
+    this.ac = value;
+  }
+  public setTouchAc(value: number){
+    this.touchAc = value;
+  }
+  public setFlatFootedAc(value: number){
+    this.flatFootedAc = value;
+  }
+  public setInitiative(value: number){
+    this.initiative = value;
   }
 }
 
@@ -135,13 +190,13 @@ export enum Alignment {
 }
 
 export enum Size {
-  Fine,
-  Diminutive,
-  Tiny,
-  Small,
-  Medium,
-  Large,
-  Huge,
-  Gargantuan,
-  Colossal
+  Fine = "Fine",
+  Diminutive = "Diminutive",
+  Tiny = "Tiny",
+  Small = "Small",
+  Medium = "Medium",
+  Large = "Large",
+  Huge = "Huge",
+  Gargantuan = "Gargantuan",
+  Colossal = "Colossal"
 }

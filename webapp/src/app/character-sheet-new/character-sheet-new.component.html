@@ -3,29 +3,42 @@
     <img src="/assets/img/missing-dnd-character.png"/>
 
     <div class="character-main-image-stat character-main-image-stat-left">
-      <label class="character-main-image-hp">HP: {{character.getCurrentHp()}}/{{character.maxHp}}</label>
-      <label class="character-main-image-character-level">
-        <span (click)="onClickLevel(true)" *ngIf="!displayVariables.levelIsToggled" >Char Lvl: {{character.level}}</span>
-        <div *ngIf="displayVariables.levelIsToggled">
-          <input #inputCharacterLevel type='number' [value]="character.level" />
-          <button (click)="onClickLevel(false, inputCharacterLevel.value)">Submit</button>
+      <label class="character-main-image-hp">
+        <span (click)="onFocusHp(true)" *ngIf="!displayVariables.hpIsToggled">HP: <!--{{character.getCurrentHp()}}/-->{{character.maxHp}}</span>
+        <div *ngIf="displayVariables.hpIsToggled">
+          <input #inputCharacterMaxHp type='number' (blur)="onFocusHp(false)" [value]="character.maxHp" appAutoFocus/>
+          <button (click)="onFocusHp(false, inputCharacterMaxHp.value)">Submit</button>
         </div>
       </label>
-      <label class="character-main-image-xp">XP: {{character.experiencePoints}}</label>
+      <label class="character-main-image-character-level">
+        <span (click)="onFocusLevel(true)" *ngIf="!displayVariables.levelIsToggled">Char Lvl: {{character.level}}</span>
+        <div *ngIf="displayVariables.levelIsToggled">
+          <input #inputCharacterLevel type='number' (blur)="onFocusLevel(false)" [value]="character.level" appAutoFocus/>
+          <button (click)="onFocusLevel(false, inputCharacterLevel.value)">Submit</button>
+        </div>
+      </label>
+      <label class="character-main-image-xp">
+        <span (click)="onFocusXp(true)" *ngIf="!displayVariables.xpIsToggled" >XP: {{character.experiencePoints}}</span>
+        <div *ngIf="displayVariables.xpIsToggled">
+          <input #inputCharacterXp type='number' (blur)="onFocusXp(false)" [value]="character.experiencePoints" appAutoFocus/>
+          <button (click)="onFocusXp(false, inputCharacterXp.value)">Submit</button>
+        </div>
+      </label>
       <label class="character-main-image-speed">
-        <span (click)="onClickSpeed(true)" *ngIf="!displayVariables.speedIsToggled" >Speed: {{ character.speed }}ft</span>
+        <span (click)="onFocusSpeed(true)" *ngIf="!displayVariables.speedIsToggled" >Speed: {{ character.speed }}ft</span>
         <div *ngIf="displayVariables.speedIsToggled">
-          <input #inputCharacterSpeed type='number' [value]="character.speed" />
-          <button (click)="onClickSpeed(false, inputCharacterSpeed.value)">Submit</button>
+          <input #inputCharacterSpeed type='number' (blur)="onFocusSpeed(false)" [value]="character.speed" appAutoFocus/>
+          <button (click)="onFocusSpeed(false, inputCharacterSpeed.value)">Submit</button>
         </div>
       </label>
     </div>
 
     <label class="character-main-image-stat character-main-image-name">
-      <span (click)="onClickName(true)" *ngIf="!displayVariables.nameIsToggled" >{{ character.name == '' ? 'Character Name' : character.name}}</span>
-      <div *ngIf="displayVariables.nameIsToggled">
-        <input #inputCharacterName type='text' [value]="character.name" />
-        <button (click)="onClickName(false, inputCharacterName.value)">Submit</button>
+      <span (click)="onFocusName(true)" *ngIf="!displayVariables.nameIsToggled" >{{ character.name == '' ? 'Character Name' : character.name}}</span>
+<!--      <div *ngIf="displayVariables.nameIsToggled" >-->
+      <div *ngIf="displayVariables.nameIsToggled" >
+        <input #inputCharacterName type='text' (blur)="onFocusName(false)" [value]="character.name" appAutoFocus />
+        <button (click)="onFocusName(false, inputCharacterName.value)">Submit</button>
       </div>
     </label>
 
@@ -35,22 +48,46 @@
   <div class="main-character-stats">
     <div class="main-character-stats-row">
       <div class="main-character-stat">
-        <label class="stat-score">15</label><br>
+        <label class="stat-score">
+          <span *ngIf="!displayVariables.acIsToggled" (click)="onFocusAc(true)">{{character.ac}}</span>
+          <div *ngIf="displayVariables.acIsToggled" >
+            <input #inputCharacterAc type='number' [value]="character.ac" (blur)="onFocusAc(false)" appAutoFocus />
+            <button (click)="onFocusAc(false, inputCharacterAc.value)">Submit</button>
+          </div>
+        </label><br>
         <label class="stat-info">AC</label>
       </div>
 
       <div class="main-character-stat">
-        <label class="stat-score">11</label><br>
+        <label class="stat-score">
+          <span *ngIf="!displayVariables.touchAcIsToggled" (click)="onFocusTouch(true)">{{character.touchAc}}</span>
+          <div *ngIf="displayVariables.touchAcIsToggled" >
+            <input #inputCharacterTouchAc type='number' [value]="character.touchAc" (blur)="onFocusTouch(false)" appAutoFocus />
+            <button (click)="onFocusTouch(false, inputCharacterTouchAc.value)">Submit</button>
+          </div>
+        </label><br>
         <label class="stat-info">Touch</label>
       </div>
 
       <div class="main-character-stat">
-        <label class="stat-score">10</label><br>
+        <label class="stat-score">
+          <span *ngIf="!displayVariables.flatFootedAcIsToggled" (click)="onFocusFlatFooted(true)">{{character.flatFootedAc}}</span>
+          <div *ngIf="displayVariables.flatFootedAcIsToggled" >
+            <input #inputCharacterFlatFootedAc type='number' [value]="character.flatFootedAc" (blur)="onFocusFlatFooted(false)" appAutoFocus />
+            <button (click)="onFocusFlatFooted(false, inputCharacterFlatFootedAc.value)">Submit</button>
+          </div>
+        </label><br>
         <label class="stat-info">Flat-Footed</label>
       </div>
 
       <div class="main-character-stat">
-        <label class="stat-score">1</label><br>
+        <label class="stat-score">
+          <span *ngIf="!displayVariables.initiativeToggled" (click)="onFocusInitiative(true)">{{character.initiative}}</span>
+          <div *ngIf="displayVariables.initiativeToggled" >
+            <input #inputCharacterInitiative type='number' [value]="character.initiative" (blur)="onFocusInitiative(false)" appAutoFocus />
+            <button (click)="onFocusInitiative(false, inputCharacterInitiative.value)">Submit</button>
+          </div>
+        </label><br>
         <label class="stat-info">Initiative</label>
       </div>
     </div>
@@ -85,49 +122,52 @@
       <table>
         <tr>
           <td>Race:</td>
-          <td><input [value]="character.race" type="text"/></td>
+          <td><input #raceInput (blur)="onChangeRace(raceInput.value)" [value]="character.race" type="text"/></td>
         </tr>
         <tr>
           <td>Alignment:</td>
-          <td><select>
-            <option *ngFor="let option of alignmentOptions" [value]="option">{{ option }}</option>
+          <td><select  #alignmentInput (blur)="onChangeAlignment(alignmentInput.value)" >
+            <option *ngFor="let option of alignmentOptions" [value]="option" [attr.selected]="this.character.alignment.toString() == option ? true: null">{{ option }}</option>
           </select></td>
         </tr>
         <tr>
           <td>Deity:</td>
-          <td><input [value]="character.deity" type="text"/></td>
+          <td><input #deityInput (blur)="onChangeDeity(deityInput.value)" [value]="character.deity" type="text"/></td>
         </tr>
         <tr>
           <td>Size:</td>
-          <td><input [value]="character.size" type="text"/></td>
+<!--          <td><input #sizeInput (blur)="onChangeSize(sizeInput.value)" [value]="character.size" type="text"/></td>-->
+          <td><select  #sizeInput (blur)="onChangeSize(sizeInput.value)" >
+            <option *ngFor="let option of sizeOptions" [value]="option" [attr.selected]="this.character.size.toString() == option ? true: null">{{ option }}</option>
+          </select></td>
         </tr>
         <tr>
           <td>Age:</td>
-          <td><input [value]="character.age" type="text"/></td>
+          <td><input #ageInput (blur)="onChangeAge(ageInput.value)" [value]="character.age" type="text"/></td>
         </tr>
         <tr>
           <td>Gender:</td>
-          <td><input [value]="character.gender" type="text"/></td>
+          <td><input #genderInput (blur)="onChangeGender(genderInput.value)" [value]="character.gender" type="text"/></td>
         </tr>
         <tr>
           <td>Height:</td>
-          <td><input [value]="character.height" type="text"/></td>
+          <td><input #heightInput (blur)="onChangeHeight(heightInput.value)" [value]="character.height" type="number"/></td>
         </tr>
         <tr>
           <td>Weight:</td>
-          <td><input [value]="character.weight" type="text"/></td>
+          <td><input #weightInput (blur)="onChangeWeight(weightInput.value)" [value]="character.weight" type="number"/></td>
         </tr>
         <tr>
           <td>Eyes:</td>
-          <td><input [value]="character.eyes" type="text"/></td>
+          <td><input #eyesInput (blur)="onChangeEyes(eyesInput.value)" [value]="character.eyes" type="text"/></td>
         </tr>
         <tr>
           <td>Hair:</td>
-          <td><input [value]="character.hair" type="text"/></td>
+          <td><input #hairInput (blur)="onChangeHair(hairInput.value)" [value]="character.hair" type="text"/></td>
         </tr>
         <tr>
           <td>Skin:</td>
-          <td><input [value]="character.skin" type="text"/></td>
+          <td><input #skinInput (blur)="onChangeSkin(skinInput.value)" [value]="character.skin" type="text"/></td>
         </tr>
         <tr>
           <td>Other:</td>

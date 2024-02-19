@@ -1,12 +1,11 @@
 <div class="home-container">
   <div *ngIf="characters != null && characters.length > 0" class="character-list">
     <div class="character-list-buttons">
-      <a href="/character-sheet" class="character-list-button create-character-button">Create Character</a>
+      <a (click)="createEmptyCharacter()" class="character-list-button create-character-button">Create Character</a>
     </div>
 
     <div *ngFor="let character of characters" class="character-container">
       <a href="/character-sheet?characterId={{character.id}}">
-        <label>{{character.id}}</label><br>
         <label>{{character.name}}</label><br>
         <label>{{character.level}}</label>
       </a>

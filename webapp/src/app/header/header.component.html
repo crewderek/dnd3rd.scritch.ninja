@@ -13,6 +13,7 @@
 
 <ng-template #userMenu>
   <div *ngIf="loginMenuIsVisibile" class="login-menu">
+    <label>{{this.loginService.getUsername()}}</label>
     <a href="{{logoutUrl}}">Logout</a>
   </div>
 </ng-template>

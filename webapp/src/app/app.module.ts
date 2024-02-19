@@ -21,6 +21,7 @@ import { LoginComponent } from './login/login.component';
 import {JWTTokenService} from "./authorization/jwttoken.service";
 import { LogoutComponent } from './logout/logout.component';
 import { ScrollToDirective } from './scroll-to.directive';
+import { AutoFocusDirective } from './auto-focus.directive';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ScrollToDirective } from './scroll-to.directive';
     CharacterSheetNewComponent,
     LoginComponent,
     LogoutComponent,
-    ScrollToDirective
+    ScrollToDirective,
+    AutoFocusDirective
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,7 @@ import { ScrollToDirective } from './scroll-to.directive';
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true
-    }
+    },
   ],
   bootstrap: [AppComponent]
 })

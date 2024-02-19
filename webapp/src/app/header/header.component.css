@@ -43,7 +43,7 @@ nav a img, nav button img{
   width: 100%;
   background: black;
 }
-.login-menu a{
+.login-menu a, .login-menu label{
   display:block;
   width: 100%;
   padding: 20px 0px;
@@ -53,4 +53,7 @@ nav a img, nav button img{
   font-weight: bold;
   text-decoration: none;
   text-align: center;
+}
+.login-menu label {
+  background-color: rgb(32, 32, 32);
 }
