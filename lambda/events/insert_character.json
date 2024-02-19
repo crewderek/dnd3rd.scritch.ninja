@@ -1,13 +1,4 @@
 {
-  "requestContext": {
-    "authorizer": {
-      "claims": {
-        "sub": "d8773017-193a-412b-b729-0181e0935079"
-      }
-    }
-  },
-  "path": "/character",
-  "httpMethod": "POST",
   "body": {
     "characterName": "string",
     "characterLevel": 0,
