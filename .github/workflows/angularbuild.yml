@@ -37,4 +37,4 @@ jobs:
 
     - name: Deploy to S3
       working-directory: ./webapp
-      run: aws s3 sync ./dist/dnd3rd-scritch-ninja s3://dnd3rd.scritch.ninja --delete
+      run: aws s3 sync ./dist/webapp s3://dnd3rd.scritch.ninja --delete
