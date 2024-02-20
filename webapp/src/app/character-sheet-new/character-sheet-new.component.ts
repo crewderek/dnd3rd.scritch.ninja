@@ -90,8 +90,11 @@ export class CharacterSheetNewComponent {
 
   //  This function was a PAIN IN MY FUCKING ASS.
   //  Only god knows what this function does and it is wild.
-  //  But is is required to prevent many duplications :)
+  //  But is required to prevent many duplications :)
   //  Hi from the past :P
+  onFocusInput(displayVariableToToggle: string, characterValueToAdjust: keyof Character,
+               value: any, toggled: boolean, setValue: (value: number[]) => void,
+               setToggle: (toggle: boolean) => void): void;
   onFocusInput(displayVariableToToggle: string, characterValueToAdjust: keyof Character,
                value: number, toggled: boolean, setValue: (value: number) => void,
                setToggle: (toggle: boolean) => void): void;
@@ -102,7 +105,11 @@ export class CharacterSheetNewComponent {
                value: any, toggled: boolean, setValue: (value: any) => void,
                setToggle: (toggle: boolean) => void) {
     if (this.displayVariables[displayVariableToToggle as keyof typeof this.displayVariables] && this.character[characterValueToAdjust as keyof typeof this.character] != value) {
-      this.patchCharacterData(this.character.id, characterValueToAdjust, value);
+      if(Array.isArray(value)) {
+        this.patchCharacterData(this.character.id, characterValueToAdjust, JSON.stringify(value));
+      }else {
+        this.patchCharacterData(this.character.id, characterValueToAdjust, value);
+      }
       setValue(value);
     }
 
@@ -169,14 +176,56 @@ export class CharacterSheetNewComponent {
       this.displayVariables.setFlatFootedAcToggle.bind(this.displayVariables));
   }
 
+  onFocusBaseAttackBonus(toggled: boolean,
+                    value: string = this.character.baseAttackBonuses.toString()): void {
+    if(toggled == this.displayVariables.baseAttackBonusIsToggled)
+      return;
+
+    value = '[' + value + ']';
+    // console.log(value);
+    const numberArray = JSON.parse(value);
+
+    this.onFocusInput('baseAttackBonusIsToggled', 'baseAttackBonuses', numberArray, toggled,
+      this.character.setBaseAttackBonus.bind(this.character),
+      this.displayVariables.setBaseAttackBonusToggle.bind(this.displayVariables));
+  }
+
   onFocusInitiative(toggled: boolean,
-                    value: string = String(23)): void {
+                    value: string = String(this.character.initiative)): void {
     if(toggled == this.displayVariables.initiativeToggled)
       return;
 
     this.onFocusInput('initiativeToggled', 'initiative', Number(value), toggled,
       this.character.setInitiative.bind(this.character),
       this.displayVariables.setInitiativeToggle.bind(this.displayVariables));
+  }
+
+  onFocusGrapple(toggled: boolean,
+                    value: string = String(this.character.grapple)): void {
+    if(toggled == this.displayVariables.grappleIsToggled)
+      return;
+
+    this.onFocusInput('grappleIsToggled', 'grapple', Number(value), toggled,
+      this.character.setGrapple.bind(this.character),
+      this.displayVariables.setGrappleToggle.bind(this.displayVariables));
+  }
+  onFocusSpellResistance(toggled: boolean,
+                    value: string = String(this.character.spellResistance)): void {
+    if(toggled == this.displayVariables.spellResistanceIsToggled)
+      return;
+
+    this.onFocusInput('spellResistanceIsToggled', 'spellResistance', Number(value), toggled,
+      this.character.setSpellResistance.bind(this.character),
+      this.displayVariables.setSpellResistanceToggle.bind(this.displayVariables));
+  }
+  onFocusDamageReduction(toggled: boolean,
+                    value: string = String(this.character.damageReduction)): void {
+    if(toggled == this.displayVariables.damageReductionIsToggled)
+      return;
+
+    this.onFocusInput('damageReductionIsToggled', 'damageReduction', Number(value), toggled,
+      this.character.setDamageReduction.bind(this.character),
+      this.displayVariables.setDamageReductionToggle.bind(this.displayVariables));
   }
 
   inputOnChange(value: number, characterValueToAdjust: string, columnName: string) : void;
@@ -262,6 +311,10 @@ export class CharacterSheetDisplayVariables {
   touchAcIsToggled: boolean = false;
   flatFootedAcIsToggled: boolean = false;
   initiativeToggled: boolean = false;
+  grappleIsToggled: boolean = false;
+  baseAttackBonusIsToggled: boolean = false;
+  spellResistanceIsToggled: boolean = false;
+  damageReductionIsToggled: boolean = false;
 
   setNameToggle(toggle: boolean) {
     this.nameIsToggled = toggle;
@@ -294,5 +347,17 @@ export class CharacterSheetDisplayVariables {
   }
   setInitiativeToggle(toggle: boolean) {
     this.initiativeToggled = toggle;
+  }
+  setGrappleToggle(toggle: boolean) {
+    this.grappleIsToggled = toggle;
+  }
+  setBaseAttackBonusToggle(toggle: boolean) {
+    this.baseAttackBonusIsToggled = toggle;
+  }
+  setSpellResistanceToggle(toggle: boolean) {
+    this.spellResistanceIsToggled = toggle;
+  }
+  setDamageReductionToggle(toggle: boolean) {
+    this.damageReductionIsToggled = toggle;
   }
 }

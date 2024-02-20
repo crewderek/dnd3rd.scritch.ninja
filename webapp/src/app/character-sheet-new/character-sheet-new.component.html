@@ -94,22 +94,46 @@
 
     <div class="main-character-stats-row">
       <div class="main-character-stat">
-        <label class="stat-score">+3</label><br>
+        <label class="stat-score">
+          <span *ngIf="!displayVariables.baseAttackBonusIsToggled" (click)="onFocusBaseAttackBonus(true)">{{character.baseAttackBonuses}}</span>
+          <div *ngIf="displayVariables.baseAttackBonusIsToggled" >
+            <input #inputCharacterBaseAttackBonus type='text' [value]="character.baseAttackBonuses" appAutoFocus />
+            <button (click)="onFocusBaseAttackBonus(false, inputCharacterBaseAttackBonus.value)">Submit</button>
+          </div>
+        </label><br>
         <label class="stat-info">Base Attack Bonus</label>
       </div>
 
       <div class="main-character-stat">
-        <label class="stat-score">+5</label><br>
+        <label class="stat-score">
+          <span *ngIf="!displayVariables.grappleIsToggled" (click)="onFocusGrapple(true)">{{character.grapple}}</span>
+          <div *ngIf="displayVariables.grappleIsToggled" >
+            <input #inputCharacterGrapple type='number' [value]="character.grapple" (blur)="onFocusGrapple(false)" appAutoFocus />
+            <button (click)="onFocusGrapple(false, inputCharacterGrapple.value)">Submit</button>
+          </div>
+        </label><br>
         <label class="stat-info">Grapple</label>
       </div>
 
       <div class="main-character-stat">
-        <label class="stat-score">3</label><br>
+        <label class="stat-score">
+          <span *ngIf="!displayVariables.spellResistanceIsToggled" (click)="onFocusSpellResistance(true)">{{character.spellResistance}}</span>
+          <div *ngIf="displayVariables.spellResistanceIsToggled" >
+            <input #inputCharacterSpellResistance type='number' [value]="character.spellResistance" (blur)="onFocusSpellResistance(false)" appAutoFocus />
+            <button (click)="onFocusSpellResistance(false, inputCharacterSpellResistance.value)">Submit</button>
+          </div>
+        </label><br>
         <label class="stat-info">Spell Resistance</label>
       </div>
 
       <div class="main-character-stat">
-        <label class="stat-score">-2</label><br>
+        <label class="stat-score">
+          <span *ngIf="!displayVariables.damageReductionIsToggled" (click)="onFocusDamageReduction(true)">{{character.damageReduction}}</span>
+          <div *ngIf="displayVariables.damageReductionIsToggled" >
+            <input #inputCharacterDamageReduction type='number' [value]="character.damageReduction" (blur)="onFocusDamageReduction(false)" appAutoFocus />
+            <button (click)="onFocusDamageReduction(false, inputCharacterDamageReduction.value)">Submit</button>
+          </div>
+        </label><br>
         <label class="stat-info">Damage Reduction</label>
       </div>
     </div>

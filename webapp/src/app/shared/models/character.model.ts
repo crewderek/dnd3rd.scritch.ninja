@@ -51,7 +51,7 @@ export class Character {
   touchAc: number = 10;
   flatFootedAc: number = 10;
   damageReduction: number = 0;
-  baseAttackBonus: number[] = [1];
+  baseAttackBonuses: number[] = [1];
   spellResistance: number = 0;
   grapple: number = 0;
   weapons: Weapon[] = [new Weapon(1, [new Damage()], 5, "Piercing", false, new Gear("Short sword"), 19), new Weapon(1, [new Damage()], 5, "Piercing", false, new Gear("Short sword"), 19)];
@@ -125,7 +125,6 @@ export class Character {
     this.hair = characterData.hair;
     this.deity = characterData.deity;
 
-    console.log(this.alignment.toString());
     //  Misc
     this.level = characterData.level;
     this.experiencePoints = characterData.experiencePoints;
@@ -139,6 +138,7 @@ export class Character {
     this.grapple = characterData.grapple;
     this.spellResistance = characterData.spellResistance;
     this.damageReduction = characterData.damageReduction;
+    this.setBaseAttackBonus(JSON.parse(characterData.baseAttackBonus))
 
     let currency = JSON.parse(characterData.currency);
     this.currencyInfo.copper = currency.copper;
@@ -174,6 +174,22 @@ export class Character {
   }
   public setInitiative(value: number){
     this.initiative = value;
+  }
+
+  public setBaseAttackBonus(value: number[]){
+    this.baseAttackBonuses = value;
+  }
+
+  public setGrapple(value: number){
+    this.grapple = value;
+  }
+
+  public setSpellResistance(value: number){
+    this.spellResistance = value;
+  }
+
+  public setDamageReduction(value: number){
+    this.damageReduction = value;
   }
 }
 
