@@ -38,8 +38,8 @@ paths:
 #        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
     post:
-      summary: Creates a character with their top level stats
-      description: Creates the character including name, level, experience and not listed items such as skills, feats, attacks, armor, inventory, etc...
+      summary: Creates a character with their default stats.
+      description: Creates an empty character sheet.
       responses:
         '201':
           description: Character created.
@@ -49,12 +49,12 @@ paths:
           description: The character already exists and could not be created.
         '500':
           description: Internal server error with creating the character.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Character'
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '#/components/schemas/Character'
     patch:
       summary: Updates a single character stat
       description: Updates a single character stat at a time.
@@ -294,12 +294,14 @@ components:
           type: string
     Item:
       properties:
+        name:
+          type: string
+        characterId:
+          type: string
         isEquipped:
           type: boolean
-        equipmentSlots:
-          type: array
-          items:
-            type: string
+        equipmentSlot:
+          type: string
         weight:
           type: number
         size:
@@ -307,6 +309,8 @@ components:
         cost:
           type: number
           description: In copper coins
+        count:
+          type: number
         notes:
           type: string
     Armor:
@@ -346,10 +350,6 @@ components:
           type: boolean
     Weapon:
       properties:
-        characterId:
-          type: number
-        name:
-          type: string
         weaponType:
           type: string
         damages:
@@ -367,8 +367,6 @@ components:
           type: number
         requiresAmmunition:
           type: boolean
-        ammunition:
-          type: number
         itemInfo:
           type: object
           $ref: '#/components/schemas/Item'
