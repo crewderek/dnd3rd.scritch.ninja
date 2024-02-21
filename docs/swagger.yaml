@@ -296,8 +296,10 @@ components:
       properties:
         name:
           type: string
+          required: true
         characterId:
           type: string
+          required: true
         isEquipped:
           type: boolean
         equipmentSlot:
