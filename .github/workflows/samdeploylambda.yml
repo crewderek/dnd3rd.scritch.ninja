@@ -19,9 +19,9 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-west-2
       # sam build
-#      - run: sam build --use-container
+      - run: sam build --use-container --template-file ./lambda/template.yaml
 
       # Run Unit tests- Specify unit tests here
 
       # sam deploy
-      - run: sam sync --stack-name dnd3rd --template-file ./lambda/template.yaml --s3-bucket aws-sam-cli-managed-default-samclisourcebucket-0otyswp8knbx --capabilities CAPABILITY_NAMED_IAM CAPABILITY_AUTO_EXPAND --use-container --no-dependency-layer --no-watch
+#      - run: sam sync --stack-name dnd3rd --template-file ./lambda/template.yaml --s3-bucket aws-sam-cli-managed-default-samclisourcebucket-0otyswp8knbx --capabilities CAPABILITY_NAMED_IAM CAPABILITY_AUTO_EXPAND --use-container --no-dependency-layer --no-watch
