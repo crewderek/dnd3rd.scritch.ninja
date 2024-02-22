@@ -141,3 +141,10 @@ def create_ability(event, mysql_handler):
     character = AbilityClient(mysql_handler)
     items = event['body']
     return character.create_ability(items, cognito_user_id)
+
+def create_weapon(event, mysql_handler):
+    print('ima do something')
+    # global cognito_user_id
+    # character = AbilityClient(mysql_handler)
+    # items = event['body']
+    # return character.create_ability(items, cognito_user_id)
