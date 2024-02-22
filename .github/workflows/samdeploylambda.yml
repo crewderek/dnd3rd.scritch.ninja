@@ -19,9 +19,13 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-west-2
       # sam build
-      - run: sam build --use-container --template-file ./lambda/template.yaml
+      - name: SAM Build
+        working-directory: ./lambda
+        run: sam build --use-container --template-file ./template.yaml
 
       # Run Unit tests- Specify unit tests here
 
       # sam deploy
-      - run: sam deploy --config-file ./lambda/samconfig.toml --no-confirm-changeset
+      - name: SAM Deploy
+        working-directory: ./lambda
+        run: sam deploy --config-file ../samconfig.toml --no-confirm-changeset
