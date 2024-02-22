@@ -28,4 +28,4 @@ jobs:
       # sam deploy
       - name: SAM Deploy
         working-directory: ./lambda
-        run: sam deploy --config-file ../samconfig.toml --no-confirm-changeset
+        run: sam deploy --config-file ./samconfig.toml --no-confirm-changeset
