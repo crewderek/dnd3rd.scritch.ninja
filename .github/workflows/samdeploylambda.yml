@@ -24,4 +24,4 @@ jobs:
       # Run Unit tests- Specify unit tests here
 
       # sam deploy
-      - run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset--s3-bucket aws-sam-cli-managed-default-samclisourcebucket-0otyswp8knbx --capabilities CAPABILITY_IAM --region us-west-2
+      - run: sam sync --stack-name dnd3rd --template-file ./lambda/template.yaml --s3-bucket aws-sam-cli-managed-default-samclisourcebucket-0otyswp8knbx --capabilities CAPABILITY_NAMED_IAM CAPABILITY_AUTO_EXPAND --use-container --no-dependency-layer --no-watch
