@@ -17,6 +17,7 @@ export class HomeComponent {
   // @ts-ignore
   characters: Character[];
   responseData: any;
+  loggedIn: boolean = false;
 
   constructor(private route: Router, private http: HttpClient, private localStorage: LocalStorageService, private token: JWTTokenService, private loginService: LoginService) {
   }
@@ -26,6 +27,7 @@ export class HomeComponent {
     if(!this.loginService.isUserLoggedIn())
       return;
 
+    this.loggedIn = true;
     this.getData().subscribe(
       (response) => {
         this.characters = response;

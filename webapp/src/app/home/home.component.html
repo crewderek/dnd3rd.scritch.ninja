@@ -11,4 +11,8 @@
       </a>
     </div>
   </div>
+
+  <div *ngIf="!loggedIn" class="login-notification-container character-list-button">
+    <span>Please login  or sign up to continue.</span>
+  </div>
 </div>
