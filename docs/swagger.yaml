@@ -157,7 +157,11 @@ paths:
       description: Gets all of the weapons and scores associated with a set characterId
       responses:
         '200':
-          description: Weapons retrieved.
+          description: Success.
+        '403':
+          description: The client isn't authorized to access this characters weapons.
+        '404':
+          description: The character could not be found.
       parameters:
 #        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
