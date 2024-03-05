@@ -10,7 +10,7 @@ jobs:
   build-deploy:
     runs-on: ubuntu-latest
     env:
-      DND3RD_LAMBDA_ARN: ${{ env.DND3RD_LAMBDA_ARN }}'
+      DND3RD_LAMBDA_ARN: ${{ env.DND3RD_LAMBDA_ARN }}
       COGNITO_ISSUER: ${{ env.COGNITO_ISSUER }}
       COGNITO_AUDIENCE_1: ${{ env.COGNITO_AUDIENCE_1}
     steps:
