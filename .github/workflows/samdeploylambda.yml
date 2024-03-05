@@ -25,5 +25,5 @@ jobs:
         run: zip -r lambdaToDeploy.zip *
 
       - name: Deploy Lambda
-        working-directory: ./lambda/dnd3rd-lambda
-        run: aws lambda update-function-code --function-name=$LAMBDA_FUNCTION_NAME --zip-file=fileb://lambdaToDeploy.zip
+        working-directory: ./lambda
+        run: sh ./deploy.sh

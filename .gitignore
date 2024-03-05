@@ -1,3 +1,5 @@
 .idea/
 webapp/.editorconfig
 .aws-sam/
+docs/apiIntegrationDeploy.json
+docs/swagger.yaml

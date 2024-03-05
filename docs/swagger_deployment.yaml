@@ -1,10 +1,12 @@
-openapi: 3.0.0
+openapi: 3.0.1
 info:
-  version: '0.1'
+  version: '1.0'
   title: 'Dnd 3.5 edition API on Scritch Ninja'
   description: ''
-security:
-  - bearerAuth: []
+#servers:
+#  # Added by API Auto Mocking Plugin
+#  - description: SwaggerHub API Auto Mocking
+#    url: https://virtserver.swaggerhub.com/CREWDEREK/Dnd3rdScritchNinja/0.1
 paths:
   /user/characters:
     get:
@@ -35,7 +37,7 @@ paths:
         '500':
           description: Internal server error with getting the character.
       parameters:
-#        - $ref: "#/components/parameters/cognitoUserIdParam"
+        #        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
     post:
       summary: Creates a character with their default stats.
@@ -49,12 +51,12 @@ paths:
           description: The character already exists and could not be created.
         '500':
           description: Internal server error with creating the character.
-#      requestBody:
-#        required: true
-#        content:
-#          application/json:
-#            schema:
-#              $ref: '#/components/schemas/Character'
+    #      requestBody:
+    #        required: true
+    #        content:
+    #          application/json:
+    #            schema:
+    #              $ref: '#/components/schemas/Character'
     patch:
       summary: Updates a single character stat
       description: Updates a single character stat at a time.
@@ -87,7 +89,7 @@ paths:
         '500':
           description: Internal server error with getting the ability.
       parameters:
-#        - $ref: "#/components/parameters/cognitoUserIdParam"
+        #        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
     post:
       summary: Create abilities associated with a character
@@ -115,7 +117,7 @@ paths:
         '200':
           description: Skills retrieved.
       parameters:
-#        - $ref: "#/components/parameters/cognitoUserIdParam"
+        #        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
     post:
       summary: Create skills associated with a character
@@ -137,7 +139,7 @@ paths:
         '200':
           description: Saving throws retrieved.
       parameters:
-#        - $ref: "#/components/parameters/cognitoUserIdParam"
+        #        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
     post:
       summary: Create saving throws associated with a character
@@ -155,15 +157,23 @@ paths:
     get:
       summary: Gets the weapons associated with a character
       description: Gets all of the weapons and scores associated with a set characterId
+      security: # This is where you apply the authorizer to the API endpoint
+        - jwt-authorizer: [ ] # This is the name of the authorizer defined below
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/integration1'
       responses:
         '200':
           description: Success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WeaponWithIds'
         '403':
           description: The client isn't authorized to access this characters weapons.
         '404':
           description: The character could not be found.
       parameters:
-#        - $ref: "#/components/parameters/cognitoUserIdParam"
+        #        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
     post:
       summary: Create weapons associated with a character
@@ -176,7 +186,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Weapon'
+              $ref: '#/components/schemas/WeaponWithCharacterId'
   /character/armor:
     get:
       summary: Gets the weapons associated with a character
@@ -185,7 +195,7 @@ paths:
         '200':
           description: Weapons retrieved.
       parameters:
-#        - $ref: "#/components/parameters/cognitoUserIdParam"
+        #        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
     post:
       summary: Create weapons associated with a character
@@ -207,7 +217,7 @@ paths:
         '200':
           description: Abilities retrieved.
       parameters:
-#        - $ref: "#/components/parameters/cognitoUserIdParam"
+        #        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
     post:
       summary: Create abilities associated with a character
@@ -221,10 +231,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Ability'
-servers:
-  # Added by API Auto Mocking Plugin
-  - description: SwaggerHub API Auto Mocking
-    url: https://virtserver.swaggerhub.com/CREWDEREK/Dnd3rdScritchNinja/0.1
 components:
   parameters:
     cognitoUserIdParam:
@@ -300,10 +306,6 @@ components:
       properties:
         name:
           type: string
-          required: true
-        characterId:
-          type: string
-          required: true
         isEquipped:
           type: boolean
         equipmentSlot:
@@ -319,6 +321,24 @@ components:
           type: number
         notes:
           type: string
+      required:
+        - name
+    ItemWithId:
+      allOf:
+        - $ref: '#/components/schemas/Item'
+        - type: object
+      properties:
+        itemId:
+          type: string
+    ItemWithCharacterId:
+      allOf:
+        - $ref: '#/components/schemas/Item'
+        - type: object
+      properties:
+        characterId:
+          type: string
+      required:
+        - characterId
     Armor:
       properties:
         characterId:
@@ -362,19 +382,31 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Damage'
-        critical:
-          type: object
-          properties:
-            criticalMinRange:
-              type: number
-            criticalMultiplier:
-              type: number
+        criticalMinRange:
+          type: number
+        criticalMultiplier:
+          type: number
         range:
           type: number
         requiresAmmunition:
           type: boolean
         itemInfo:
-          type: object
+          $ref: '#/components/schemas/Item'
+    WeaponWithIds:
+      allOf:
+        - $ref: '#/components/schemas/Weapon'
+        - type: object
+      properties:
+        weaponId:
+          type: string
+        itemInfo:
+          $ref: '#/components/schemas/ItemWithId'
+    WeaponWithCharacterId:
+      allOf:
+        - $ref: '#/components/schemas/Weapon'
+        - type: object
+      properties:
+        itemInfo:
           $ref: '#/components/schemas/Item'
     SavingThrow:
       properties:
@@ -466,17 +498,30 @@ components:
       properties:
         characterId:
           type: string
-          required: true
         columnName:
           type: string
-          required: true
         columnValue:
           oneOf:
             - type: string
             - type: integer
-          required: true
+      required:
+        - characterId
+        - columnName
+        - columnValue
+  x-amazon-apigateway-integrations:
+    integration1:
+      type: aws_proxy
+      httpMethod: GET
+      uri: ${DND3RD_LAMBDA_ARN}
+      passthroughBehavior: when_no_templates
+      payloadFormatVersion: 1.0
   securitySchemes:
-    bearerAuth:            # arbitrary name for the security scheme
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
+    jwt-authorizer: # This is the custom name of the authorizer that you can reference in the security section above
+      type: oauth2
+      x-amazon-apigateway-authorizer:
+        type: jwt
+        identitySource: "$request.header.Authorization" # This indicates that the JWT token is passed in the Authorization header of the request
+        jwtConfiguration:
+          audience:
+            - ${COGNITO_AUDIENCE_1} # This is where you specify the client ID of your Cognito user pool app client
+          issuer: ${COGNITO_ISSUER} # This is where you specify the issuer of your Cognito user pool JWT token

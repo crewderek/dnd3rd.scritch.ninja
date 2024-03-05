@@ -1,0 +1,35 @@
+name: DND 3rd Edition API Deployment
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-west-2
+
+      - name: Rename Swagger File
+        working-directory: ./docs
+        run: mv swagger_deployment.yaml swagger.yaml
+
+      - uses: iamazeem/substitute-action@v1
+        env:
+          DND3RD_LAMBDA_ARN: 'DND3RD_LAMBDA_ARN'
+          COGNITO_ISSUER: 'COGNITO_ISSUER'
+          COGNITO_AUDIENCE_1: 'COGNITO_AUDIENCE_1'
+        with:
+          input-files: |
+            ./lambda/swagger.yaml
+
+      - name: Deploy API
+        working-directory: ./docs
+        run: sh ./deploy.sh
