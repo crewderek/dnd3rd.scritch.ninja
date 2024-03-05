@@ -21,15 +21,14 @@ jobs:
         working-directory: ./docs
         run: mv swagger_deployment.yaml swagger.yaml
 
-      - uses: iamazeem/substitute-action@v1
+      - name: Replace Swagger.yaml Fields
         env:
-          DND3RD_LAMBDA_ARN: 'DND3RD_LAMBDA_ARN'
-          COGNITO_ISSUER: 'COGNITO_ISSUER'
-          COGNITO_AUDIENCE_1: 'COGNITO_AUDIENCE_1'
-        with:
-          input-files: |
-            ./lambda/swagger.yaml
+          DND3RD_LAMBDA_ARN: ${{ env.DND3RD_LAMBDA_ARN }}'
+          COGNITO_ISSUER: ${{ env.COGNITO_ISSUER }}
+          COGNITO_AUDIENCE_1: ${{ env.COGNITO_AUDIENCE_1}
+        working-directory: ./docs/deploy
+        run: sh ./
 
       - name: Deploy API
-        working-directory: ./docs
+        working-directory: ./docs/deploy
         run: sh ./deploy.sh
