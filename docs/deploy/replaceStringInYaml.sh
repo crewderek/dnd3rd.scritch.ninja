@@ -1,5 +1,5 @@
 #!/bin/bash
 
-envsubst < ./swagger.yaml
+envsubst < ../swagger.yaml
 
-cat ./swagger.yaml
+cat ../swagger.yaml
