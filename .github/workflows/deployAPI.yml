@@ -30,5 +30,5 @@ jobs:
         run: sh ./replaceStringInYaml.sh
 
       - name: Deploy API
-        working-directory: ./docs/deploy
-        run: sh ./deploy.sh
+        working-directory: ./docs
+        run: sh ./deploy/deploy.sh
