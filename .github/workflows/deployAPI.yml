@@ -21,10 +21,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-west-2
 
-#      - name: Rename Swagger File
-#        working-directory: ./docs
-#        run: mv swagger_deployment.yaml swagger.yaml
-
       - name: Replace Swagger.yaml Fields
         working-directory: ./docs/deploy
         run: sh ./replaceStringInYaml.sh
