@@ -175,18 +175,18 @@ paths:
       parameters:
         #        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
-#    post:
-#      summary: Create weapons associated with a character
-#      description: Creates the weapons associated with a character
-#      responses:
-#        '201':
-#          description: Weapons created.
-#      requestBody:
-#        required: true
-#        content:
-#          application/json:
-#            schema:
-#              $ref: '#/components/schemas/WeaponWithCharacterId'
+    post:
+      summary: Create weapons associated with a character
+      description: Creates the weapons associated with a character
+      responses:
+        '201':
+          description: Weapons created.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WeaponWithCharacterId'
   /character/armor:
     get:
       summary: Gets the weapons associated with a character
