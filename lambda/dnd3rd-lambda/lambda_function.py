@@ -71,9 +71,6 @@ def lambda_handler(event, context):
         response = http_response(500, 'An internal error has occurred.')
         return response.response
 
-    response = http_response(404, 'I am magical')
-    return response.response
-
     functionCall = get_path_function(event)
 
     # We didn't find a path associated with what was sent. Return 404
@@ -83,6 +80,10 @@ def lambda_handler(event, context):
 
     function_to_call = globals()[functionCall]
     function_return = function_to_call(event, mysql_handler, cognito_user_id)
+    
+    response = http_response(404, 'I am magical')
+    return response.response
+
     return json.loads(function_return)
 
 
