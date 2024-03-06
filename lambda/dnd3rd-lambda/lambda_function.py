@@ -30,6 +30,9 @@ sql_database = os.environ['DB_NAME']
 def lambda_handler(event, context):
     global db_config
 
+    response = http_response(404, 'I am magical')
+    return response.response
+
     #   Check if we are cached and set, if not we need to get the data
     if db_config is None:
         redis = Redis(host=redis_host, port=redis_port, decode_responses=True, username=redis_username,
