@@ -246,7 +246,7 @@ components:
       required: true
       description: The unique ID associated with the character to get
       schema:
-        type: number
+        type: string
   schemas:
     Currency:
       properties:
@@ -261,7 +261,7 @@ components:
     Spells:
       properties:
         characterId:
-          type: number
+          type: string
         name:
           type: string
         description:
@@ -289,7 +289,7 @@ components:
     SpecialAbilities:
       properties:
         characterId:
-          type: number
+          type: string
         name:
           type: string
         description:
@@ -297,7 +297,7 @@ components:
     Feat:
       properties:
         characterId:
-          type: number
+          type: string
         name:
           type: string
         description:
@@ -342,7 +342,7 @@ components:
     Armor:
       properties:
         characterId:
-          type: number
+          type: string
         name:
           type: string
         armorClassBonus:
@@ -411,7 +411,7 @@ components:
     SavingThrow:
       properties:
         characterId:
-          type: number
+          type: string
         name:
           type: string
         score:
@@ -421,7 +421,7 @@ components:
     Skill:
       properties:
         characterId:
-          type: number
+          type: string
         name:
           type: string
         score:
@@ -433,7 +433,7 @@ components:
     Ability:
       properties:
         characterId:
-          type: number
+          type: string
         name:
           type: string
         score:
@@ -445,7 +445,7 @@ components:
         cognitoUserId:
           type: string
         characterId:
-          type: number
+          type: string
         characterName:
           type: string
         characterLevel:
