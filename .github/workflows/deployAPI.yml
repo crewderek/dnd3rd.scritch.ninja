@@ -9,10 +9,10 @@ on:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
-#    env:
-#      DND3RD_LAMBDA_ARN: ${{ env.DND3RD_LAMBDA_ARN }}
-#      COGNITO_ISSUER: ${{ env.COGNITO_ISSUER }}
-#      COGNITO_AUDIENCE_1: ${{ env.COGNITO_AUDIENCE_1}
+    env:
+      DND3RD_LAMBDA_ARN: ${{ vars.DND3RD_LAMBDA_ARN }}
+      COGNITO_ISSUER: ${{ vars.COGNITO_ISSUER }}
+      COGNITO_AUDIENCE_1: ${{ vars.COGNITO_AUDIENCE_1}
     steps:
       - uses: actions/checkout@v3
       - uses: aws-actions/configure-aws-credentials@v2
