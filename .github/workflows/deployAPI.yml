@@ -13,7 +13,6 @@ jobs:
       DND3RD_LAMBDA_ARN: ${{ vars.DND3RD_LAMBDA_ARN }}
       COGNITO_ISSUER: ${{ vars.COGNITO_ISSUER }}
       COGNITO_AUDIENCE_1: ${{ vars.COGNITO_AUDIENCE_1 }}
-      $ref: $ref
     steps:
       - uses: actions/checkout@v3
       - uses: aws-actions/configure-aws-credentials@v2

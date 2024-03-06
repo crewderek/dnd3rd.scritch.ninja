@@ -1,7 +1,5 @@
 #/bin/sh
 # Reimport the API via the OpenAPI 3.0 doc
-cat ../swagger.yaml
-
 aws apigatewayv2 reimport-api \
     --body file://../swagger.yaml \
     --fail-on-warnings \
