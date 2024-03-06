@@ -5,4 +5,4 @@
 
 #echo ${{ vars.COGNITO_AUDIENCE_1 }}
 
-cat ../swagger_deployment.yaml > ../swagger.yaml
+cat ../swagger_deployment.yaml
