@@ -529,3 +529,11 @@ components:
           audience:
             - $COGNITO_AUDIENCE_1 # This is where you specify the client ID of your Cognito user pool app client
           issuer: $COGNITO_ISSUER # This is where you specify the issuer of your Cognito user pool JWT token
+      flows:
+        authorizationCode:
+          authorizationUrl: https://example.com/oauth/authorize
+          tokenUrl: https://example.com/oauth/token
+          scopes:
+            read: Grants read access
+            write: Grants write access
+            admin: Grants access to admin operations
