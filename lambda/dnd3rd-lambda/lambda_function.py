@@ -90,7 +90,7 @@ def is_request_from_api_gateway(event):
 
 def get_path_function(event):
     method = event['httpMethod']
-    path = event['path']
+    path = event['resource']
     data = parsed_data['paths']
 
     # Loop through the JSON object and check if the variable matches
