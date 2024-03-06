@@ -30,8 +30,6 @@ sql_database = os.environ['DB_NAME']
 def lambda_handler(event, context):
     global db_config
 
-    response = http_response(404, 'I am magical')
-    return response.response
 
     #   Check if we are cached and set, if not we need to get the data
     if db_config is None:
@@ -63,6 +61,7 @@ def lambda_handler(event, context):
         response = http_response(500, 'An internal error has occurred.')
         return response.response
 
+
     try:
         #   Start the MySQL call
         mysql_handler = MySQLHandler(db_config=db_config)
@@ -71,6 +70,9 @@ def lambda_handler(event, context):
         logging.exception('The connection to the MySQL database has failed.')
         response = http_response(500, 'An internal error has occurred.')
         return response.response
+
+    response = http_response(404, 'I am magical')
+    return response.response
 
     functionCall = get_path_function(event)
 
