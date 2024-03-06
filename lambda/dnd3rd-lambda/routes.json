@@ -62,9 +62,9 @@
         },
         {
             "method": "GET",
-            "path": "/character/weapons/{cognitoUserId}",
-            "regex": "",
-            "function": ""
+            "path": "/character/weapons",
+            "regex": "^\/character\/weapons",
+            "function": "get_weapons"
         },
         {
             "method": "POST",

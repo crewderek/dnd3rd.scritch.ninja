@@ -1,18 +1,6 @@
-# Example usage:
-# try:
-#     mysql_handler = MySQLHandler(host='your_host', user='your_user', password='your_password', database='your_database')
-#     mysql_handler.connect()
-#     mysql_handler.insert_record('your_table', {'column1': 'value1', 'column2': 'value2'})
-#     mysql_handler.update_record('your_table', {'column1': 'new_value'}, 'column2 = "value2"')
-#     mysql_handler.call_stored_procedure('your_stored_procedure', [param1, param2])
-# finally:
-#     if mysql_handler:
-#         mysql_handler.disconnect()
 import logging
 
 import pymysql
-import json
-import uuid
 
 from user_exceptions import *
 from http_response import http_response
@@ -96,17 +84,5 @@ class MySQLHandler:
             param_string = ', '.join(['%s' for _ in params]) if params else ''
             query = f"CALL {procedure_name}({param_string})"
             result = self.execute_query(query, params)
-            return result
-
-    # def convert_binary_to_uuid_string(self, obj):
-    #     if isinstance(obj, dict):
-    #         # Recursively iterate through dictionary items
-    #         return {key: self.convert_binary_to_uuid_string(value) for key, value in obj.items()}
-    #     elif isinstance(obj, list):
-    #         # Recursively iterate through list items
-    #         return [self.convert_binary_to_uuid_string(item) for item in obj]
-    #     elif isinstance(obj, bytes):
-    #         # Convert binary data to UUID string
-    #         return str(uuid.UUID(bytes=obj))
-    #     else:
-    #         return obj
+            sqlTransformmedResult = json.loads(result.response['body'])[0]['response']
+            return sqlTransformmedResult

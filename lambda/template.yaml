@@ -22,10 +22,11 @@ Resources:
         - x86_64
       Environment:
         Variables:
-          DB_HOST: 'ima host'
           DB_NAME: 'ima name'
-          DB_USER: 'ima user'
-          DB_PASSWORD: 'ima password'
+          REDIS_HOST: 'ima host'
+          REDIS_PORT: 11111
+          REDIS_USERNAME: 'ima user'
+          REDIS_PASSWORD: 'ima password'
 #
 #Outputs:
 #  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
@@ -34,9 +35,9 @@ Resources:
 #  HelloWorldApi:
 #    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
 #    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
-#  HelloWorldFunction:
-#    Description: "Hello World Lambda Function ARN"
-#    Value: !GetAtt HelloWorldFunction.Arn
+  HelloWorldFunction:
+    Description: "Hello World Lambda Function ARN"
+    Value: !GetAtt HelloWorldFunction.Arn
 #  HelloWorldFunctionIamRole:
 #    Description: "Implicit IAM Role created for Hello World function"
 #    Value: !GetAtt HelloWorldFunctionRole.Arn
