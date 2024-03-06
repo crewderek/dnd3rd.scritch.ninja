@@ -29,4 +29,6 @@ aws lambda update-function-configuration \
   --environment "Variables={ DB_NAME=$DB_NAME, $USERNAME_ENV_VAR=$DB_USERNAME, $PASSWORD_ENV_VAR=$DB_PASSWORD, $HOST_ENV_VAR=$DB_HOST, $PORT_ENV_VAR=$DB_PORT}" \
   --region $AWS_REGION > output.tmp
 
+rm output.tmp
+
 echo "Completed Lambda configuration."

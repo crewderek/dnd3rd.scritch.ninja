@@ -11,7 +11,11 @@ paths:
   /user/characters:
     get:
       summary: Returns the characters for a user
-      description:
+      description: Returns the characters for a user
+      security: # This is where you apply the authorizer to the API endpoint
+        - jwt-authorizer: [ ] # This is the name of the authorizer defined below
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/integration1'
       responses:
         '200':
           description: Characters retrieved.

@@ -13,19 +13,11 @@ class CharacterClient:
 
         try:
             response = self.handler.call_stored_procedure(storedProcedure, [cognitoUserId])
-        except MySQLUserNotFound as munf:
-            exception_message = 'User not found.'
-            logging.info(munf)
-            response = http_response(403)
-        except MySQLItemsNotFound as minf:
-            exception_message = 'Character not found.'
-            logging.info(minf)
-            response = http_response(404, exception_message)
         except Exception as e:
             logging.exception(e)
             response = http_response(500, general_exception_message)
 
-        return response.response
+        return response
 
     def get_character_by_character_id(self, cognitoUserId, characterId):
         general_exception_message = 'An unexpected error occurred when getting the character.'
