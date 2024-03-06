@@ -18,7 +18,8 @@ class http_response:
             'statusCode': lambda_return['statusCode'],
             'headers': {
                 "Access-Control-Allow-Origin" : "*", # Required for CORS support to work
-                "Access-Control-Allow-Credentials" : 'true' # Required for cookies, authorization headers with HTTPS
+                "Access-Control-Allow-Credentials" : 'true', # Required for cookies, authorization headers with HTTPS
+                "Content-Type" : 'application/json'
             },
             'body': json.dumps(json_dump)
         }
