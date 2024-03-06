@@ -81,9 +81,7 @@ def lambda_handler(event, context):
     function_to_call = globals()[functionCall]
     function_return = json.loads(function_to_call(event, mysql_handler, cognito_user_id))
 
-    response = http_response(function_return.statusCode, function_return)
-    del function_return.statusCode
-    del function_return.headers
+    response = http_response(function_return['statusCode'], function_return['body'])
 
     return response.response
 

@@ -6,7 +6,7 @@
       }
     }
   },
-  "path": "/character/weapons",
+  "resource": "/character/weapons",
   "httpMethod": "GET",
   "queryStringParameters": {
     "characterId": "2a5eb164-b5b1-11ee-b57b-063eaae6b5e9"
