@@ -79,12 +79,13 @@ def lambda_handler(event, context):
         return response.response
 
     function_to_call = globals()[functionCall]
-    function_return = function_to_call(event, mysql_handler, cognito_user_id)
+    function_return = json.loads(function_to_call(event, mysql_handler, cognito_user_id))
 
-    response = http_response(404, json.loads(function_return))
+    response = http_response(function_return.statusCode, function_return)
+    del function_return.statusCode
+    del function_return.headers
+
     return response.response
-
-    return json.loads(function_return)
 
 
 def is_request_from_api_gateway(event):
