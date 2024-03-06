@@ -73,7 +73,7 @@ def lambda_handler(event, context):
 
     # We didn't find a path associated with what was sent. Return 404
     if functionCall == None:
-        response = http_response(404, 'API path not found.')
+        response = http_response(404, 'API path not found. ' + event['path'])
         return response.response
 
     function_to_call = globals()[functionCall]
