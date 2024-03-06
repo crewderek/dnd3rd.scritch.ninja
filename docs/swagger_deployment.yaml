@@ -512,7 +512,7 @@ components:
     integration1:
       type: aws_proxy
       httpMethod: GET
-      uri: ${DND3RD_LAMBDA_ARN}
+      uri: ${{ vars.DND3RD_LAMBDA_ARN }}
       passthroughBehavior: when_no_templates
       payloadFormatVersion: 1.0
   securitySchemes:
@@ -523,5 +523,5 @@ components:
         identitySource: "$request.header.Authorization" # This indicates that the JWT token is passed in the Authorization header of the request
         jwtConfiguration:
           audience:
-            - ${COGNITO_AUDIENCE_1} # This is where you specify the client ID of your Cognito user pool app client
-          issuer: ${COGNITO_ISSUER} # This is where you specify the issuer of your Cognito user pool JWT token
+            - ${{ vars.COGNITO_AUDIENCE_1 }} # This is where you specify the client ID of your Cognito user pool app client
+          issuer: ${{ vars.COGNITO_ISSUER }} # This is where you specify the issuer of your Cognito user pool JWT token

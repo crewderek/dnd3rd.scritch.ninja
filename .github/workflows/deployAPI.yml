@@ -23,8 +23,8 @@ jobs:
 
       - name: Replace Swagger.yaml Fields
         working-directory: ./docs/deploy
-#        run: sh ./replaceStringInYaml.sh
-        run: echo ${{ vars.COGNITO_AUDIENCE_1 }}
+        run: sh ./replaceStringInYaml.sh
+#        run: echo ${{ vars.COGNITO_AUDIENCE_1 }}
 
       - name: Deploy API
         working-directory: ./docs/deploy
