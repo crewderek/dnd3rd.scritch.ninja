@@ -129,6 +129,12 @@ paths:
 #          application/json:
 #            schema:
 #              $ref: '#/components/schemas/Ability'
+    options:
+      responses:
+        "200":
+          $ref: '#/components/responses/DefaultOptions'
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/defaultIntegration'
   /character/skills:
     get:
       summary: Gets the skills associated with a character
