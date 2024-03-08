@@ -35,23 +35,27 @@ paths:
           $ref: '#/components/responses/DefaultOptions'
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/defaultIntegration'
-#  /character:
-#    get:
-#      summary: Returns a character and their top level stats
-#      description: Returns items such as name, level, experience and not listed items such as skills, feats, attacks, armor, inventory, etc...
-#      responses:
-#        '200':
-#          description: Character retrieved.
-#        '400':
-#          description: An internal validation error has occurred.
-#        '403':
-#          description: The logged in user could not be found.
-#        '404':
-#          description: The character could not be found.
-#        '500':
-#          description: Internal server error with getting the character.
-#      parameters:
-#        - $ref: "#/components/parameters/characterIdParam"
+  /character:
+    get:
+      summary: Returns a character and their top level stats
+      description: Returns items such as name, level, experience and not listed items such as skills, feats, attacks, armor, inventory, etc...
+      responses:
+        '200':
+          description: Character retrieved.
+        '400':
+          description: An internal validation error has occurred.
+        '403':
+          description: The logged in user could not be found.
+        '404':
+          description: The character could not be found.
+        '500':
+          description: Internal server error with getting the character.
+      parameters:
+        - $ref: "#/components/parameters/characterIdParam"
+      security:
+        - authorizer.dnd3rd.scritch.ninja: [ ]
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/dnd3rdGetLambdaIntegration'
 #    post:
 #      summary: Creates a character with their default stats.
 #      description: Creates an empty character sheet.
