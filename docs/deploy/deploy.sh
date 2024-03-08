@@ -1,17 +1,14 @@
-#/bin/sh
+#!/bin/sh
 # Reimport the API via the OpenAPI 3.0 doc
-aws apigatewayv2 reimport-api \
-    --body file://../swagger.yaml \
-    --fail-on-warnings \
-    --region us-west-2 \
-    --api-id 5t8dvdidxd \
-    --output json \
-    --no-cli-auto-prompt \
-    --no-cli-pager
+aws apigateway put-rest-api \
+  --rest-api-id v288jal5qi \
+  --no-cli-pager \
+  --fail-on-warnings \
+  --mode overwrite \
+  --body 'fileb://../swagger.yaml'
 
-# Update an associated stage/deployment
-aws apigatewayv2 update-stage \
-    --api-id 5t8dvdidxd \
-    --region us-west-2 \
-    --stage-name api \
-    --no-cli-pager
+
+aws apigateway create-deployment \
+  --rest-api-id v288jal5qi \
+  --stage-name api \
+  --no-cli-pager

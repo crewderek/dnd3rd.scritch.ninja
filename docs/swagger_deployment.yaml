@@ -1,84 +1,93 @@
 openapi: 3.0.1
 info:
-  version: '1.0'
-  title: 'Dnd 3.5 edition API on Scritch Ninja'
-  description: ''
-#servers:
-#  # Added by API Auto Mocking Plugin
-#  - description: SwaggerHub API Auto Mocking
-#    url: https://virtserver.swaggerhub.com/CREWDEREK/Dnd3rdScritchNinja/0.1
+  title: "dnd3rd.scritch.ninja"
+  version: "2024-02-19T05:46:19Z"
+servers:
+  - url: "https://v288jal5qi.execute-api.us-west-2.amazonaws.com/{basePath}"
+    variables:
+      basePath:
+        default: "api"
 paths:
   /user/characters:
     get:
       summary: Returns the characters for a user
       description: Returns the characters for a user
-      security: # This is where you apply the authorizer to the API endpoint
-        - jwt-authorizer: [ ] # This is the name of the authorizer defined below
-      x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/integration1'
       responses:
         '200':
           description: Characters retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
         '403':
           description: The logged in user could not be found.
         '404':
           description: No characters could not be found.
         '500':
           description: Internal server error with getting the character.
-  /character:
-    get:
-      summary: Returns a character and their top level stats
-      description: Returns items such as name, level, experience and not listed items such as skills, feats, attacks, armor, inventory, etc...
+      security:
+        - authorizer.dnd3rd.scritch.ninja: [ ]
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/dnd3rdGetLambdaIntegration'
+    options:
       responses:
-        '200':
-          description: Character retrieved.
-        '400':
-          description: An internal validation error has occurred.
-        '403':
-          description: The logged in user could not be found.
-        '404':
-          description: The character could not be found.
-        '500':
-          description: Internal server error with getting the character.
-      parameters:
-        #        - $ref: "#/components/parameters/cognitoUserIdParam"
-        - $ref: "#/components/parameters/characterIdParam"
-    post:
-      summary: Creates a character with their default stats.
-      description: Creates an empty character sheet.
-      responses:
-        '201':
-          description: Character created.
-        '400':
-          description: An internal validation error has occurred.
-        '409':
-          description: The character already exists and could not be created.
-        '500':
-          description: Internal server error with creating the character.
+        "200":
+          $ref: '#/components/responses/DefaultOptions'
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/defaultIntegration'
+#  /character:
+#    get:
+#      summary: Returns a character and their top level stats
+#      description: Returns items such as name, level, experience and not listed items such as skills, feats, attacks, armor, inventory, etc...
+#      responses:
+#        '200':
+#          description: Character retrieved.
+#        '400':
+#          description: An internal validation error has occurred.
+#        '403':
+#          description: The logged in user could not be found.
+#        '404':
+#          description: The character could not be found.
+#        '500':
+#          description: Internal server error with getting the character.
+#      parameters:
+#        - $ref: "#/components/parameters/characterIdParam"
+#    post:
+#      summary: Creates a character with their default stats.
+#      description: Creates an empty character sheet.
+#      responses:
+#        '201':
+#          description: Character created.
+#        '400':
+#          description: An internal validation error has occurred.
+#        '409':
+#          description: The character already exists and could not be created.
+#        '500':
+#          description: Internal server error with creating the character.
     #      requestBody:
     #        required: true
     #        content:
     #          application/json:
     #            schema:
     #              $ref: '#/components/schemas/Character'
-    patch:
-      summary: Updates a single character stat
-      description: Updates a single character stat at a time.
-      responses:
-        '201':
-          description: Stat updated.
-        '400':
-          description: TODO.
-        '409':
-          description: TODO.
-        '500':
-          description: TODO.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateCharacter'
+#    patch:
+#      summary: Updates a single character stat
+#      description: Updates a single character stat at a time.
+#      responses:
+#        '201':
+#          description: Stat updated.
+#        '400':
+#          description: TODO.
+#        '409':
+#          description: TODO.
+#        '500':
+#          description: TODO.
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '#/components/schemas/UpdateCharacter'
   /character/abilities:
     get:
       summary: Gets the abilities associated with a character
@@ -93,26 +102,29 @@ paths:
         '500':
           description: Internal server error with getting the ability.
       parameters:
-        #        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
-    post:
-      summary: Create abilities associated with a character
-      description: Creates the abilities associated with a character
-      responses:
-        '201':
-          description: Ability created.
-        '400':
-          description: An internal validation error has occurred.
-        '409':
-          description: The ability already exist and could not be created.
-        '500':
-          description: Internal server error with creating the ability.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Ability'
+      security:
+        - authorizer.dnd3rd.scritch.ninja: [ ]
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/dnd3rdGetLambdaIntegration'
+#    post:
+#      summary: Create abilities associated with a character
+#      description: Creates the abilities associated with a character
+#      responses:
+#        '201':
+#          description: Ability created.
+#        '400':
+#          description: An internal validation error has occurred.
+#        '409':
+#          description: The ability already exist and could not be created.
+#        '500':
+#          description: Internal server error with creating the ability.
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '#/components/schemas/Ability'
   /character/skills:
     get:
       summary: Gets the skills associated with a character
@@ -121,20 +133,23 @@ paths:
         '200':
           description: Skills retrieved.
       parameters:
-        #        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
-    post:
-      summary: Create skills associated with a character
-      description: Creates the skills associated with a character
-      responses:
-        '201':
-          description: Skills created.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Skill'
+      security:
+        - authorizer.dnd3rd.scritch.ninja: [ ]
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/dnd3rdGetLambdaIntegration'
+#    post:
+#      summary: Create skills associated with a character
+#      description: Creates the skills associated with a character
+#      responses:
+#        '201':
+#          description: Skills created.
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '#/components/schemas/Skill'
   /character/saving-throws:
     get:
       summary: Gets the saving throws associated with a character
@@ -143,31 +158,34 @@ paths:
         '200':
           description: Saving throws retrieved.
       parameters:
-        #        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
-    post:
-      summary: Create saving throws associated with a character
-      description: Creates the saving throws associated with a character
-      responses:
-        '201':
-          description: Saving throws created.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Skill'
+      security:
+        - authorizer.dnd3rd.scritch.ninja: [ ]
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/dnd3rdGetLambdaIntegration'
+#    post:
+#      summary: Create saving throws associated with a character
+#      description: Creates the saving throws associated with a character
+#      responses:
+#        '201':
+#          description: Saving throws created.
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '#/components/schemas/Skill'
   /character/weapons:
     get:
       summary: Gets the weapons associated with a character
       description: Gets all of the weapons and scores associated with a set characterId
-      security: # This is where you apply the authorizer to the API endpoint
-        - jwt-authorizer: [ ] # This is the name of the authorizer defined below
-      x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/integration1'
       responses:
         '200':
           description: Success.
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
           content:
             application/json:
               schema:
@@ -177,20 +195,29 @@ paths:
         '404':
           description: The character could not be found.
       parameters:
-        #        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
-    post:
-      summary: Create weapons associated with a character
-      description: Creates the weapons associated with a character
+      security:
+        - authorizer.dnd3rd.scritch.ninja: [ ]
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/dnd3rdGetLambdaIntegration'
+#    post:
+#      summary: Create weapons associated with a character
+#      description: Creates the weapons associated with a character
+#      responses:
+#        '201':
+#          description: Weapons created.
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '#/components/schemas/WeaponWithCharacterId'
+    options:
       responses:
-        '201':
-          description: Weapons created.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/WeaponWithCharacterId'
+        "200":
+          $ref: '#/components/responses/DefaultOptions'
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/defaultIntegration'
   /character/armor:
     get:
       summary: Gets the weapons associated with a character
@@ -199,20 +226,23 @@ paths:
         '200':
           description: Weapons retrieved.
       parameters:
-        #        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
-    post:
-      summary: Create weapons associated with a character
-      description: Creates the weapons associated with a character
-      responses:
-        '201':
-          description: Weapons created.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Armor'
+      security:
+        - authorizer.dnd3rd.scritch.ninja: [ ]
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/dnd3rdGetLambdaIntegration'
+#    post:
+#      summary: Create weapons associated with a character
+#      description: Creates the weapons associated with a character
+#      responses:
+#        '201':
+#          description: Weapons created.
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '#/components/schemas/Armor'
   /character/feats:
     get:
       summary: Gets the abilities associated with a character
@@ -221,21 +251,67 @@ paths:
         '200':
           description: Abilities retrieved.
       parameters:
-        #        - $ref: "#/components/parameters/cognitoUserIdParam"
         - $ref: "#/components/parameters/characterIdParam"
-    post:
-      summary: Create abilities associated with a character
-      description: Creates the abilities associated with a character
-      responses:
-        '201':
-          description: Ability created.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Ability'
+      security:
+        - authorizer.dnd3rd.scritch.ninja: [ ]
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/dnd3rdGetLambdaIntegration'
+#    post:
+#      summary: Create abilities associated with a character
+#      description: Creates the abilities associated with a character
+#      responses:
+#        '201':
+#          description: Ability created.
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '#/components/schemas/Ability'
 components:
+  x-amazon-apigateway-integrations:
+    defaultIntegration:
+      type: "mock"
+      responses:
+        default:
+          statusCode: "200"
+          responseParameters:
+            method.response.header.Access-Control-Allow-Credentials: "'true'"
+            method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS'"
+            method.response.header.Access-Control-Allow-Headers: "'Authorization, *'"
+            method.response.header.Access-Control-Allow-Origin: "'*'"
+      requestTemplates:
+        application/json: '{"statusCode": 200}'
+      passthroughBehavior: "when_no_match"
+    dnd3rdGetLambdaIntegration:
+      type: "AWS_PROXY"
+      httpMethod: "POST"
+      uri: $DND3RD_LAMBDA_ARN
+      responses:
+        default:
+          statusCode: "200"
+      passthroughBehavior: "when_no_match"
+      contentHandling: "CONVERT_TO_TEXT"
+  responses:
+    DefaultOptions:
+      description: "200 response"
+      headers:
+        Access-Control-Allow-Origin:
+          schema:
+            type: "string"
+        Access-Control-Allow-Methods:
+          schema:
+            type: "string"
+        Access-Control-Allow-Credentials:
+          schema:
+            type: "string"
+        Access-Control-Allow-Headers:
+          schema:
+            type: "string"
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Empty"
   parameters:
     cognitoUserIdParam:
       name: cognitoUserId
@@ -252,6 +328,9 @@ components:
       schema:
         type: string
   schemas:
+    Empty:
+      title: "Empty Schema"
+      type: "object"
     Currency:
       properties:
         copper:
@@ -512,28 +591,20 @@ components:
         - characterId
         - columnName
         - columnValue
-  x-amazon-apigateway-integrations:
-    integration1:
-      type: aws_proxy
-      httpMethod: GET
-      uri: $DND3RD_LAMBDA_ARN
-      passthroughBehavior: when_no_templates
-      payloadFormatVersion: 1.0
   securitySchemes:
-    jwt-authorizer: # This is the custom name of the authorizer that you can reference in the security section above
-      type: oauth2
+    authorizer.dnd3rd.scritch.ninja:
+      type: "apiKey"
+      name: "Authorization"
+      in: "header"
+      x-amazon-apigateway-authtype: "cognito_user_pools"
       x-amazon-apigateway-authorizer:
-        type: jwt
-        identitySource: "$request.header.Authorization" # This indicates that the JWT token is passed in the Authorization header of the request
-        jwtConfiguration:
-          audience:
-            - $COGNITO_AUDIENCE_1 # This is where you specify the client ID of your Cognito user pool app client
-          issuer: $COGNITO_ISSUER # This is where you specify the issuer of your Cognito user pool JWT token
-      flows:
-        authorizationCode:
-          authorizationUrl: https://example.com/oauth/authorize
-          tokenUrl: https://example.com/oauth/token
-          scopes:
-            read: Grants read access
-            write: Grants write access
-            admin: Grants access to admin operations
+        type: "cognito_user_pools"
+        providerARNs:
+          - $COGNITO_ISSUER
+x-amazon-apigateway-request-validators:
+  Validate query string parameters and headers:
+    validateRequestParameters: true
+    validateRequestBody: false
+  Validate body, query string parameters, and headers:
+    validateRequestParameters: true
+    validateRequestBody: true

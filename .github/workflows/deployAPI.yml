@@ -24,7 +24,10 @@ jobs:
       - name: Replace Swagger.yaml Fields
         working-directory: ./docs/deploy
         run: sh ./replaceStringInYaml.sh
-#        run: echo ${{ vars.COGNITO_AUDIENCE_1 }}
+
+      - name: Run Python $ref Replacement
+        working-directory: ./docs/deploy
+        run: python3 ./OpenAPIYamlMods.py
 
       - name: Deploy API
         working-directory: ./docs/deploy
