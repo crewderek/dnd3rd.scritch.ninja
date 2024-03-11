@@ -2,6 +2,8 @@ name: DND 3rd Edition Lambda Python SAM Deploy
 
 on:
   push:
+    paths:
+      - 'lambda/**'
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]

@@ -2,6 +2,8 @@ name: DND 3rd Edition API Deployment
 
 on:
   push:
+    paths:
+      - 'docs/**'
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]

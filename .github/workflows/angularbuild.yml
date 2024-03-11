@@ -5,6 +5,8 @@ name: DND 3rd Edition Angular Build and Deploy
 
 on:
   push:
+    paths:
+      - 'webapp/**'
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
