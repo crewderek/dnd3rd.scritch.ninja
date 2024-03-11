@@ -41,6 +41,7 @@ def lambda_handler(event, context):
             'password': redis.get('password'),
             'database': sql_database
         }
+    # print(db_config)
 
     cognito_user_id = None
     mysql_handler = None
@@ -129,8 +130,8 @@ def get_character(event, mysql_handler, cognito_user_id):
 # Create the character
 def create_character(event, mysql_handler, cognito_user_id):
     character = CharacterClient(mysql_handler)
-    items = event['body']
-    return character.create_character(items, cognito_user_id)
+    # items = event['body']
+    return character.create_character(cognito_user_id)
 
 
 def update_character(event, mysql_handler, cognito_user_id):

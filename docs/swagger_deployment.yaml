@@ -56,42 +56,43 @@ paths:
         - authorizer.dnd3rd.scritch.ninja: [ ]
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/dnd3rdGetLambdaIntegration'
-#    post:
-#      summary: Creates a character with their default stats.
-#      description: Creates an empty character sheet.
-#      responses:
-#        '201':
-#          description: Character created.
-#        '400':
-#          description: An internal validation error has occurred.
-#        '409':
-#          description: The character already exists and could not be created.
-#        '500':
-#          description: Internal server error with creating the character.
-    #      requestBody:
-    #        required: true
-    #        content:
-    #          application/json:
-    #            schema:
-    #              $ref: '#/components/schemas/Character'
-#    patch:
-#      summary: Updates a single character stat
-#      description: Updates a single character stat at a time.
-#      responses:
-#        '201':
-#          description: Stat updated.
-#        '400':
-#          description: TODO.
-#        '409':
-#          description: TODO.
-#        '500':
-#          description: TODO.
-#      requestBody:
-#        required: true
-#        content:
-#          application/json:
-#            schema:
-#              $ref: '#/components/schemas/UpdateCharacter'
+    post:
+      summary: Creates a character with their default stats.
+      description: Creates an EMPTY character sheet and returns the entity id related to it.
+      responses:
+        '201':
+          description: Empty character created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  characterId:
+                    type: string
+        '400':
+          description: An internal validation error has occurred.
+        '409':
+          description: The character already exists and could not be created.
+        '500':
+          description: Internal server error with creating the character.
+    patch:
+      summary: Updates a single character stat
+      description: Updates a single character stat at a time.
+      responses:
+        '201':
+          description: Stat updated.
+        '400':
+          description: TODO.
+        '409':
+          description: TODO.
+        '500':
+          description: TODO.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCharacter'
   /character/abilities:
     get:
       summary: Gets the abilities associated with a character
@@ -535,15 +536,13 @@ components:
           type: string
     Character:
       properties:
-        cognitoUserId:
-          type: string
         characterId:
           type: string
-        characterName:
+        name:
           type: string
-        characterLevel:
+        level:
           type: number
-        characterExperience:
+        experiencePoints:
           type: number
         race:
           type: string
@@ -577,6 +576,12 @@ components:
           type: array
           items:
             type: number
+        ac:
+          type: number
+        touchAc:
+          type: number
+        flatFootedAc:
+          type: number
     Classes:
       type: array
       items:
