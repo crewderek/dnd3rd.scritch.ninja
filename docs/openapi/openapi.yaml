@@ -38,6 +38,18 @@ components:
     cognitoUserIdParam:
       $include: "./parameters/cognitoUserId.yaml"
   schemas:
+    Damage:
+        $include: "./schemas/Damage.yaml"
+    Item:
+      $include: "./schemas/Item.yaml"
+    ItemWithCharacterId:
+      $include: "./schemas/ItemWithCharacterId.yaml"
+    ItemWithId:
+        $include: "./schemas/ItemWithId.yaml"
+    WeaponWithCharacterId:
+      $include: "./schemas/WeaponWithCharacterId.yaml"
+    WeaponsWithId:
+        $include: "./schemas/WeaponsWithId.yaml"
     UpdateCharacter:
       $include: "./schemas/UpdateCharacter.yaml"
     Empty:
