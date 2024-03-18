@@ -26,7 +26,7 @@ jobs:
   BuildAPI:
     runs-on: ubuntu-latest
     env:
-      DND3RD_LAMBDA_ARN: ${{ vars.DND3RD_API_LAMBDA_FUNCTION}}
+      DND3RD_API_LAMBDA_FUNCTION: ${{ vars.DND3RD_API_LAMBDA_FUNCTION}}
       COGNITO_ISSUER: ${{ vars.COGNITO_ISSUER }}
       COGNITO_AUDIENCE_1: ${{ vars.COGNITO_AUDIENCE_1 }}
     steps:
@@ -41,61 +41,53 @@ jobs:
         working-directory: ./docs/openapi
         run: npx openapi-merger -i openapi.yaml -o ../swagger_deployment.yaml
 
-      - name: Echo My stuff 1
-        working-directory: ./docs
-        run: cat swagger_deployment.yaml
-
       - name: Replace Swagger.yaml Fields
         working-directory: ./docs/deploy
         run: sh ./replaceStringInYaml.sh
 
-      - name: Echo My stuff
-        working-directory: ./docs
-        run: cat swagger.yaml
+      - name: Archive Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-build
+          path: ./docs
 
-#      - name: Archive Build
-#        uses: actions/upload-artifact@v4
-#        with:
-#          name: api-build
-#          path: ./docs
+  DeployGithubPages:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: BuildAPI
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: api-build
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 
-#  DeployGithubPages:
-#    environment:
-#      name: github-pages
-#      url: ${{ steps.deployment.outputs.page_url }}
-#    runs-on: ubuntu-latest
-#    needs: BuildAPI
-#    steps:
-#      - name: Download Artifact
-#        uses: actions/download-artifact@v4
-#        with:
-#          name: api-build
-#      - name: Setup Pages
-#        uses: actions/configure-pages@v4
-#      - name: Upload artifact
-#        uses: actions/upload-pages-artifact@v3
-#        with:
-#          # Upload entire repository
-#          path: '.'
-#      - name: Deploy to GitHub Pages
-#        id: deployment
-#        uses: actions/deploy-pages@v4
-#
-#  DeployAPI:
-#    runs-on: ubuntu-latest
-#    needs: BuildAPI
-#    steps:
-#    - uses: aws-actions/configure-aws-credentials@v2
-#      with:
-#          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#          aws-region: us-west-2
-#
-#    - name: Download Artifact
-#      uses: actions/download-artifact@v4
-#      with:
-#        name: api-build
-#
-#    - name: Deploy API
-#      working-directory: ./deploy
-#      run: sh ./deploy.sh
+  DeployAPI:
+    runs-on: ubuntu-latest
+    needs: BuildAPI
+    steps:
+    - uses: aws-actions/configure-aws-credentials@v2
+      with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-west-2
+
+    - name: Download Artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: api-build
+
+    - name: Deploy API
+      working-directory: ./deploy
+      run: sh ./deploy.sh
