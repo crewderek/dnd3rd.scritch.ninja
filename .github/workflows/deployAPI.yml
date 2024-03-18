@@ -9,7 +9,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build-deploy:
+  Build API:
     runs-on: ubuntu-latest
     env:
       DND3RD_LAMBDA_ARN: ${{ vars.DND3RD_API_LAMBDA_FUNCTION }}
@@ -36,6 +36,29 @@ jobs:
         working-directory: ./docs/deploy
         run: sh ./replaceStringInYaml.sh
 
-      - name: Deploy API
-        working-directory: ./docs/deploy
-        run: sh ./deploy.sh
+      - name: Setup Pages
+        working-directory: ./docs
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        working-directory: ./docs
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        working-directory: ./docs
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  Deploy API:
+    environment:
+      name: github-pages
+      url: ${{steps.deployment.outputs.page_url}}
+    runs-on: ubuntu-latest
+    needs: Build API
+    steps:
+    - name: Deploy API
+      working-directory: ./docs/deploy
+      run: sh ./deploy.sh
