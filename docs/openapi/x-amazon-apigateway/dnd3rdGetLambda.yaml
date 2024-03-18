@@ -1,0 +1,8 @@
+type: "AWS_PROXY"
+httpMethod: "POST"
+uri: $DND3RD_API_LAMBDA_FUNCTION
+responses:
+  default:
+    statusCode: "200"
+passthroughBehavior: "when_no_match"
+contentHandling: "CONVERT_TO_TEXT"

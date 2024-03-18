@@ -1,0 +1,42 @@
+get:
+  summary: Gets the weapons associated with a character
+  description: Gets all of the weapons and scores associated with a set characterId
+  responses:
+    '200':
+      description: Success.
+      headers:
+        Access-Control-Allow-Origin:
+          schema:
+            type: "string"
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/WeaponsWithId.yaml'
+    '403':
+      description: The client isn't authorized to access this characters weapons.
+    '404':
+      description: The character could not be found.
+  parameters:
+    - $ref: "../../parameters/characterId.yaml"
+  security:
+    - authorizer.dnd3rd.scritch.ninja: [ ]
+#  x-amazon-apigateway-integration:
+#    $ref: '#/components/x-amazon-apigateway-integrations/dnd3rdGetLambdaIntegration'
+#    post:
+#      summary: Create weapons associated with a character
+#      description: Creates the weapons associated with a character
+#      responses:
+#        '201':
+#          description: Weapons created.
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '#/components/schemas/WeaponWithCharacterId'
+#options:
+#  responses:
+#    "200":
+#      $ref: '#/components/responses/DefaultOptions'
+#  x-amazon-apigateway-integration:
+#    $ref: '#/components/x-amazon-apigateway-integrations/defaultIntegration'

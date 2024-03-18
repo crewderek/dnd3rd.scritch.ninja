@@ -1,0 +1,22 @@
+get:
+  summary: Returns the characters for a user
+  description: Returns the characters for a user
+  responses:
+    '200':
+      description: Characters retrieved.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/Empty.yaml"
+    '403':
+      description: The logged in user could not be found.
+    '404':
+      description: No characters could not be found.
+    '500':
+      description: Internal server error with getting the character.
+  security:
+    - authorizer.dnd3rd.scritch.ninja: [ ]
+  x-amazon-apigateway-integration:
+    $include: "../../x-amazon-apigateway/dnd3rdGetLambda.yaml"
+options:
+  $include: "../../responses/200OptionsDefault.yaml"

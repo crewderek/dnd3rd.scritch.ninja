@@ -1,0 +1,24 @@
+get:
+  summary: Gets the saving throws associated with a character
+  description: Gets all of the saving throws and scores associated with a set characterId
+  responses:
+    '200':
+      description: Saving throws retrieved.
+  parameters:
+    - $ref: "../../parameters/characterId.yaml"
+  security:
+    - authorizer.dnd3rd.scritch.ninja: [ ]
+#  x-amazon-apigateway-integration:
+#    $ref: '#/components/x-amazon-apigateway-integrations/dnd3rdGetLambdaIntegration'
+#    post:
+#      summary: Create saving throws associated with a character
+#      description: Creates the saving throws associated with a character
+#      responses:
+#        '201':
+#          description: Saving throws created.
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '#/components/schemas/Skill'

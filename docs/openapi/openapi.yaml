@@ -1,0 +1,91 @@
+#  openapi.yaml
+openapi: 3.0.1
+info:
+  title: "dnd3rd.scritch.ninja"
+  version: "2024-02-19T05:46:19Z"
+servers:
+  - url: "https://v288jal5qi.execute-api.us-west-2.amazonaws.com/{basePath}"
+    variables:
+      basePath:
+        default: "api"
+paths:
+  /user/characters:
+    $ref: "./paths/user/characters.yaml"
+  /character:
+    $ref: "./paths/character.yaml"
+#  /character/abilities:
+#    $ref: "./paths/character/abilities.yaml"
+#  /character/skills:
+#    $ref: "./paths/character/skills.yaml"
+#  /character/saving-throws:
+#    $ref: "./paths/character/saving-throws.yaml"
+#  /character/weapons:
+#    $ref: "./paths/character/weapons.yaml"
+#  /character/armor:
+#    $ref: "./paths/character/armor.yaml"
+#  /character/feats:
+#    $ref: "./paths/character/feats.yaml"
+#  /character/spells:
+#    $ref: "./paths/character/spells.yaml"
+#  /character/special-abilities:
+#    $ref: "./paths/character/special-abilities.yaml"
+components:
+  parameters:
+    characterIdParam:
+      $include: "./parameters/characterId.yaml"
+    TestCharacterId:
+      $include: "./parameters/TestCharacterId.yaml"
+    cognitoUserIdParam:
+      $include: "./parameters/cognitoUserId.yaml"
+  schemas:
+    UpdateCharacter:
+      $include: "./schemas/UpdateCharacter.yaml"
+    Empty:
+      $include: "./schemas/Empty.yaml"
+  responses:
+    '200':
+      $include: "./responses/200.yaml"
+#    Default:
+#      $ref: "./responses/Default.yaml"
+  securitySchemes:
+    authorizer.dnd3rd.scritch.ninja:
+      type: "apiKey"
+      name: "Authorization"
+      in: "header"
+      x-amazon-apigateway-authtype: "cognito_user_pools"
+      x-amazon-apigateway-authorizer:
+        type: "cognito_user_pools"
+        providerARNs:
+#          - $COGNITO_ISSUER
+          - "arn:aws:cognito-idp:us-west-2:791452601764:userpool/us-west-2_s3HK8O7X8"
+x-amazon-apigateway-request-validators:
+  Validate query string parameters and headers:
+    validateRequestParameters: true
+    validateRequestBody: false
+  Validate body, query string parameters, and headers:
+    validateRequestParameters: true
+    validateRequestBody: true
+#  x-amazon-apigateway-integrations:
+#    defaultIntegration:
+#      type: "mock"
+#      responses:
+#        default:
+#          statusCode: "200"
+#          responseParameters:
+#            method.response.header.Access-Control-Allow-Credentials: "'true'"
+#            method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS'"
+#            method.response.header.Access-Control-Allow-Headers: "'Authorization, *'"
+#            method.response.header.Access-Control-Allow-Origin: "'*'"
+#      requestTemplates:
+#        application/json: '{"statusCode": 200}'
+#      passthroughBehavior: "when_no_match"
+#      dnd3rdGetLambdaIntegration:
+#    dnd3rdGetLambdaIntegration:
+#      type: "AWS_PROXY"
+#      httpMethod: "POST"
+#      uri: $DND3RD_LAMBDA_ARN
+#      responses:
+#        default:
+#          statusCode: "200"
+#      passthroughBehavior: "when_no_match"
+#      contentHandling: "CONVERT_TO_TEXT"

@@ -2,7 +2,7 @@
 
 original_file_path="../swagger_deployment.yaml"
 temp_file_path="../swagger.yaml.tmp"
-new_file_path="../swagger.yaml.envSub"
+new_file_path="../swagger.yaml"
 
 # Create the temp file
 cat "$original_file_path" > "$temp_file_path"

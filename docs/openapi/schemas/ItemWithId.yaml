@@ -1,0 +1,7 @@
+ItemWithId:
+  allOf:
+    - $ref: './Item.yaml'
+#    - type: object
+  properties:
+    itemId:
+      type: string

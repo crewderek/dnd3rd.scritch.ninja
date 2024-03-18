@@ -1,0 +1,36 @@
+get:
+  summary: Gets the abilities associated with a character
+  description: Gets all of the abilities and scores associated with a set characterId
+  responses:
+    '200':
+      description: Ability retrieved.
+    '400':
+      description: An internal validation error has occurred.
+    '404':
+      description: The ability could not be found.
+    '500':
+      description: Internal server error with getting the ability.
+  parameters:
+    - $ref: "../../parameters/characterId.yaml"
+  security:
+    - authorizer.dnd3rd.scritch.ninja: [ ]
+#  x-amazon-apigateway-integration:
+#    $ref: '#/components/x-amazon-apigateway-integrations/dnd3rdGetLambdaIntegration'
+#    post:
+#      summary: Create abilities associated with a character
+#      description: Creates the abilities associated with a character
+#      responses:
+#        '201':
+#          description: Ability created.
+#        '400':
+#          description: An internal validation error has occurred.
+#        '409':
+#          description: The ability already exist and could not be created.
+#        '500':
+#          description: Internal server error with creating the ability.
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '#/components/schemas/Ability'

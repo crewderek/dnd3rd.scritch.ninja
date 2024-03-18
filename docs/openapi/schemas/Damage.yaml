@@ -1,0 +1,12 @@
+Damage:
+  properties:
+    diceAmount:
+      type: number
+    diceSides:
+      type: number
+    addedDamage:
+      type: number
+    damageType:
+      type: string
+    canCritical:
+      type: boolean

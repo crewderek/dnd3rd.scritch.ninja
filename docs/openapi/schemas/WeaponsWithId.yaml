@@ -1,0 +1,9 @@
+    WeaponWithIds:
+      allOf:
+        - $ref: './Weapon.yaml'
+        - type: object
+      properties:
+        weaponId:
+          type: string
+        itemInfo:
+          $ref: './ItemWithId.yaml'

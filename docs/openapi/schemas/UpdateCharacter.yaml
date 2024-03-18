@@ -1,0 +1,14 @@
+type: object
+properties:
+  characterId:
+    type: string
+  columnName:
+    type: string
+  columnValue:
+    oneOf:
+      - type: string
+      - type: integer
+required:
+  - characterId
+  - columnName
+  - columnValue
