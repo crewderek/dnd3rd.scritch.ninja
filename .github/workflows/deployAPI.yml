@@ -43,7 +43,7 @@ jobs:
 
       - name: Echo My stuff 1
         working-directory: ./docs
-        run: cat swagger.yaml
+        run: cat swagger_deployment.yaml
 
       - name: Replace Swagger.yaml Fields
         working-directory: ./docs/deploy
