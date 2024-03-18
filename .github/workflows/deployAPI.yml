@@ -67,18 +67,15 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: api-build
-
       - name: Setup Pages
         working-directory: ./docs
         uses: actions/configure-pages@v4
-
       - name: Upload artifact
         working-directory: ./docs
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
           path: '.'
-
       - name: Deploy to GitHub Pages
         working-directory: ./docs
         id: deployment
