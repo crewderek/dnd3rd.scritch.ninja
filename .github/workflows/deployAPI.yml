@@ -50,6 +50,7 @@ jobs:
         with:
           name: api-build
           path: ./docs
+          retention-days: 1
 
   DeployAPI:
     runs-on: ubuntu-latest
