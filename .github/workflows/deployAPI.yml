@@ -41,7 +41,7 @@ jobs:
         working-directory: ./docs/openapi
         run: npx openapi-merger -i openapi.yaml -o ../swagger_deployment.yaml
 
-      - name: Echo My stuff
+      - name: Echo My stuff 1
         working-directory: ./docs
         run: cat swagger.yaml
 
