@@ -1,4 +1,4 @@
-#  openapi.yaml my dude
+#  openapi.yaml
 openapi: 3.0.1
 info:
   title: "dnd3rd.scritch.ninja"
