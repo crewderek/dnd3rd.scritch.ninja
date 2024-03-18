@@ -86,7 +86,6 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: api-build
-        
+
     - name: Deploy API
-      working-directory: ./docs/deploy
-      run: sh ./deploy.sh
+      run: ls
