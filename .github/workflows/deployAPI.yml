@@ -71,11 +71,9 @@ jobs:
         working-directory: ./docs
         uses: actions/configure-pages@v4
       - name: Upload artifact
-        working-directory: ./docs
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: '.'
+          path: './docs'
       - name: Deploy to GitHub Pages
         working-directory: ./docs
         id: deployment
