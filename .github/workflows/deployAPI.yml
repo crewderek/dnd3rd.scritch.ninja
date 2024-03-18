@@ -70,14 +70,15 @@ jobs:
       - name: Setup Pages
         working-directory: ./docs
         uses: actions/configure-pages@v4
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: './docs'
-      - name: Deploy to GitHub Pages
-        working-directory: ./docs
-        id: deployment
-        uses: actions/deploy-pages@v4
+#      - name: Upload artifact
+#        uses: actions/upload-pages-artifact@v3
+#        with:
+#          name: api
+#          path: './docs'
+#      - name: Deploy to GitHub Pages
+#        working-directory: ./docs
+#        id: deployment
+#        uses: actions/deploy-pages@v4
 
 #  DeployAPI:
 #    environment:
