@@ -25,7 +25,6 @@ permissions:
 jobs:
   BuildAPI:
     runs-on: ubuntu-latest
-    needs: BuildAPI
     env:
       DND3RD_LAMBDA_ARN: ${{ vars.DND3RD_API_LAMBDA_FUNCTION }}
       COGNITO_ISSUER: ${{ vars.COGNITO_ISSUER }}
@@ -56,6 +55,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    needs: BuildAPI
     steps:
       - name: Checkout
         uses: actions/checkout@v4
