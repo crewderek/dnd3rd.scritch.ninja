@@ -88,4 +88,5 @@ jobs:
         name: api-build
 
     - name: Deploy API
-      run: ls
+      working-directory: ./deploy
+      run: sh ./deploy.sh
