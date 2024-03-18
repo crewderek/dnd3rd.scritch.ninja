@@ -9,7 +9,10 @@ from MySQLHandler import MySQLHandler
 from character import CharacterClient
 from ability import AbilityClient
 from weapon import WeaponClient
-# from ability import AbilitiesClient
+from skill import SkillClient
+from saving_throw import SavingThrowClient
+from feat import FeatClient
+from armor import ArmorClient
 from http_response import http_response
 
 # Read the JSON file
@@ -168,4 +171,32 @@ def get_weapons(event, mysql_handler, cognito_user_id):
     character_id = query_string_parameters['characterId']
     weapons = WeaponClient(mysql_handler)
     result = weapons.get_weapons(cognito_user_id, character_id)
+    return result
+
+def get_skills(event, mysql_handler, cognito_user_id):
+    query_string_parameters = event.get('queryStringParameters', {})
+    character_id = query_string_parameters['characterId']
+    skills = SkillClient(mysql_handler)
+    result = skills.get_skills(cognito_user_id, character_id)
+    return result
+
+def get_saving_throws(event, mysql_handler, cognito_user_id):
+    query_string_parameters = event.get('queryStringParameters', {})
+    character_id = query_string_parameters['characterId']
+    saving_throws = SavingThrowClient(mysql_handler)
+    result = saving_throws.get_saving_throws(cognito_user_id, character_id)
+    return result
+
+def get_feats(event, mysql_handler, cognito_user_id):
+    query_string_parameters = event.get('queryStringParameters', {})
+    character_id = query_string_parameters['characterId']
+    feats = FeatClient(mysql_handler)
+    result = feats.get_feats(cognito_user_id, character_id)
+    return result
+
+def get_armor(event, mysql_handler, cognito_user_id):
+    query_string_parameters = event.get('queryStringParameters', {})
+    character_id = query_string_parameters['characterId']
+    armor = ArmorClient(mysql_handler)
+    result = armor.get_armor(cognito_user_id, character_id)
     return result

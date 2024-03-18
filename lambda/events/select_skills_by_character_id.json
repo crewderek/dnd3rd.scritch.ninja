@@ -1,0 +1,15 @@
+{
+  "requestContext": {
+    "authorizer": {
+      "claims": {
+        "sub": "d8773017-193a-412b-b729-0181e0935079"
+      }
+    }
+  },
+  "path": "/character/skills",
+  "httpMethod": "GET",
+  "queryStringParameters": {
+    "characterId": "2a5eb164-b5b1-11ee-b57b-063eaae6b5e9"
+  },
+  "body": {}
+}
