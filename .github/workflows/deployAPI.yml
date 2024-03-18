@@ -78,13 +78,15 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-#  DeployAPI:
-#    environment:
-#      name: github-pages
-#      url: ${{steps.deployment.outputs.page_url}}
-#    runs-on: ubuntu-latest
-#    needs: BuildAPI
-#    steps:
-#    - name: Deploy API
-#      working-directory: ./docs/deploy
-#      run: sh ./deploy.sh
+  DeployAPI:
+    runs-on: ubuntu-latest
+    needs: BuildAPI
+    steps:
+    - name: Download Artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: api-build
+        
+    - name: Deploy API
+      working-directory: ./docs/deploy
+      run: sh ./deploy.sh
