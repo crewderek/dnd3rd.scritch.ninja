@@ -13,8 +13,8 @@ paths:
     $ref: "./paths/user/characters.yaml"
   /character:
     $ref: "./paths/character.yaml"
-#  /character/abilities:
-#    $ref: "./paths/character/abilities.yaml"
+  /character/abilities:
+    $ref: "./paths/character/abilities.yaml"
 #  /character/skills:
 #    $ref: "./paths/character/skills.yaml"
 #  /character/saving-throws:

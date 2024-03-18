@@ -4,6 +4,10 @@ get:
   responses:
     '200':
       description: Ability retrieved.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/Empty.yaml"
     '400':
       description: An internal validation error has occurred.
     '404':
@@ -14,8 +18,8 @@ get:
     - $ref: "../../parameters/characterId.yaml"
   security:
     - authorizer.dnd3rd.scritch.ninja: [ ]
-#  x-amazon-apigateway-integration:
-#    $ref: '#/components/x-amazon-apigateway-integrations/dnd3rdGetLambdaIntegration'
+  x-amazon-apigateway-integration:
+    $include: "../../x-amazon-apigateway/dnd3rdGetLambda.yaml"
 #    post:
 #      summary: Create abilities associated with a character
 #      description: Creates the abilities associated with a character
@@ -34,3 +38,5 @@ get:
 #          application/json:
 #            schema:
 #              $ref: '#/components/schemas/Ability'
+options:
+  $include: "../../responses/200OptionsDefault.yaml"
