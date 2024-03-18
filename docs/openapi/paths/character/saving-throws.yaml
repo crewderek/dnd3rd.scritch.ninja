@@ -8,8 +8,8 @@ get:
     - $ref: "../../parameters/characterId.yaml"
   security:
     - authorizer.dnd3rd.scritch.ninja: [ ]
-#  x-amazon-apigateway-integration:
-#    $ref: '#/components/x-amazon-apigateway-integrations/dnd3rdGetLambdaIntegration'
+  x-amazon-apigateway-integration:
+    $include: "../../x-amazon-apigateway/dnd3rdGetLambda.yaml"
 #    post:
 #      summary: Create saving throws associated with a character
 #      description: Creates the saving throws associated with a character
@@ -22,3 +22,5 @@ get:
 #          application/json:
 #            schema:
 #              $ref: '#/components/schemas/Skill'
+options:
+  $include: "../../responses/200OptionsDefault.yaml"

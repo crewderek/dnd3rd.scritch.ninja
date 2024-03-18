@@ -15,16 +15,16 @@ paths:
     $ref: "./paths/character.yaml"
   /character/abilities:
     $ref: "./paths/character/abilities.yaml"
-#  /character/skills:
-#    $ref: "./paths/character/skills.yaml"
-#  /character/saving-throws:
-#    $ref: "./paths/character/saving-throws.yaml"
-#  /character/weapons:
-#    $ref: "./paths/character/weapons.yaml"
-#  /character/armor:
-#    $ref: "./paths/character/armor.yaml"
-#  /character/feats:
-#    $ref: "./paths/character/feats.yaml"
+  /character/skills:
+    $ref: "./paths/character/skills.yaml"
+  /character/saving-throws:
+    $ref: "./paths/character/saving-throws.yaml"
+  /character/weapons:
+    $ref: "./paths/character/weapons.yaml"
+  /character/armor:
+    $ref: "./paths/character/armor.yaml"
+  /character/feats:
+    $ref: "./paths/character/feats.yaml"
 #  /character/spells:
 #    $ref: "./paths/character/spells.yaml"
 #  /character/special-abilities:

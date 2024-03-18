@@ -1,9 +1,9 @@
 get:
-  summary: Returns a character and their top level stats
-  description: Returns items such as name, level, experience and not listed items such as skills, feats, attacks, armor, inventory, etc...
+  summary: Gets the armor associated with a character
+  description: Gets all of the armor and scores associated with a set characterId
   responses:
     '200':
-      description: Character retrieved.
+      description: Armor retrieved.
     '400':
       description: An internal validation error has occurred.
     '403':
@@ -11,47 +11,31 @@ get:
     '404':
       description: The character could not be found.
     '500':
-      description: Internal server error with getting the character.
+      description: Internal server error with getting the armor.
   parameters:
     - $ref: "../../parameters/characterId.yaml"
   security:
     - authorizer.dnd3rd.scritch.ninja: [ ]
-#  x-amazon-apigateway-integration:
-#    $ref: '../x-amazon-apigateway/dnd3rdGetLambda.yaml'
-post:
-  summary: Creates a character with their default stats.
-  description: Creates an EMPTY character sheet and returns the entity id related to it.
-  responses:
-    '201':
-      description: Empty character created.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              characterId:
-                type: string
-    '400':
-      description: An internal validation error has occurred.
-    '409':
-      description: The character already exists and could not be created.
-    '500':
-      description: Internal server error with creating the character.
-patch:
-  summary: Updates a single character stat
-  description: Updates a single character stat at a time.
-  responses:
-    '201':
-      description: Stat updated.
-    '400':
-      description: TODO.
-    '409':
-      description: TODO.
-    '500':
-      description: TODO.
-  requestBody:
-    required: true
-    content:
-      application/json:
-        schema:
-          $ref: '../../schemas/UpdateCharacter.yaml'
+  x-amazon-apigateway-integration:
+    $include: "../../x-amazon-apigateway/dnd3rdGetLambda.yaml"
+#post:
+#  summary: Creates a character with their default stats.
+#  description: Creates an EMPTY character sheet and returns the entity id related to it.
+#  responses:
+#    '201':
+#      description: Empty character created.
+#      content:
+#        application/json:
+#          schema:
+#            type: object
+#            properties:
+#              characterId:
+#                type: string
+#    '400':
+#      description: An internal validation error has occurred.
+#    '409':
+#      description: The character already exists and could not be created.
+#    '500':
+#      description: Internal server error with creating the character.
+options:
+  $include: "../../responses/200OptionsDefault.yaml"
