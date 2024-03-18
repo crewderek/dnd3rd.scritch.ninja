@@ -23,7 +23,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-west-2
 
-      #Install the npm package openapi-merger
+      #Install the npm package openapi-merger package
       - name: Install openapi-merger
         run: npm install openapi-merger
 
