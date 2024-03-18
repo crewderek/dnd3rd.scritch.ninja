@@ -21,7 +21,7 @@ class CharacterClient:
 
     def get_character_by_character_id(self, cognitoUserId, characterId):
         general_exception_message = 'An unexpected error occurred when getting the character.'
-        stored_procedure = 'sp_getCharactersByCharacterId'
+        stored_procedure = 'sp_getCharacterByCharacterId'
         response = None
 
         try:
@@ -38,7 +38,7 @@ class CharacterClient:
             logging.exception(e)
             response = http_response(500, general_exception_message)
 
-        return response.response
+        return response
 
     def create_character(self, cognitoUserid):
         general_exception_message = 'An unexpected error occurred when adding the character.'

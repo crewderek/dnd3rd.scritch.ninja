@@ -56,10 +56,10 @@ def lambda_handler(event, context):
         # Extract Cognito User ID from the claims in the authorization context
         cognito_user_id = event['requestContext']['authorizer']['claims']['sub']
     # We CAN NOT continue if we don't have the sub
-    elif is_request_from_api_gateway(event):
-        logging.exception('The Cognito Authorizer could not be found or verified.')
-        response = http_response(500, 'An internal error has occurred.')
-        return response.response
+    # elif is_request_from_api_gateway(event):
+    #     logging.exception('The Cognito Authorizer could not be found or verified.')
+    #     response = http_response(500, 'An internal error has occurred.')
+    #     return response.response
 
 
     try:

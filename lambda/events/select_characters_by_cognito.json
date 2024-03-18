@@ -6,7 +6,7 @@
       }
     }
   },
-  "resource": "/user/characters",
+  "path": "/user/characters",
   "httpMethod": "GET",
   "body": {
     "characterName": "string",
