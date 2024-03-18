@@ -41,6 +41,10 @@ jobs:
         working-directory: ./docs/openapi
         run: npx openapi-merger -i openapi.yaml -o ../swagger_deployment.yaml
 
+      - name: Echo My stuff
+        working-directory: ./docs
+        run: cat swagger.yaml
+
       - name: Replace Swagger.yaml Fields
         working-directory: ./docs/deploy
         run: sh ./replaceStringInYaml.sh
