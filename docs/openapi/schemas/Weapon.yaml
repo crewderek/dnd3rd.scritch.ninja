@@ -1,18 +1,17 @@
-Weapon:
-  properties:
-    weaponType:
-      type: string
-    damages:
-      type: array
-      items:
-        $ref: './Damage.yaml'
-    criticalMinRange:
-      type: number
-    criticalMultiplier:
-      type: number
-    range:
-      type: number
-    requiresAmmunition:
-      type: boolean
-    itemInfo:
-      $ref: './Item.yaml'
+properties:
+  weaponType:
+    type: string
+  damages:
+    type: array
+    items:
+      $ref: './Damage.yaml'
+  criticalMinRange:
+    type: number
+  criticalMultiplier:
+    type: number
+  range:
+    type: number
+  requiresAmmunition:
+    type: boolean
+  itemInfo:
+    $ref: './Item.yaml'

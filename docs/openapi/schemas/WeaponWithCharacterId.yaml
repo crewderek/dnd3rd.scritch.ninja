@@ -1,7 +1,6 @@
-WeaponWithCharacterId:
-  allOf:
-    - $ref: './Weapon.yaml'
-    - type: object
-  properties:
-    itemInfo:
-      $ref: './Item.yaml'
+allOf:
+  - $ref: './Weapon.yaml'
+  - type: object
+properties:
+  itemInfo:
+    $ref: './Item.yaml'

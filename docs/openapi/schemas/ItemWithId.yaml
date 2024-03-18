@@ -1,7 +1,6 @@
-ItemWithId:
-  allOf:
-    - $ref: './Item.yaml'
+allOf:
+  - $ref: './Item.yaml'
 #    - type: object
-  properties:
-    itemId:
-      type: string
+properties:
+  itemId:
+    type: string

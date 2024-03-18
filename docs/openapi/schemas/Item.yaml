@@ -1,21 +1,20 @@
-Item:
-  properties:
-    name:
-      type: string
-    isEquipped:
-      type: boolean
-    equipmentSlot:
-      type: string
-    weight:
-      type: number
-    size:
-      type: string
-    cost:
-      type: number
-      description: In copper coins
-    count:
-      type: number
-    notes:
-      type: string
-  required:
-    - name
+properties:
+  name:
+    type: string
+  isEquipped:
+    type: boolean
+  equipmentSlot:
+    type: string
+  weight:
+    type: number
+  size:
+    type: string
+  cost:
+    type: number
+    description: In copper coins
+  count:
+    type: number
+  notes:
+    type: string
+required:
+  - name

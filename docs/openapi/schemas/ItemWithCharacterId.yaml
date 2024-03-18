@@ -1,9 +1,8 @@
-ItemWithCharacterId:
-  allOf:
-    - $ref: './Item.yaml'
+allOf:
+  - $ref: './Item.yaml'
 #    - type: object
-  properties:
-    characterId:
-      type: string
-  required:
-    - characterId
+properties:
+  characterId:
+    type: string
+required:
+  - characterId
