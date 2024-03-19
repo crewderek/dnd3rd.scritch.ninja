@@ -34,7 +34,7 @@ def lambda_handler(event, context):
     global db_config
 
     #   Check if we are cached and set, if not we need to get the data
-    if db_config is None:
+    if db_config is None or db_config['host'] is None:
         redis = Redis(host=redis_host, port=redis_port, decode_responses=True, username=redis_username,
                       password=redis_password)
 
