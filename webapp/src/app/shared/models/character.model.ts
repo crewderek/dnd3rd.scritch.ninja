@@ -10,6 +10,10 @@ import {Spell, SpellInfo, SpellsKnown} from "./spell.model";
 import {Gear} from "./gear.model";
 // @ts-ignore
 import * as defaultSkills from '../../../assets/default-skills.json'
+import {Observable} from "rxjs";
+import {environment} from "../../../environments/environment";
+import * as http from "http";
+import {HttpClient} from "@angular/common/http";
 
 export interface CurrencyInfo{
   copper: 0,
@@ -93,8 +97,13 @@ export class Character {
     return currentHP;
   }
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.addDefaultSkills();
+  }
+
+  getCharacterData(characterId: string): Observable<any> {
+    return this.http.get<any>(
+      `${environment.apiEnvUrl()}${environment.characterPath}?characterId=${characterId}`);
   }
 
   private addDefaultSkills() {
@@ -108,7 +117,7 @@ export class Character {
 
   public parseCharacterData(characterData: any){
     //  System information
-    this.id = characterData.id;
+    this.id = characterData.characterId;
     this.userId = characterData.userId;
 
     //  Description info
@@ -138,13 +147,13 @@ export class Character {
     this.grapple = characterData.grapple;
     this.spellResistance = characterData.spellResistance;
     this.damageReduction = characterData.damageReduction;
-    this.setBaseAttackBonus(JSON.parse(characterData.baseAttackBonus))
+    // this.setBaseAttackBonus(characterData.baseAttackBonus)
 
-    let currency = JSON.parse(characterData.currency);
-    this.currencyInfo.copper = currency.copper;
-    this.currencyInfo.silver = currency.silver;
-    this.currencyInfo.gold = currency.gold;
-    this.currencyInfo.platinum = currency.platinum;
+    // let currency = JSON.parse(characterData.currency);
+    // this.currencyInfo.copper = currency.copper;
+    // this.currencyInfo.silver = currency.silver;
+    // this.currencyInfo.gold = currency.gold;
+    // this.currencyInfo.platinum = currency.platinum;
   }
 
   //  These are binders for variables to be set via functions

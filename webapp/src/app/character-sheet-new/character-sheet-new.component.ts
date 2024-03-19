@@ -39,7 +39,7 @@ export class CharacterSheetNewComponent {
               private hairService: HairHelperService,
               private skinService: SkinHelperService,
               private http: HttpClient, private router: ActivatedRoute) {
-    this.character = new Character();
+    this.character = new Character(this.http);
     this.character.race = racesService.selectRandomRace();
     this.character.gender = genderService.selectRandomGender();
     this.character.eyes = eyeService.selectRandomEyeColor();
@@ -52,8 +52,9 @@ export class CharacterSheetNewComponent {
     //Check if we have the query parameter for the router
     const characterIdParam = this.router.snapshot.queryParamMap.get(
       'characterId');
+
     if (characterIdParam != null) {
-      this.getCharacterData(characterIdParam).subscribe(
+      this.character.getCharacterData(characterIdParam).subscribe(
         (response) => {
           this.character.parseCharacterData(response[0]);
         },
@@ -64,10 +65,6 @@ export class CharacterSheetNewComponent {
     }
   }
 
-  getCharacterData(characterId: string): Observable<any> {
-    return this.http.get<any>(
-      `${environment.apiEnvUrl()}${environment.characterPath}?characterId=${characterId}`);
-  }
 
   patchCharacterData(characterId: string, columnName: string,
                      columnValue: string | number): void {

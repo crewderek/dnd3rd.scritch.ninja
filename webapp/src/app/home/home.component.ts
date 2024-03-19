@@ -7,6 +7,7 @@ import {JWTTokenService} from "../authorization/jwttoken.service";
 import {LoginService} from "../authorization/login.service";
 import {environment} from '../../environments/environment'
 import {Route, Router} from "@angular/router";
+import * as http from "http";
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,7 @@ import {Route, Router} from "@angular/router";
 })
 export class HomeComponent {
   // @ts-ignore
-  characters: Character[];
+  characters: Character[] = [];
   responseData: any;
   loggedIn: boolean = false;
 
@@ -30,12 +31,40 @@ export class HomeComponent {
     this.loggedIn = true;
     this.getData().subscribe(
       (response) => {
-        this.characters = response;
+        response.characters.forEach((e: any) => {
+          let character: Character = new Character(this.http);
+
+          character.getCharacterData(e.characterId).subscribe(
+            (characterResponse) => {
+              character.parseCharacterData(characterResponse.character);
+              this.characters.push(character);
+            },
+            (error) => {
+              console.error('Error fetching data:', error);
+            }
+          );
+
+          // this.characters.push(character)
+        })
       },
       (error) => {
         console.error('Error fetching data:', error);
       }
     );
+  }
+
+  patchCharacterData(characterId: string, columnName: string,
+                     columnValue: string | number): void {
+    const url = `${environment.apiEnvUrl()}${environment.characterPath}`;
+    const body = {
+      "characterId": characterId,
+      "columnName": columnName,
+      "columnValue": columnValue
+    };
+
+    this.http.patch<any>(url, body).subscribe((data) => {
+      // console.log("hi this is patch request", data);
+    });
   }
 
   getData(): Observable<any> {
