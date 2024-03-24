@@ -2,8 +2,9 @@ from http_response import http_response
 from user_exceptions import *
 import logging
 
+
 class CharacterClient:
-    def  __init__(self, mysql_handler):
+    def __init__(self, mysql_handler):
         self.handler = mysql_handler
 
     def get_characters_associated_with_user(self, cognitoUserId):
@@ -59,7 +60,8 @@ class CharacterClient:
         response = None
 
         try:
-            response = self.handler.call_stored_procedure(stored_procedure, [columnName, columnValue, characterId, cognitoUserid])
+            response = self.handler.call_stored_procedure(stored_procedure,
+                                                          [columnName, columnValue, characterId, cognitoUserid])
             print(response)
             response.response['statusCode'] = 201
         except MySQLUserNotFound as munf:
@@ -75,3 +77,16 @@ class CharacterClient:
             response = http_response(500, general_exception_message)
 
         return response.response
+
+    def delete_character(self, characterId, cognitoUserid):
+        general_exception_message = 'An unexpected error occurred when deleting the character.'
+        stored_procedure = 'sp_deleteCharacterByCharacterId'
+        response = None
+
+        try:
+            response = self.handler.call_stored_procedure(stored_procedure, [characterId, cognitoUserid])
+        except Exception as e:
+            logging.exception(e)
+            response = http_response(500, general_exception_message)
+
+        return response

@@ -19,6 +19,12 @@
             "function": "create_character"
         },
         {
+            "method": "DELETE",
+            "path": "/character",
+            "regex": "^\\/character$",
+            "function": "delete_character"
+        },
+        {
             "method": "PATCH",
             "path": "/character",
             "regex": "^\\/character$",
