@@ -144,7 +144,7 @@ def update_character(event, mysql_handler, cognito_user_id):
 def delete_character(event, mysql_handler, cognito_user_id):
     query_string_parameters = event.get('queryStringParameters', {})
     character = CharacterClient(mysql_handler)
-    return character.delete_character(cognito_user_id, query_string_parameters['characterId'])
+    return character.delete_character(query_string_parameters['characterId'], cognito_user_id)
 
 
 # Return the abilities

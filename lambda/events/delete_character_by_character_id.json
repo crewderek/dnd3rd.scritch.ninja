@@ -9,7 +9,7 @@
   "path": "/character",
   "httpMethod": "DELETE",
   "queryStringParameters": {
-    "characterId": "65b37eed-df60-11ee-b57b-063eaae6b5e9"
+    "characterId": "c9298eef-df60-11ee-b57b-063eaae6b5e9"
   },
   "body": {
   }
