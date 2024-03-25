@@ -41,6 +41,26 @@ post:
     - authorizer.dnd3rd.scritch.ninja: [ ]
   x-amazon-apigateway-integration:
     $include: "../x-amazon-apigateway/dnd3rdGetLambda.yaml"
+delete:
+    summary: Deletes a character
+    description: Deletes a character and all related stats.
+    responses:
+        '200':
+          description: Character deleted.
+        '400':
+          description: An internal validation error has occurred.
+        '403':
+          description: The logged in user could not be found.
+        '404':
+          description: The character could not be found.
+        '500':
+          description: Internal server error with deleting the character.
+    parameters:
+        - $ref: "../parameters/characterId.yaml"
+    security:
+        - authorizer.dnd3rd.scritch.ninja: [ ]
+    x-amazon-apigateway-integration:
+        $include: "../x-amazon-apigateway/dnd3rdGetLambda.yaml"
 #patch:
 #  summary: Updates a single character stat
 #  description: Updates a single character stat at a time.
