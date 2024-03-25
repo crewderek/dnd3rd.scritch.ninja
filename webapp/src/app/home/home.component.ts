@@ -71,6 +71,12 @@ export class HomeComponent {
     return this.http.get<any>(`${environment.apiEnvUrl()}${environment.userCharactersPath}`);
   }
 
+  deleteCharacter(characterId: string) {
+    // return this.http.delete<any>(
+    //   `${environment.apiEnvUrl()}${environment.characterPath}?characterId=${characterId}`);
+    this.http.delete<any>(`${environment.apiEnvUrl()}${environment.characterPath}?characterId=${characterId}`).subscribe((response)=>{console.log(response)});
+  }
+
   createEmptyCharacter(): void {
     const url = `${environment.apiEnvUrl()}${environment.characterPath}`;
     const body = {};

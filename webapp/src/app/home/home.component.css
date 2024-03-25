@@ -1,3 +1,6 @@
+button, a{
+  cursor:pointer;
+}
 .home-container {
   width: 100%;
 
@@ -14,25 +17,38 @@
   display:flex;
   justify-content: center;
 }
-.character-list-button{
+.character-list-button, .character-delete-button{
   padding:10px;
   margin:10px;
   background:black;
   border-radius: 10px;
   border: solid 1px red;
   color: lightgrey;
+  width:45%;
 }
 .character-container{
   padding:10px;
   margin:5px;
-  width:fit-content;
+  /*width:fit-content;*/
+  width:200px;
   background: rgba(32, 32, 32, 0.7);
   border: 1px solid darkgoldenrod;
   border-radius: 10px;
   text-align: left;
 }
+.character-container ul{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width:100%;
+}
 a {
   text-decoration: none;
   color: darkgrey;
   font-weight:bold;
+}
+.character-delete-button{
+  width:45%;
+  padding:5px;
+  margin:10px 0 0 0;
 }
