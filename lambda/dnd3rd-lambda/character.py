@@ -60,7 +60,7 @@ class CharacterClient:
         response = None
 
         try:
-            response = self.handler.call_stored_procedure(stored_procedure, [characterId, cognitoUserid])
+            response = self.handler.call_stored_procedure(stored_procedure, [columnName, columnValue, characterId, cognitoUserid])
         except Exception as e:
             logging.exception(e)
             response = http_response(500, general_exception_message)
