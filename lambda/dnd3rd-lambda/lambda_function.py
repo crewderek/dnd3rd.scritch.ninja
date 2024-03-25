@@ -137,9 +137,10 @@ def create_character(event, mysql_handler, cognito_user_id):
 
 
 def update_character(event, mysql_handler, cognito_user_id):
+    query_string_parameters = event.get('queryStringParameters', {})
     character = CharacterClient(mysql_handler)
     items = event['body']
-    return character.update_character(items['characterId'], items['columnName'], items['columnValue'], cognito_user_id)
+    return character.update_character(query_string_parameters['characterId'], items['columnName'], items['columnValue'], cognito_user_id)
 
 def delete_character(event, mysql_handler, cognito_user_id):
     query_string_parameters = event.get('queryStringParameters', {})
