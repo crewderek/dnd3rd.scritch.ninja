@@ -1,0 +1,16 @@
+{
+  "requestContext": {
+    "authorizer": {
+      "claims": {
+        "sub": "d8773017-193a-412b-b729-0181e0935079"
+      }
+    }
+  },
+  "path": "/character",
+  "httpMethod": "DELETE",
+  "queryStringParameters": {
+    "characterId": "65b37eed-df60-11ee-b57b-063eaae6b5e9"
+  },
+  "body": {
+  }
+}
