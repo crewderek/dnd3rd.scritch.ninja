@@ -60,23 +60,12 @@ class CharacterClient:
         response = None
 
         try:
-            response = self.handler.call_stored_procedure(stored_procedure,
-                                                          [columnName, columnValue, characterId, cognitoUserid])
-            print(response)
-            response.response['statusCode'] = 201
-        except MySQLUserNotFound as munf:
-            exception_message = 'User not found.'
-            logging.info(munf)
-            response = http_response(403, exception_message)
-        except MySQLFailedOnInsert as mfoi:
-            exception_message = 'Failed to updated character.'
-            logging.exception(mfoi)
-            response = http_response(400, exception_message)
+            response = self.handler.call_stored_procedure(stored_procedure, [characterId, cognitoUserid])
         except Exception as e:
             logging.exception(e)
             response = http_response(500, general_exception_message)
 
-        return response.response
+        return response
 
     def delete_character(self, characterId, cognitoUserid):
         general_exception_message = 'An unexpected error occurred when deleting the character.'

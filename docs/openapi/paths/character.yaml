@@ -61,23 +61,25 @@ delete:
         - authorizer.dnd3rd.scritch.ninja: [ ]
     x-amazon-apigateway-integration:
         $include: "../x-amazon-apigateway/dnd3rdGetLambda.yaml"
-#patch:
-#  summary: Updates a single character stat
-#  description: Updates a single character stat at a time.
-#  responses:
-#    '201':
-#      description: Stat updated.
-#    '400':
-#      description: TODO.
-#    '409':
-#      description: TODO.
-#    '500':
-#      description: TODO.
-#  requestBody:
-#    required: true
-#    content:
-#      application/json:
-#        schema:
-#          $ref: '../schemas/UpdateCharacter.yaml'
+patch:
+  summary: Updates a single character stat
+  description: Updates a single character stat at a time.
+  responses:
+    '201':
+      description: Character has been successfully updated.
+    '400':
+      description: The character could not be updated.
+    '403':
+      description: The logged in user could not be found.
+    '404':
+      description: The character could not be found.
+    '500':
+      description: Internal server error with updating the character.
+  parameters:
+    - $ref: "../parameters/characterId.yaml"
+  security:
+    - authorizer.dnd3rd.scritch.ninja: [ ]
+  x-amazon-apigateway-integration:
+    $include: "../x-amazon-apigateway/dnd3rdGetLambda.yaml"
 options:
   $include: "../responses/200OptionsDefault.yaml"
