@@ -49,10 +49,8 @@ export class HomeComponent {
               //  Check if the character is archived
               if (!character.isArchived) {
                 this.archiveCharacter(character, 0);
-                // this.characters.push(character);
               } else {
                 this.archiveCharacter(character, 1);
-                // this.archivedCharacters.push(character);
               }
 
               this.displayToggles.charactersLoading = false;
@@ -67,20 +65,11 @@ export class HomeComponent {
         console.error('Error fetching data:', error);
       }
     );
-  }
 
-  patchCharacterData(characterId: string, columnName: string,
-                     columnValue: string | number): void {
-    const url = `${environment.apiEnvUrl()}${environment.characterPath}`;
-    const body = {
-      "characterId": characterId,
-      "columnName": columnName,
-      "columnValue": columnValue
-    };
-
-    this.http.patch<any>(url, body).subscribe((data) => {
-      // console.log("hi this is patch request", data);
-    });
+    //  Set the default to show the non archived characters if there are any
+    if(this.characters.length > 0){
+      this.displayToggles.archivedCharacters = false;
+    }
   }
 
   getData(): Observable<any> {

@@ -56,7 +56,7 @@ export class CharacterSheetNewComponent {
     if (characterIdParam != null) {
       this.character.getCharacter(characterIdParam).subscribe(
         (response) => {
-          this.character.parseCharacterData(response[0]);
+          this.character.parseCharacterData(response.character);
         },
         (error) => {
           console.error('Error fetching data:', error);
@@ -66,18 +66,14 @@ export class CharacterSheetNewComponent {
   }
 
 
-  patchCharacterData(characterId: string, columnName: string,
+  patchCharacterData(columnName: string,
                      columnValue: string | number): void {
-    const url = `${environment.apiEnvUrl()}${environment.characterPath}`;
-    const body = {
-      "characterId": characterId,
-      "columnName": columnName,
-      "columnValue": columnValue
-    };
-
-    this.http.patch<any>(url, body).subscribe((data) => {
-      // console.log("hi this is patch request", data);
-    });
+    this.character.patchCharacter(columnName, columnValue).subscribe((response) => {
+        console.log("I worked");
+      }, // Handle the error
+      (error) => {
+        console.error('Error fetching data:', error);
+      });
   }
 
   getCharacterPhysicalDescription() {
@@ -103,9 +99,9 @@ export class CharacterSheetNewComponent {
                setToggle: (toggle: boolean) => void) {
     if (this.displayVariables[displayVariableToToggle as keyof typeof this.displayVariables] && this.character[characterValueToAdjust as keyof typeof this.character] != value) {
       if(Array.isArray(value)) {
-        this.patchCharacterData(this.character.id, characterValueToAdjust, JSON.stringify(value));
+        this.patchCharacterData(characterValueToAdjust, JSON.stringify(value));
       }else {
-        this.patchCharacterData(this.character.id, characterValueToAdjust, value);
+        this.patchCharacterData(characterValueToAdjust, value);
       }
       setValue(value);
     }
@@ -229,7 +225,7 @@ export class CharacterSheetNewComponent {
   inputOnChange(value: string, characterValueToAdjust: string, columnName: string) : void;
   inputOnChange(value: any, characterValueToAdjust: string, columnName: string): void{
     if(this.character[characterValueToAdjust as keyof typeof this.character] != value){
-      this.patchCharacterData(this.character.id, columnName, value);
+      this.patchCharacterData(columnName, value);
     }
   }
   onChangeRace(value: string){
