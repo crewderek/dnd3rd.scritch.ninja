@@ -67,11 +67,7 @@ export class HomeComponent {
       }
     );
 
-    if(this.characters.length > 0){
-      this.displayToggles.archivedCharacters = false;
-    }else{
-      this.displayToggles.archivedCharacters = true;
-    }
+    this.displayToggles.archivedCharacters = false;
   }
 
   getData(): Observable<any> {
