@@ -46,11 +46,12 @@ export class HomeComponent {
           character.getCharacter(e.characterId).subscribe(
             (characterResponse) => {
               character.parseCharacterData(characterResponse.character);
+
               //  Check if the character is archived
-              if (!character.isArchived) {
-                this.archiveCharacter(character, 0);
+              if (character.isArchived) {
+                this.archivedCharacters.push(character);
               } else {
-                this.archiveCharacter(character, 1);
+                this.characters.push(character);
               }
 
               this.displayToggles.charactersLoading = false;
@@ -66,9 +67,10 @@ export class HomeComponent {
       }
     );
 
-    //  Set the default to show the non archived characters if there are any
     if(this.characters.length > 0){
       this.displayToggles.archivedCharacters = false;
+    }else{
+      this.displayToggles.archivedCharacters = true;
     }
   }
 
