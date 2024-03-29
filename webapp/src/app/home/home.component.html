@@ -1,9 +1,17 @@
 <div class="home-container">
-  <div *ngIf="characters != null && characters.length > 0" class="character-list">
-    <div class="character-list-buttons">
+
+  <div class="character-buttons-container">
+    <div *ngIf="loggedIn" class="character-list-buttons">
       <a (click)="createEmptyCharacter()" class="character-list-button create-character-button">Create Character</a>
     </div>
 
+    <div *ngIf="loggedIn" class="character-list-buttons">
+      <a *ngIf="(archivedCharacters != null && archivedCharacters.length > 0 && !displayToggles.archivedCharacters)" (click)="displayToggles.archivedCharacters = true" class="character-list-button">Archived Characters</a>
+      <a *ngIf="(characters != null && characters.length > 0 && displayToggles.archivedCharacters)" (click)="displayToggles.archivedCharacters = false" class="character-list-button">Unarchived Characters</a>
+    </div>
+  </div>
+
+  <div *ngIf="(characters != null && characters.length > 0 && !displayToggles.archivedCharacters)" class="character-list">
     <div *ngFor="let character of characters" class="character-container">
       <ul>
         <li>
@@ -14,8 +22,28 @@
         </li>
 
         <li>
-          <button (click)="deleteCharacter(character.id)" class="character-delete-button">
-            <span>Delete</span>
+          <button (click)="archiveCharacter(character, 1)" class="character-delete-button">
+            <span>Archive</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div *ngIf="(archivedCharacters != null && archivedCharacters.length > 0 && displayToggles.archivedCharacters)" class="character-list">
+    <h2>Archived</h2>
+    <div *ngFor="let character of archivedCharacters" class="character-container">
+      <ul>
+        <li>
+          <a href="/character-sheet?characterId={{character.id}}">
+            <label>{{character.name}}</label><br>
+            <label>{{character.level}}</label>
+          </a>
+        </li>
+
+        <li>
+          <button (click)="archiveCharacter(character, 0)" class="character-delete-button">
+            <span>Unarchive</span>
           </button>
         </li>
       </ul>

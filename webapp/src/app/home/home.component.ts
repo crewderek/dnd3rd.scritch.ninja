@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Character} from "../shared/models/character.model";
 import {Observable} from "rxjs";
@@ -17,16 +17,23 @@ import * as http from "http";
 export class HomeComponent {
   // @ts-ignore
   characters: Character[] = [];
+  archivedCharacters: Character[] = [];
   responseData: any;
   loggedIn: boolean = false;
+  //  Create a variable that contains all the display toggle booleans
+  displayToggles: any = {
+    archivedCharacters: false,
+  };
 
-  constructor(private route: Router, private http: HttpClient, private localStorage: LocalStorageService, private token: JWTTokenService, private loginService: LoginService) {
+  constructor(private route: Router, private http: HttpClient, private localStorage: LocalStorageService,
+              private token: JWTTokenService, private loginService: LoginService) {
   }
 
-  ngOnInit(){
+  ngOnInit() {
     //  Make sure we are logged in
-    if(!this.loginService.isUserLoggedIn())
+    if (!this.loginService.isUserLoggedIn()) {
       return;
+    }
 
     this.loggedIn = true;
     this.getData().subscribe(
@@ -34,17 +41,22 @@ export class HomeComponent {
         response.characters.forEach((e: any) => {
           let character: Character = new Character(this.http);
 
-          character.getCharacterData(e.characterId).subscribe(
+          character.getCharacter(e.characterId).subscribe(
             (characterResponse) => {
               character.parseCharacterData(characterResponse.character);
-              this.characters.push(character);
+              //  Check if the character is archived
+              if (!character.isArchived) {
+                this.archiveCharacter(character, 0);
+                // this.characters.push(character);
+              } else {
+                this.archiveCharacter(character, 1);
+                // this.archivedCharacters.push(character);
+              }
             },
             (error) => {
               console.error('Error fetching data:', error);
             }
           );
-
-          // this.characters.push(character)
         })
       },
       (error) => {
@@ -71,10 +83,33 @@ export class HomeComponent {
     return this.http.get<any>(`${environment.apiEnvUrl()}${environment.userCharactersPath}`);
   }
 
-  deleteCharacter(characterId: string) {
-    // return this.http.delete<any>(
-    //   `${environment.apiEnvUrl()}${environment.characterPath}?characterId=${characterId}`);
-    this.http.delete<any>(`${environment.apiEnvUrl()}${environment.characterPath}?characterId=${characterId}`).subscribe((response)=>{console.log(response)});
+  markCharacterForDeletion(character: Character) {
+
+  }
+
+  archiveCharacter(character: Character, toArchive: number) {
+    // Check if the response was successful with a code 200
+    character.patchCharacter('isArchived', toArchive).subscribe((response) => {
+      // If toArchive is 0, then we are unarchiving the character
+      if (toArchive === 0) {
+        this.archivedCharacters = this.archivedCharacters.filter((e) => e.id !== character.id);
+        this.characters.push(character);
+        //Check if the archivedCharacters is empty, if it is, then we need to hide the archived characters
+        if (this.archivedCharacters.length == 0) {
+          this.displayToggles.archivedCharacters = false;
+        }
+      } else {
+        this.characters = this.characters.filter((e) => e.id !== character.id);
+        this.archivedCharacters.push(character);
+        //Check if the characters is empty, if it is, then we need to hide the characters
+        if (this.characters.length == 0) {
+          this.displayToggles.archivedCharacters = true;
+        }
+      }
+    }, // Handle the error
+      (error) => {
+        console.error('Error fetching data:', error);
+      });
   }
 
   createEmptyCharacter(): void {
@@ -84,7 +119,7 @@ export class HomeComponent {
     this.http.post<any>(url, body).subscribe((data) => {
       // console.log(data.status);
       this.route.navigate(['character-sheet'], {
-        queryParams: { characterId: data[0].Entity }
+        queryParams: {characterId: data[0].Entity}
       })
     });
   }

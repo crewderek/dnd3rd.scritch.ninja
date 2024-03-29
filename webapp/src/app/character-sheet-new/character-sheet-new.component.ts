@@ -54,7 +54,7 @@ export class CharacterSheetNewComponent {
       'characterId');
 
     if (characterIdParam != null) {
-      this.character.getCharacterData(characterIdParam).subscribe(
+      this.character.getCharacter(characterIdParam).subscribe(
         (response) => {
           this.character.parseCharacterData(response[0]);
         },
