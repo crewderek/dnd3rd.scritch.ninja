@@ -26,6 +26,7 @@ export class Character {
   // Info
   id: string = '';
   userId: string = '';
+  isArchived: number = 0;
 
   //  Descriptors
   name: string = '';
@@ -101,9 +102,20 @@ export class Character {
     this.addDefaultSkills();
   }
 
-  getCharacterData(characterId: string): Observable<any> {
+  getCharacter(characterId: string): Observable<any> {
     return this.http.get<any>(
       `${environment.apiEnvUrl()}${environment.characterPath}?characterId=${characterId}`);
+  }
+
+  patchCharacter(columnName: string,
+                 columnValue: string | number): Observable<any> {
+    const url = `${environment.apiEnvUrl()}${environment.characterPath}?characterId=${this.id}`;
+    const body = {
+      "columnName": columnName,
+      "columnValue": columnValue
+    };
+
+    return this.http.patch<any>(url, body);
   }
 
   private addDefaultSkills() {
@@ -119,6 +131,7 @@ export class Character {
     //  System information
     this.id = characterData.characterId;
     this.userId = characterData.userId;
+    this.isArchived = characterData.isArchived;
 
     //  Description info
     this.name = characterData.name;
