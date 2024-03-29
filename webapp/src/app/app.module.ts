@@ -22,6 +22,7 @@ import {JWTTokenService} from "./authorization/jwttoken.service";
 import { LogoutComponent } from './logout/logout.component';
 import { ScrollToDirective } from './scroll-to.directive';
 import { AutoFocusDirective } from './auto-focus.directive';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { AutoFocusDirective } from './auto-focus.directive';
     LoginComponent,
     LogoutComponent,
     ScrollToDirective,
-    AutoFocusDirective
+    AutoFocusDirective,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,

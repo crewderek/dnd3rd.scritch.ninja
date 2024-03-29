@@ -23,6 +23,7 @@ export class HomeComponent {
   //  Create a variable that contains all the display toggle booleans
   displayToggles: any = {
     archivedCharacters: false,
+    charactersLoading: true,
   };
 
   constructor(private route: Router, private http: HttpClient, private localStorage: LocalStorageService,
@@ -38,6 +39,7 @@ export class HomeComponent {
     this.loggedIn = true;
     this.getData().subscribe(
       (response) => {
+        this.displayToggles.charactersLoading = true;
         response.characters.forEach((e: any) => {
           let character: Character = new Character(this.http);
 
@@ -52,6 +54,8 @@ export class HomeComponent {
                 this.archiveCharacter(character, 1);
                 // this.archivedCharacters.push(character);
               }
+
+              this.displayToggles.charactersLoading = false;
             },
             (error) => {
               console.error('Error fetching data:', error);

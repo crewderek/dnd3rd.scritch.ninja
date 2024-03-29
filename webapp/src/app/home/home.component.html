@@ -11,6 +11,10 @@
     </div>
   </div>
 
+  <div class="character-list">
+    <app-loading-spinner *ngIf="displayToggles.charactersLoading"></app-loading-spinner>
+  </div>
+
   <div *ngIf="(characters != null && characters.length > 0 && !displayToggles.archivedCharacters)" class="character-list">
     <div *ngFor="let character of characters" class="character-container">
       <ul>
