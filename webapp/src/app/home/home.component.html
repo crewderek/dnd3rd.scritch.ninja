@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <div class="character-list">
+  <div *ngIf="loggedIn" class="character-list">
     <app-loading-spinner *ngIf="displayToggles.charactersLoading"></app-loading-spinner>
   </div>
 
