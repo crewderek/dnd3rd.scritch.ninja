@@ -13,3 +13,20 @@ body{
   background-size: cover;
   overflow-x: hidden;
 }
+
+.regular-font{
+  font-family: Arial, Helvetica, sans-serif;
+  color: lightgrey;
+}
+
+.small-font{
+  font-size: 14px;
+}
+
+.centered-font{
+  text-align: center;
+}
+
+.margin-small{
+  margin: 10px;
+}

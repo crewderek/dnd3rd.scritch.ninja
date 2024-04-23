@@ -74,10 +74,6 @@ export class HomeComponent {
     return this.http.get<any>(`${environment.apiEnvUrl()}${environment.userCharactersPath}`);
   }
 
-  markCharacterForDeletion(character: Character) {
-
-  }
-
   archiveCharacter(character: Character, toArchive: number) {
     // Check if the response was successful with a code 200
     character.patchCharacter('isArchived', toArchive).subscribe((response) => {
@@ -112,6 +108,40 @@ export class HomeComponent {
       this.route.navigate(['character-sheet'], {
         queryParams: {characterId: data[0].Entity}
       })
+    });
+  }
+
+  markCharacterForDeletion(character: Character) {
+    const today = new Date();
+    const daysForDeletion = 1;
+    const mysqlDateForDeletionWithLeadingZeros = today.getFullYear() + '-' + ('0' + today.getMonth()).slice(-2) + '-' + ('0' + (today.getDate() + daysForDeletion)).slice(-2);
+
+    character.patchCharacter('toBeDeletedOn', mysqlDateForDeletionWithLeadingZeros).subscribe({
+      next: (response) => {
+        console.log('Character marked for deletion response received: ', response);
+        character.deletionDate = mysqlDateForDeletionWithLeadingZeros;
+      },
+      error: (error) => {
+        console.error('Error fetching data:', error);
+      },
+      complete: () => {
+        console.log('Character marked for deletion');
+      }
+    });
+  }
+
+  unmarkCharacterForDeletion(character: Character) {
+    character.patchCharacter('toBeDeletedOn', null).subscribe({
+      next: (response) => {
+        console.log('Character unmarked for deletion response received: ', response);
+        character.deletionDate = null;
+      },
+      error: (error) => {
+        console.error('Error fetching data:', error);
+      },
+      complete: () => {
+        console.log('Character unmarked for deletion');
+      }
     });
   }
 }

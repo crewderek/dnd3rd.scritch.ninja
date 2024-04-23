@@ -27,6 +27,7 @@ export class Character {
   id: string = '';
   userId: string = '';
   isArchived: number = 0;
+  deletionDate: string | null = '';
 
   //  Descriptors
   name: string = '';
@@ -108,7 +109,7 @@ export class Character {
   }
 
   patchCharacter(columnName: string,
-                 columnValue: string | number): Observable<any> {
+                 columnValue: string | number | null): Observable<any> {
     const url = `${environment.apiEnvUrl()}${environment.characterPath}?characterId=${this.id}`;
     const body = {
       "columnName": columnName,
@@ -132,6 +133,7 @@ export class Character {
     this.id = characterData.characterId;
     this.userId = characterData.userId;
     this.isArchived = characterData.isArchived;
+    this.deletionDate = characterData.deletionDate;
 
     //  Description info
     this.name = characterData.name;

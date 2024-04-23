@@ -35,7 +35,6 @@
   </div>
 
   <div *ngIf="(archivedCharacters != null && archivedCharacters.length > 0 && displayToggles.archivedCharacters)" class="character-list">
-    <h2>Archived</h2>
     <div *ngFor="let character of archivedCharacters" class="character-container">
       <ul>
         <li>
@@ -49,6 +48,15 @@
           <button (click)="archiveCharacter(character, 0)" class="character-delete-button">
             <span>Unarchive</span>
           </button>
+          <button *ngIf="character.deletionDate == null"  (click)="markCharacterForDeletion(character)" class="character-delete-button">
+            <span>Mark for Deletion</span>
+          </button>
+          <button *ngIf="character.deletionDate != null" (click)="unmarkCharacterForDeletion(character)" class="character-delete-button">
+            <span>Unmark for Deletion</span>
+          </button>
+        </li>
+        <li class="margin-small centered-font" *ngIf="character.deletionDate != null">
+          <span class="regular-font small-font">Deletion date: {{character.deletionDate}}</span>
         </li>
       </ul>
     </div>
