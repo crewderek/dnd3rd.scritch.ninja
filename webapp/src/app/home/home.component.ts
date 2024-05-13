@@ -106,7 +106,7 @@ export class HomeComponent {
     this.http.post<any>(url, body).subscribe((data) => {
       // console.log(data.status);
       this.route.navigate(['character-sheet'], {
-        queryParams: {characterId: data[0].Entity}
+        queryParams: {characterId: data.entityId}
       })
     });
   }
