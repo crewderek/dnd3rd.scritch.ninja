@@ -30,3 +30,15 @@ body{
 .margin-small{
   margin: 10px;
 }
+
+.image-128{
+  width: 128px;
+}
+
+.text-align-left{
+  text-align: left;
+}
+
+.text-align-right{
+  text-align: right;
+}

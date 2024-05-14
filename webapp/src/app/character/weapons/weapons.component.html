@@ -1,14 +1,38 @@
 <h2>Attacks</h2>
 <div class="character-attacks">
   <div class="attack" *ngFor="let weapon of weapons">
-    <h2 class="attack-name">{{weapon.gearInfo.name}}</h2>
-    <label class="attack-stat attack-attack-bonus">{{weapon.attackBonus}}</label>
-    <div class="attack-stat attack-damages">
-      <div class="damage" *ngFor="let damage of weapon.damages" [innerHTML]=damage.toString()></div>
+    <div class="attack-header">
+      <img class="image-128" src="/assets/img/missing-icon.png">
+      <h2 class="attack-name">{{weapon.gearInfo.name}}</h2>
     </div>
-    <label class="attack-stat attack-critical">{{weapon.criticalLowerRange}}-20x{{weapon.criticalMultiplier}}</label>
-    <label class="attack-stat attack-range">{{weapon.range}}</label>
-    <label class="attack-stat attack-type">{{weapon.type}}</label>
-<!--    <label class="attack-stat attack-notes">{{weapon.notes}}</label>-->
+
+    <table class="attack-stat attack-attack-bonus">
+      <tr>
+        <td class="text-align-left">Attack Bonus:</td>
+        <td class="text-align-right">{{weapon.attackBonus}}</td>
+      </tr>
+
+      <tr>
+        <td class="text-align-left">Damage:</td>
+        <td class="text-align-right">
+          <div class="damage" *ngFor="let damage of weapon.damages" [innerHTML]=damage.toString()></div>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="text-align-left">Critical:</td>
+        <td class="text-align-right">{{weapon.criticalLowerRange}}-20x{{weapon.criticalMultiplier}}</td>
+      </tr>
+
+      <tr>
+        <td class="text-align-left">Range:</td>
+        <td class="text-align-right">{{weapon.range}}</td>
+      </tr>
+
+      <tr>
+        <td class="text-align-left">Type:</td>
+        <td class="text-align-right">{{weapon.type}}</td>
+      </tr>
+    </table>
   </div>
 </div>
