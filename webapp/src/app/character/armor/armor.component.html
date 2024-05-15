@@ -1,14 +1,61 @@
 <h2>Armor</h2>
 <div class="character-armors">
   <div class="armor" *ngFor="let armor of armors">
-    <h2>{{armor.gearInfo.name}}</h2>
-    <label class="armor-stat armor-type">{{armor.type}}</label>
-    <label class="armor-stat armor-ac-bonus">{{armor.acBonus}}</label>
-    <label class="armor-stat armor-max-dex-modifier">{{armor.maxDexModifier}}</label>
-    <label class="armor-stat armor-check-penalty">{{armor.checkPenalty}}</label>
-    <label class="armor-stat armor-spell-failure">{{armor.spellFailure}}</label>
-    <label class="armor-stat armor-max-speed">{{armor.maxSpeed}}</label>
-    <label class="armor-stat armor-weight">{{armor.gearInfo.weight}}</label>
-    <label class="armor-stat armor-notes">{{armor.notes}}</label>
+    <div class="armor-header">
+      <img class="image-128" src="/assets/img/missing-icon.png">
+      <h2 class="armor-name">{{armor.gearInfo.name}}</h2>
+    </div>
+
+    <table class="armor-stat armor-armor-bonus">
+      <tr>
+        <td class="text-align-left">AC Bonus:</td>
+        <td class="text-align-right">{{armor.acBonus}}</td>
+        <!--        <td><img class="image-20" src="/assets/img/d20.png"></td>-->
+      </tr>
+
+      <tr>
+        <td class="text-align-left">Type:</td>
+        <td class="text-align-right">{{armor.type}}</td>
+      </tr>
+
+      <tr>
+        <td class="text-align-left">Max Dex Modifier:</td>
+        <td class="text-align-right">{{armor.maxDexModifier}}</td>
+      </tr>
+
+      <tr>
+        <td class="text-align-left">Check Penalty:</td>
+        <td class="text-align-right">{{armor.checkPenalty}}</td>
+      </tr>
+
+      <tr>
+        <td class="text-align-left">Spell Failure:</td>
+        <td class="text-align-right">{{armor.spellFailure}}</td>
+      </tr>
+
+      <tr>
+        <td class="text-align-left">Max Speed:</td>
+        <td class="text-align-right">{{armor.maxSpeed}}</td>
+      </tr>
+
+      <tr>
+        <td class="text-align-left">Weight:</td>
+        <td class="text-align-right">{{armor.gearInfo.weight}}</td>
+      </tr>
+
+      <tr>
+        <td class="text-align-left">Notes:</td>
+        <td class="text-align-right">{{armor.notes}}</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <button class="centered-font armor-roll-button font-20 bold-font blue-gradient">
+            Armor Class
+            <img class="image-24" src="/assets/img/d20.png">
+          </button>
+        </td>
+      </tr>
+    </table>
   </div>
 </div>
