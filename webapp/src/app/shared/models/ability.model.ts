@@ -1,6 +1,7 @@
 import {Alignment} from "./character.model";
+import {Stat} from "../../character/stat";
 
-export class Ability{
+export class Ability implements Stat {
   name: AbilityName;
   score: number;
   type: AbilityType;
@@ -10,7 +11,26 @@ export class Ability{
     this.score = score;
     this.type = type;
   }
-  public getShortName(): string { return  this.name.substring(0, 3) }
+
+  public getShortName(): string {
+    return this.getName().substring(0, 3)
+  }
+
+  public getReversedShortName() {
+    return this.getName().substring(3);
+  }
+
+  public getName(): string {
+    return this.name;
+  }
+
+  getScore(): number {
+    return this.score;
+  }
+
+  getType(): string {
+    return this.type;
+  }
 }
 
 export enum AbilityName{

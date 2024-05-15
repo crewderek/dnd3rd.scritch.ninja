@@ -23,7 +23,8 @@ import { LogoutComponent } from './logout/logout.component';
 import { ScrollToDirective } from './scroll-to.directive';
 import { AutoFocusDirective } from './auto-focus.directive';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
-import { AbilityViewComponent } from './character/abilities/ability/ability-view.component';
+import { AbilityViewComponent } from './character/abilities/ability-view/ability-view.component';
+import { StatBreakdownViewComponent } from './character/stat-breakdown-view/stat-breakdown-view.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { AbilityViewComponent } from './character/abilities/ability/ability-view
     ScrollToDirective,
     AutoFocusDirective,
     LoadingSpinnerComponent,
-    AbilityViewComponent
+    AbilityViewComponent,
+    StatBreakdownViewComponent
   ],
   imports: [
     BrowserModule,

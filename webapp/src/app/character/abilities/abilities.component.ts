@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import {Character} from "../../shared/models/character.model";
 import {Ability, AbilityName} from "../../shared/models/ability.model";
-import {AbilityViewComponent} from "./ability/ability-view.component";
+import {AbilityViewComponent} from "./ability-view/ability-view.component";
 
 @Component({
   selector: 'app-abilities',
@@ -9,6 +9,7 @@ import {AbilityViewComponent} from "./ability/ability-view.component";
   styleUrl: './abilities.component.css'
 })
 export class AbilitiesComponent {
+  // @ts-ignore
   @Input({required: true}) character: Character;
   abilities: Ability[] = [];
 

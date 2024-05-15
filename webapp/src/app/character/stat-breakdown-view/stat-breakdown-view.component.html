@@ -1,0 +1,14 @@
+<div class="stat-breakdown-view-container" (blur)="abilityView.statsViewable = false">
+  <button class="stat-close-button bold-font">X</button>
+  <h2>{{getBaseStat().getName()}}</h2>
+  <table>
+    <tr>
+      <td class="bold-font stat-header">Scores</td>
+      <td class="bold-font stat-header">Types</td>
+    </tr>
+    <tr *ngFor="let stat of stats">
+      <td>{{stat.getScore()}}</td>
+      <td>{{stat.getType()}}</td>
+    </tr>
+  </table>
+</div>

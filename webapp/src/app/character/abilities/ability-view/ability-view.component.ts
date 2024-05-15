@@ -8,29 +8,34 @@ import {Ability, AbilityName, AbilityType} from "../../../shared/models/ability.
 })
 export class AbilityViewComponent {
   @Input() abilityStats: Ability[] = [];
-  @Input() abilityName: AbilityName;
-
+  statsViewable: boolean = false;
   constructor() {}
 
-  ngOnInit(){
-    console.log(this.abilityStats);
+  ngOnInit(){}
+
+  getBaseAbility(): Ability{
+    return this.abilityStats[0];
   }
 
-  getAbilityScore(){
+  getAbilityName(): string{
+    return this.getBaseAbility().name;
+  }
+
+  getTotalAbilityScore(){
     return this.abilityStats.reduce((a, b) => a + b.score, 0);
   }
 
   getModifier(){
-    return Math.floor((this.getAbilityScore() - 10) / 2);
+    return Math.floor((this.getTotalAbilityScore() - 10) / 2);
   }
 
   //  Get the first 3 characters of the ability name
   getShortName(){
-    return this.abilityName.substring(0, 3);
+    return this.getBaseAbility().getShortName();
   }
 
   //   Get all characters after the first 3 of the abilityName
   getReversedShortName(){
-    return this.abilityName.substring(3);
+    return this.getBaseAbility().getReversedShortName();
   }
 }

@@ -1,6 +1,6 @@
 <div class="abilities">
   <div class="ability-component" *ngFor="let abilityName of AbilityName | keyvalue">
-    <app-ability-view [abilityName]=abilityName.value [abilityStats]=getAbilitiesByName(abilityName.value)
+    <app-ability-view [abilityStats]=getAbilitiesByName(abilityName.value)
                       class="ability-component"></app-ability-view>
   </div>
 </div>
