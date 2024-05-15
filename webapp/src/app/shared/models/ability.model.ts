@@ -14,12 +14,12 @@ export class Ability{
 }
 
 export enum AbilityName{
-  Strength = "Strength",
-  Dexterity = "Dexterity",
-  Constitution = "Constitution",
-  Intelligence = "Intelligence",
-  Wisdom = "Wisdom",
-  Charisma = "Charisma"
+  Strength = "STRENGTH",
+  Dexterity = "DEXTERITY",
+  Constitution = "CONSTITUTION",
+  Intelligence = "INTELLIGENCE",
+  Wisdom = "WISDOM",
+  Charisma = "CHARISMA"
 }
 
 export enum AbilityType{

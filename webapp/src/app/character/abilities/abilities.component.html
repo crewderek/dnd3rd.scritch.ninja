@@ -1,11 +1,6 @@
-<h2>Abilities</h2>
 <div class="abilities">
-  <div class="ability" *ngFor="let ability of abilities">
-    <div class="ability-name">
-      <label class="ability-short-name">{{ability.getShortName().toUpperCase()}}</label><br>
-      <label class="ability-full-name">{{ability.name.toUpperCase()}}</label>
-    </div>
-    <input class="ability-score" type="text" [value]="ability.score" />
-<!--    <label class="ability-type">{{ability.type.toUpperCase()}}</label>-->
+  <div class="ability-component" *ngFor="let abilityName of AbilityName | keyvalue">
+    <app-ability-view [abilityName]=abilityName.value [abilityStats]=getAbilitiesByName(abilityName.value)
+                      class="ability-component"></app-ability-view>
   </div>
 </div>

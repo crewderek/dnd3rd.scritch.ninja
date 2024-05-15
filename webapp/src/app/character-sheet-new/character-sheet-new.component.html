@@ -45,6 +45,10 @@
     <label class="character-main-image-stat character-main-image-classes">{{ character.class == '' ? 'Character Classes' : character.class}}</label>
   </div>
 
+  <div class="character-abilities">
+    <app-abilities [character]=this.character></app-abilities>
+  </div>
+
   <div class="main-character-stats">
     <div class="main-character-stats-row">
       <div class="main-character-stat">
@@ -56,6 +60,9 @@
           </div>
         </label><br>
         <label class="stat-info">AC</label>
+
+        <img class="image-24 stat-roller-icon" src="/assets/img/d20.png" alt="Roll">
+<!--        <img class="image-24 stat-stat-button" src="/assets/img/stat-icon-low-res.png" alt="Roll">-->
       </div>
 
       <div class="main-character-stat">
@@ -220,16 +227,16 @@
   </div>
 
   <div class="main-character-descriptor main-character-description">
-    <button (click)="showSpells=!showSpells">Spells &#8628;</button>
-    <div *ngIf="showSpells" class="main-character-description-inner  hidden dropdown-stat" appScrollTo>
-      <app-spells [character]="character"></app-spells>
+    <button (click)="showSkills=!showSkills">Skills &#8628;</button>
+    <div *ngIf="showSkills" class="main-character-description-inner  hidden dropdown-stat" appScrollTo>
+      <app-skills [character]="character"></app-skills>
     </div>
   </div>
 
   <div class="main-character-descriptor main-character-description">
-    <button (click)="showSkills=!showSkills">Skills &#8628;</button>
-    <div *ngIf="showSkills" class="main-character-description-inner  hidden dropdown-stat" appScrollTo>
-      <app-skills [character]="character"></app-skills>
+    <button (click)="showSpells=!showSpells">Spells &#8628;</button>
+    <div *ngIf="showSpells" class="main-character-description-inner  hidden dropdown-stat" appScrollTo>
+      <app-spells [character]="character"></app-spells>
     </div>
   </div>
 

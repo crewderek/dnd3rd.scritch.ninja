@@ -1,0 +1,43 @@
+.ability-box{
+  height:100%;
+  width: 100%;
+  padding:0px;
+  padding-bottom:10px;
+  background: rgba(32, 32, 32, 1.0);
+  font-size: 2.0vw;
+  text-align: center;
+  color: antiquewhite;
+  border: 1px solid black;
+}
+.ability-roll-button{
+  width:100%;
+  margin:0px;
+  margin-bottom: 5px;
+  padding:0px;
+  background: rgba(48, 48, 48, 1.0);
+  border:1px solid black;
+  color: antiquewhite;
+  border-radius: 10px;
+  font-size: 1em;
+}
+.ability-box span{
+  font-size: 1.25em;
+}
+.ability-score{
+  display:block;
+  font-size: 2.5em;
+  width:100%;
+}
+.ability-modifier{
+  display:block;
+  width:100%;
+  font-size: 1.5em;
+}
+@media screen and (min-width: 1000px) {
+  .ability-box, .ability-modifier{
+    font-size: 16px;
+  }
+  .ability-box span{
+    font-size: 20px;
+  }
+}

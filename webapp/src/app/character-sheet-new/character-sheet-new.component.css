@@ -73,8 +73,7 @@
   justify-content: center;
 }
 .main-character-stat{
-  /*display:inline-block;*/
-  /*float:left;*/
+  position:relative;
   padding:10px 2% 20px 2%;
   height:50px;
   width:20.89%;
@@ -112,4 +111,14 @@
 }
 .stat-score input{
   width: 75%;
+}
+.stat-roller-icon{
+  position:absolute;
+  top:5px;
+  right:5px;
+}
+.stat-stat-button{
+  position:absolute;
+  bottom:5px;
+  right:5px;
 }

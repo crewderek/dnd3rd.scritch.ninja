@@ -1,0 +1,8 @@
+<div class="ability-box">
+  <button class="ability-roll-button bold-font">
+    <img class="image-24" src="/assets/img/d20.png" alt="roll ability">
+  </button>
+  <label class="ability-full-name"><span class="bold-font">{{getShortName()}}</span>{{getReversedShortName()}}</label><br>
+  <label class="ability-score bold-font">{{getAbilityScore()}}</label>
+  <label class="ability-modifier">{{getModifier() > 0 ? '+' : ''}}{{getModifier()}}</label>
+</div>
