@@ -61,7 +61,7 @@ export class Character {
   spellResistance: number = 0;
   grapple: number = 0;
   weapons: Weapon[] = [new Weapon(1, [new Damage()], 5, "Piercing", false, new Gear("Short sword"), 19), new Weapon(1, [new Damage()], 5, "Piercing", false, new Gear("Short sword"), 19)];
-  armors: Armor[] = [new Armor('Light', 1, 30, 8, .05, new Gear('Padded Armor', 10, 500, true)), new Armor('Light', 1, 30, 8, .05, new Gear('Padded Armor', 10, 500, true))];
+  armors: Armor[] = [new Armor('Light', 1, 30, 8, .05, new Gear('Padded Armor', 10, 500, true))];
   inventory: Gear[] = [new Gear('Lantern of Reavealing', 2, 300000, true), new Gear('Lantern of Reavealing', 2, 300000, true)];
 
   //Skills

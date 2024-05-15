@@ -35,7 +35,7 @@ h2{
   width: 48%;
   padding:5px 0px;
   margin:0 1.5%;
-  border:1px solid grey;
+  /*border:1px solid grey;*/
 }
 @media (max-width: 768px){
   .attack-stat{
@@ -44,4 +44,18 @@ h2{
     margin:0 1.5%;
     text-align: left;
   }
+}
+.attack-stat td{
+  padding: 5px;
+}
+
+.attack-roll-button{
+  width:96%;
+  margin:5px;
+  box-shadow: 5px 5px 5px black;
+  border-radius: 10px;
+  color:grey;
+}
+.attack-roll-button img{
+  margin-bottom:-5px;
 }

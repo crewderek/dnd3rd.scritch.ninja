@@ -10,6 +10,7 @@
       <tr>
         <td class="text-align-left">Attack Bonus:</td>
         <td class="text-align-right">{{weapon.attackBonus}}</td>
+<!--        <td><img class="image-20" src="/assets/img/d20.png"></td>-->
       </tr>
 
       <tr>
@@ -17,6 +18,7 @@
         <td class="text-align-right">
           <div class="damage" *ngFor="let damage of weapon.damages" [innerHTML]=damage.toString()></div>
         </td>
+<!--        <td><img class="image-20" src="/assets/img/d20.png"></td>-->
       </tr>
 
       <tr>
@@ -32,6 +34,21 @@
       <tr>
         <td class="text-align-left">Type:</td>
         <td class="text-align-right">{{weapon.type}}</td>
+      </tr>
+
+      <tr>
+        <td >
+          <button class="centered-font attack-roll-button font-20 bold-font blue-gradient">
+            Attack
+            <img class="image-24" src="/assets/img/d20.png">
+          </button>
+        </td>
+        <td>
+          <button class="centered-font attack-roll-button  font-20 bold-font red-gradient">
+            Damage
+            <img class="image-24" src="/assets/img/d20.png">
+          </button>
+        </td>
       </tr>
     </table>
   </div>
