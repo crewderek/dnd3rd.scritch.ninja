@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Ability, AbilityName, AbilityType} from "../../../shared/models/ability.model";
+import * as console from "console";
 
 @Component({
   selector: 'app-ability-view',
@@ -38,4 +39,6 @@ export class AbilityViewComponent {
   getReversedShortName(){
     return this.getBaseAbility().getReversedShortName();
   }
+
+  protected readonly console = console;
 }

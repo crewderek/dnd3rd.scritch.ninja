@@ -1,5 +1,5 @@
-<div class="stat-breakdown-view-container" (blur)="abilityView.statsViewable = false">
-  <button class="stat-close-button bold-font">X</button>
+<div class="stat-breakdown-view-container">
+  <button class="stat-close-button bold-font" (click)="abilityView.statsViewable = false">X</button>
   <h2>{{getBaseStat().getName()}}</h2>
   <table>
     <tr>
@@ -12,3 +12,4 @@
     </tr>
   </table>
 </div>
+<div class="stat-breakdown-view-container-background" (click)="abilityView.statsViewable = false"></div>

@@ -6,4 +6,4 @@
   <label class="ability-score bold-font">{{getTotalAbilityScore()}}</label>
   <label class="ability-modifier">{{getModifier() > 0 ? '+' : ''}}{{getModifier()}}</label>
 </div>
-<app-stat-breakdown-view *ngIf="statsViewable" (click)="statsViewable = false" [stats]="abilityStats" [abilityView]="this"></app-stat-breakdown-view>
+<app-stat-breakdown-view *ngIf="statsViewable" [stats]="abilityStats" [abilityView]="this"></app-stat-breakdown-view>

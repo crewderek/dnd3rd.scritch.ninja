@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, HostListener, Input} from '@angular/core';
 import {Stat} from "../stat";
 import {AbilityViewComponent} from "../abilities/ability-view/ability-view.component";
 
@@ -11,7 +11,11 @@ export class StatBreakdownViewComponent {
   @Input({required : true}) stats: Stat[] = [];
   @Input({required: true}) abilityView: AbilityViewComponent;
 
+  constructor() {}
+
   getBaseStat(): Stat {
     return this.stats[0];
   }
+
+  protected readonly console = console;
 }

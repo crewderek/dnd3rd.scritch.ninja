@@ -1,3 +1,12 @@
+.stat-breakdown-view-container-background{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(32, 32, 32, 0.5);
+  z-index: 99;
+}
 .stat-breakdown-view-container{
   position:absolute;
   display: flex;
